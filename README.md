@@ -1,4 +1,8 @@
-# TalentTrade 🤝
+<div align="center">
+  <img src="https://media1.tenor.com/m/l1zSfOzSjIwAAAAC/trade-offer.gif" alt="Trade Offer GIF">
+</div>
+
+## TalentTrade 🤝
 
 Tired of paying huge amounts of money for private lessons or online courses on top of the already expensive tuition? Introducing TalentTrade, a web app that allows students to teach others skills in exchange for learning another skill. Instead of paying hundreds of dollars for lessons, find a trade partner who knows the skill you want to learn and wishes to learn something you know! Join the community and share your skills with others.
 
