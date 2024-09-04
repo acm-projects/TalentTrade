@@ -120,10 +120,10 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 -   Sign up for [Figma](https://www.figma.com/signup)  
 
 ## Team TalentTrade 🙌
+**Developers**
+
 **Project Manager**
 - Noel Emmanuel
   
 **Industry Mentor**
 - Sam Stegall
-
-**Developers**
