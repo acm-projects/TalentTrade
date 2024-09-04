@@ -15,12 +15,11 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 - **In-app messaging system** for communication between users.
 - **Video integration** for remote teaching with both video call and chat functionality.
 - **Profile pages** showcasing previous work, skills taught, or testimonials.
-- **Basic Rating system** for each skill taught by a user.
 - **Skill Matching Algorithm** to suggest relevant skill exchange partners.
-- **Scheduling feature** to arrange skill swap sessions.
 
 ## Stretch Goals 💪
 
+- **Scheduling feature** to arrange skill swap sessions.
 - **Reputation system** based on user feedback.
 - **Request feature** that sends alerts to users with similar skills.
 - **Custom feed** for users to browse skills they might wish to learn.
@@ -54,17 +53,31 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 3-4: Coding 👨🏻‍💻</summary>
+  <summary>Weeks 3: Coding 👨🏻‍💻</summary>
   
   - **Front End:**
     - Start developing frontend components.
-    - Complete Login/Signup, Home, Profile, Connections, Messaging, and optional Video Calling pages.
-    - Implement Settings Page for user preferences.
+    - Work on:
+      - Login/Signup Page
+      - Home Page
+      - Profile Page
+  - **Back End:**
+    - Complete user data storage and retrieval in databases.
+    - Develop talent trading recommendation algorithm.
+<br></details>
+
+<details>
+  <summary>Weeks 4: Keep Coding 📟</summary>
+  
+  - **Front End:**
+    - Work on:
+      - Connections Page
+      - Messaging
+      - Video Calling
+      - Implement Settings Page for user preferences.
   - **Back End:**
     - Implement in-app messaging system.
     - Integrate video sharing (explore APIs like WebRTC, Agora, or Twilio).
-    - Complete user data storage and retrieval in databases.
-    - Develop talent trading recommendation algorithm.
 <br></details>
 
 <details>
@@ -83,7 +96,8 @@ Tired of paying huge amounts of money for private lessons or online courses on t
   
   - Finalize backend and frontend integration.
   - Plan and brainstorm for the presentation.
-  - Work on stretch goals and ensure connectivity between frontend and backend.
+  - Work on stretch goals
+  - Ensure connectivity between frontend and backend.
 <br></details>
 
 <details>
@@ -121,10 +135,24 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 -   [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 -   [Git in-depth tutorial](https://youtu.be/RGOj5yH7evk)
 -   [Postman set up tutorial](https://youtu.be/3eHJkcA8mTs)    
--   Sign up for [Figma](https://www.figma.com/signup)  
+-   Sign up for [Figma](https://www.figma.com/signup)
+-   [Video Calling in ReactJS](https://www.youtube.com/watch?v=ENakkm58Uyw)
+-   [Messaging App Playlist](https://www.youtube.com/playlist?list=PL63c_Ws9ecIRZ6njHRi3cuCkNSfzqyLBn)
+
+## Competitors 🤼
+
+- **SkillShare** (Paid option with only select classes not covering niche or degree-specific topics)
+- **YouTube** (Has a big selection but is not personalized and does not reinforce your other skills)
+- **Khan Academy** (Might not have certain topics for college students and is only academic)
+- **Reading textbooks** (Really time-consuming and could be an information overload)
 
 ## Team TalentTrade 🙌
+
 **Developers**
+- Cheryl Wang
+- Adrian Tran
+- Sunay Shehaan
+- Daniel Nguyen
 
 **Project Manager**
 - Noel Emmanuel
