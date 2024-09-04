@@ -26,6 +26,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 
 <details>
   <summary>Week 1: Set Up</summary>
+  
   - Discuss team roles (frontend/backend) and finalize project/tech stack.
   - Set up communication channels and development environments.
   - Review GitHub basics:
@@ -36,6 +37,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 
 <details>
   <summary>Week 2: More Preparation</summary>
+  
   - **Front End:**
     - Review and brainstorm UI/UX design ideas.
     - Complete the base Figma Design.
@@ -48,7 +50,8 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 3/4: Coding</summary>
+  <summary>Weeks 3-4: Coding</summary>
+  
   - **Front End:**
     - Start developing frontend components.
     - Complete Login/Signup, Home, Profile, Connections, Messaging, and optional Video Calling pages.
@@ -61,7 +64,8 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 5/6: Middle Stretch</summary>
+  <summary>Weeks 5-6: Middle Stretch</summary>
+  
   - **Front End:**
     - Finalize Login/Signup, Home, Profile, Messaging, Connections, and Settings pages.
     - Determine implementation for Video Calling.
@@ -71,14 +75,16 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 7/8: Finishing Touches</summary>
+  <summary>Weeks 7-8: Finishing Touches</summary>
+  
   - Finalize backend and frontend integration.
   - Plan and brainstorm for the presentation.
   - Work on stretch goals and ensure connectivity between frontend and backend.
 <br></details>
 
 <details>
-  <summary>Weeks 9/10: Wrapping Up/Presentation Night</summary>
+  <summary>Weeks 9-10: Wrapping Up/Presentation Night</summary>
+  
   - Complete any remaining stretch goals.
   - Prepare and practice the presentation.
   - Present to stakeholders.
