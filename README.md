@@ -1,8 +1,8 @@
-# TalentTrade
+# TalentTrade 🤝
 
 Tired of paying huge amounts of money for private lessons or online courses on top of the already expensive tuition? Introducing TalentTrade, a web app that allows students to teach others skills in exchange for learning another skill. Instead of paying hundreds of dollars for lessons, find a trade partner who knows the skill you want to learn and wishes to learn something you know! Join the community and share your skills with others.
 
-## MVP
+## MVP 🏆
 
 - **Account creation with User Authentication**
 - **User Reviews** 
@@ -15,17 +15,17 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 - **Skill Matching Algorithm** to suggest relevant skill exchange partners.
 - **Scheduling feature** to arrange skill swap sessions.
 
-## Stretch Goals
+## Stretch Goals 💪
 
 - **Reputation system** based on user feedback.
 - **Request feature** that sends alerts to users with similar skills.
 - **Custom feed** for users to browse skills they might wish to learn.
 - **Calendar Integration for Scheduling** directly within the app or through API integration.
 
-## Milestones
+## Milestones 🎯
 
 <details>
-  <summary>Week 1: Set Up</summary>
+  <summary>Week 1: Set Up ⚙️</summary>
   
   - Discuss team roles (frontend/backend) and finalize project/tech stack.
   - Set up communication channels and development environments.
@@ -36,7 +36,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Week 2: More Preparation</summary>
+  <summary>Week 2: More Preparation 💡</summary>
   
   - **Front End:**
     - Review and brainstorm UI/UX design ideas.
@@ -50,7 +50,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 3-4: Coding</summary>
+  <summary>Weeks 3-4: Coding 👨🏻‍💻</summary>
   
   - **Front End:**
     - Start developing frontend components.
@@ -64,7 +64,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 5-6: Middle Stretch</summary>
+  <summary>Weeks 5-6: Middle Stretch 👾</summary>
   
   - **Front End:**
     - Finalize Login/Signup, Home, Profile, Messaging, Connections, and Settings pages.
@@ -75,7 +75,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 7-8: Finishing Touches</summary>
+  <summary>Weeks 7-8: Finishing Touches 👔</summary>
   
   - Finalize backend and frontend integration.
   - Plan and brainstorm for the presentation.
@@ -83,14 +83,14 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 <br></details>
 
 <details>
-  <summary>Weeks 9-10: Wrapping Up/Presentation Night</summary>
+  <summary>Weeks 9-10: Wrapping Up/Presentation Night 🗣🎤🖥️</summary>
   
   - Complete any remaining stretch goals.
   - Prepare and practice the presentation.
   - Present to stakeholders.
 <br></details>
 
-## Tech Stack
+## Tech Stack 💻
 
 - **React**: Building the frontend with a focus on interactivity.
   - [Setup Guide](https://legacy.reactjs.org/tutorial/tutorial.html#setup-for-the-tutorial)
@@ -106,17 +106,24 @@ Tired of paying huge amounts of money for private lessons or online courses on t
   - [How to start with Node, Express, and MongoDB](https://www.youtube.com/watch?v=P5QbE9aRCLQ&list=PLaAoUJDWH9WrPXMOkqHHsPHxbhvRDqryM)
   - [MERN Stack Tutorial](https://www.youtube.com/watch?v=ExcRbA7fy_A&list=PL4cUxeGkcC9h77dJ-QJlwGlZlTd4ecZOA)
 
-## Software to Install
+## Software to Install </>
 
 -   [Visual Studio Code](https://code.visualstudio.com/)
 -   [Git](https://git-scm.com/downloads) (version control)
 -   [Node](https://nodejs.org/en/download/prebuilt-installer)
 
-## Other Resources
+## Other Resources 🗂️
 
 -   [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 -   [Git in-depth tutorial](https://youtu.be/RGOj5yH7evk)
 -   [Postman set up tutorial](https://youtu.be/3eHJkcA8mTs)    
 -   Sign up for [Figma](https://www.figma.com/signup)  
 
-## Team TalentTrade
+## Team TalentTrade 🙌
+**Project Manager**
+- Noel Emmanuel
+  
+**Industry Mentor**
+- Sam Stegall
+
+**Developers**
