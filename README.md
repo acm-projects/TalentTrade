@@ -150,7 +150,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 
 **Developers**
 - Cheryl Wang
-- Adrian Tran
+- Adrian Tran - reynolds
 - Sunay Shehaan
 - Daniel Nguyen
 
