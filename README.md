@@ -152,7 +152,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 - Cheryl Wang
 - Adrian Tran - reynolds
 - Sunay Shehaan
-- Daniel Nguyen
+- Daniel Nguyen - danny
 
 **Project Manager**
 - Noel Emmanuel - The Amazing
