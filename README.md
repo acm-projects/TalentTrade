@@ -155,7 +155,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 - Daniel Nguyen
 
 **Project Manager**
-- Noel Emmanuel
+- Noel Emmanuel - The Amazing
   
 **Industry Mentor**
 - Sam Stegall
