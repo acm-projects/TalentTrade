@@ -149,10 +149,10 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 ## Team TalentTrade 🙌
 
 **Developers**
-- Adrian Tran - reynolds
 - Cheryl Wang - the best
-- Sunay Shehaan
+- Adrian Tran - reynolds
 - Daniel Nguyen - danny
+- Sunay Shehaan - Blizzy
 
 **Project Manager**
 - Noel Emmanuel - The Amazing
