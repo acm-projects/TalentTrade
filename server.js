@@ -6,11 +6,11 @@ const mongoose=require('mongoose')
 
 //get request for browser
 app.get('/',(req,res)=>{
-  res.json({msg:"Welcome to the browser"})
+  res.json({"From the backend side":"Welcome to TalentTrade!"})
 })
 
 //connect to db
-mongoose.connect("mongodb+srv://shehaansunay:Sunay123@profileschema.5isd0.mongodb.net/")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
   app.listen(process.env.PORT,()=>{
     console.log('Connected to DB and Listening on port',process.env.PORT)
