@@ -1,3 +1,5 @@
+require ('dotenv').config()
+
 const express=require('express')
 const app=express()    //express app
 const mongoose=require('mongoose')
@@ -10,8 +12,8 @@ app.get('/',(req,res)=>{
 //connect to db
 mongoose.connect("mongodb+srv://shehaansunay:Sunay123@profileschema.5isd0.mongodb.net/")
 .then(()=>{
-  app.listen(4000,()=>{
-    console.log('Connected to DB and Listening on port',4000)
+  app.listen(process.env.PORT,()=>{
+    console.log('Connected to DB and Listening on port',process.env.PORT)
   })
 })
 .catch((error)=>{
