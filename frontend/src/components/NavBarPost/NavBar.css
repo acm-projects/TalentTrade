@@ -10,7 +10,7 @@
     align-items: center;
     padding: 15px;
     padding-top: 20px;
-    border-bottom: 4px solid var(--light);
+    border-bottom: 6px solid var(--light);
 }
 
 .navbar-left {

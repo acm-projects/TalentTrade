@@ -11,6 +11,8 @@ const Home = () => {
             <div class='body'>
                 <Cards/>
             </div>
+            <h2>Join TalentTrade today!</h2>
+            <h4>Connect, Teach, and Learn</h4>
             
         </div>
     )

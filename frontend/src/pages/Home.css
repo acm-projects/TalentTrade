@@ -7,13 +7,23 @@
   }
 
 h1 {
-    font-size: 40px;
+    font-size: 50px;
     color: var(--medium);
     font-family: 'Konkhmer Sleokchher', sans-serif;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
-.body {
-    background-color: lightblue;
+h2 {
+    font-size: 40px;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    text-align: center;
+    padding-top: 30px;
+    margin:0;
+}
+
+h4 {
+    font-size: 20px;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    text-align: center;
 }
