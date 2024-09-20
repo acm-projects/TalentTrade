@@ -7,19 +7,3 @@ body {
   font-family: 'Work Sans';
   line-height: 1.2;
 }
-
-h1 {
-  font-size: 70pt;
-  line-height: 0;
-  color: #2C31ED;
-}
-
-h2 {
-  font-size: 25pt;
-  font-weight: 500;
-  color: #2C31ED;
-}
-/* signin */
-.signin {
-  background: #ffffff;
-}
