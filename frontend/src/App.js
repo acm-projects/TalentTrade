@@ -1,8 +1,8 @@
 //import { BrowserRouter, Routes, Route } from 'react-router-dom'
-//import Home from '.pages/Home'
+import Home from './pages/Home'
 //import logo from './logo.svg'
 import './App.css'
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBarPost/NavBar';
 import React from 'react'
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ function App() {
       <BrowserRouter>
         <NavBar/>
         <Routes>
-          <Route path='/' exact/>
+          <Route path='/' element={<Home/>} />
         </Routes>
       </BrowserRouter>
     </div>

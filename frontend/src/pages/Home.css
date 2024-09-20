@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap');
+
+:root {
+    --light: #DCDFFF;
+    --dark: #291B71;
+    --medium: #2C31ED
+  }
+
+h1 {
+    font-size: 40px;
+    color: var(--medium);
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.body {
+    background-color: lightblue;
+}
