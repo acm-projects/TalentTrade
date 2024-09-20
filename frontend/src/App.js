@@ -1,14 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom'
+//import Home from '.pages/Home'
+//import logo from './logo.svg'
+import './App.css'
+import NavBar from './components/NavBar';
+import React from 'react'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -17,7 +19,13 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route path='/' exact/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
