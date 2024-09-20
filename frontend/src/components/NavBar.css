@@ -23,7 +23,8 @@
 }
 
 .logo{
-    max-width: 15%;
+    width: 170px;
+    height: auto;
 }
 
 .navbar-icon {
