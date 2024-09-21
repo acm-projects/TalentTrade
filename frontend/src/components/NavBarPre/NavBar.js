@@ -24,7 +24,7 @@ function NavBarPre() {
                         Sign in
                     </Link>
 
-                    <Link to="/signin" class="nav-button-solid">
+                    <Link to="/signup" class="nav-button-solid">
                         Sign up
                     </Link>
                 </div>

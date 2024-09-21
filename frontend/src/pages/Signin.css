@@ -5,6 +5,7 @@ h1 {
   line-height: 0;
   color: #2C31ED;
   position: relative;
+  text-align: left;
 }
 
 
@@ -13,26 +14,20 @@ h2 {
   font-weight: 500;
   color: #2C31ED;
   position: relative;
-}
-
-.fullsize {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
+  text-align: left;
 }
 
 .verticalcenter {
   position: absolute;
   top: 40%;
   left: 10%;
-  /* transform: translate(-50%, -50%); */
+  text-align: left;
 }
 
 .formcolumn {
   position: absolute;
   height: auto;
-  width: auto;
+  width: 500px;
   right: 10%;
   top: 40%;
 }
