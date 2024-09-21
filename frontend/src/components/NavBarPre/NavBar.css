@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --light: #DCDFFF;
+    --light: rgba(21, 0, 128, 0.3);
 }
 
 .navbar {
@@ -12,7 +12,7 @@
     top: 0;
     padding: 15px;
     padding-top: 20px;
-    border-bottom: 4px solid var(--light);
+    border-bottom: 6px solid var(--light);
 }
 
 .navbar-left {

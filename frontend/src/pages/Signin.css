@@ -1,37 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 h1 {
-    font-size: 70pt;
-    line-height: 0;
-    color: #2C31ED;
-    position: relative;
-  }
-  
-  
-  h2 {
-    font-size: 25pt;
-    font-weight: 500;
-    color: #2C31ED;
-    position: relative;
-  }
-  
-  .fullsize {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-  }
-  
-  .verticalcenter {
-    position: absolute;
-    top: 40%;
-    left: 5%;
-    /* transform: translate(-50%, -50%); */
-  }
-  
-  /* signin */
-  .signin {
-    background-image: '/images/signinBG.svg';
-    height: auto;
-  }
-  
+  font-size: 70pt;
+  line-height: 0;
+  color: #2C31ED;
+  position: relative;
+}
+
+
+h2 {
+  font-size: 25pt;
+  font-weight: 500;
+  color: #2C31ED;
+  position: relative;
+}
+
+.fullsize {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+}
+
+.verticalcenter {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  /* transform: translate(-50%, -50%); */
+}
+
+.formcolumn {
+  position: absolute;
+  height: auto;
+  width: auto;
+  right: 10%;
+  top: 40%;
+}
+
+.signin {
+  background-image: '/images/signinBG.svg';
+  height: auto;
+}
