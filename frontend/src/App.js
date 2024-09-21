@@ -1,8 +1,7 @@
 //import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Home from './pages/preHome/preHome'
 //import logo from './logo.svg'
 import './App.css'
-import NavBar from './components/NavBarPost/NavBar';
 import React from 'react'
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -21,7 +20,6 @@ function App() {
         </a>
       </header> */}
       <BrowserRouter>
-        <NavBar/>
         <Routes>
           <Route path='/' element={<Home/>} />
         </Routes>
