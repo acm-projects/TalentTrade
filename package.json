@@ -1,0 +1,23 @@
+{
+  "name": "talenttrade",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">   <img src=\"https://media1.tenor.com/m/l1zSfOzSjIwAAAAC/trade-offer.gif\" alt=\"Trade Offer GIF\"> </div>",
+  "main": "Blizzyfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon Blizzy.js",
+    "start": "nodemon Blizzy.js"
+  },
+  "type": "commonjs",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.5"
+  }
+}
