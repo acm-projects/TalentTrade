@@ -5,15 +5,20 @@ import './Home.css'
 const Home = () => {
     return (
         <div>
-            <h1>Learn by teaching,<br/>
-            Teach by learning.
-            </h1>
-            <div class='body'>
+            <div>
+                <h1>Learn by teaching,<br/>
+                Teach by learning.
+                </h1>
+            </div>
+            <div className='topBackground'></div>
+            <div>
                 <Cards/>
             </div>
-            <h2>Join TalentTrade today!</h2>
-            <h4>Connect, Teach, and Learn</h4>
-            
+            <div className='darkBackground'>
+                <h2 className='white'>Join TalentTrade today!</h2>
+                <h4 className='white'>Connect, Teach, and Learn</h4>
+            </div>
+           
         </div>
     )
 }

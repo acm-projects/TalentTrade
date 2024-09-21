@@ -17,6 +17,9 @@ function NavBarPost() {
                 <Link to="/FAQ" class="nav-string">
                     FAQ
                 </Link>
+                <Link to="/settings" class="settings-icon">
+                    <img src={"/images/settings.png"} class="navbar-icon"/>
+                </Link>
                 <Link to="/messages" class="messages-icon">
                         <img src={"/images/message.png"} class="navbar-icon"/>
                 </Link>
