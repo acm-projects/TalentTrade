@@ -2,13 +2,6 @@ const mongoose=require("mongoose")
 
 const Schema = mongoose.Schema
 
-/*const profileSchema=new Schema({
-  Username:{
-    Name:{
-      type:String
-    }
-  }
-})*/
 
 const profileSchema= new Schema({
   User:{
