@@ -12,7 +12,6 @@ router.post('/', async (req,res)=>{
 
   try{
     const {User}=req.body;
-    console.log(User)
     const Userdata= await UserProfile.create({User})
     res.status(200).json({Userdata})
 
