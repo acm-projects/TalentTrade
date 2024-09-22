@@ -1,13 +1,29 @@
 const express=require('express')
 const UserProfile=require('./schema')
+const mongoose=require('mongoose')
 
 const router=express.Router()
 
-router.get('/:id',(req,res)=>{
-  res.json({msg:"GET a user profile"})
+//getting single user data
+router.get('/:id',async (req,res)=>{
+  const {id}=req.params
 
-})
+  if(!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(404).json({error:'No such user'})
+  }
 
+  const Userdata=await UserProfile.findById(id)
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
+
+}
+
+)
+
+//creating a new user data
 router.post('/', async (req,res)=>{
 
   try{
@@ -23,16 +39,44 @@ router.post('/', async (req,res)=>{
 })
 
 
-router.delete('/:id',(req,res)=>{
-  res.json({msg:"DELETE a user profile"})
+//deleting a user data
+router.delete('/:id',async (req,res)=>{
+  const {id}=req.params
+
+  if(!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(404).json({error:'No such user'})
+  }
+
+  const Userdata=await UserProfile.findOneAndDelete({_id:id})
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
+
+}
+
+
+//updating user data
+
+)
+router.patch('/:id',async (req,res)=>{
+  const {id}=req.params
+
+  if(!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(404).json({error:'No such user'})
+  }
+
+  const Userdata=await UserProfile.findOneAndUpdate({_id:id},{
+    ...req.body
+  },{ new: true})
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
 
 })
-
-router.patch('/:id',(req,res)=>{
-  res.json({msg:"UPDATE a user profile"})
-
-})
-
 module.exports=router
 
 
