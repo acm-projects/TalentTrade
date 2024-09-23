@@ -6,15 +6,20 @@ const admin = require ("./firebaseAdmin")
 const cors = require("cors")
 
 const app = express()    //express app
+const userRoutes =  require('./routes/userRoutes') // user routes
 
-// cors for getting resources from external server
+// middleware + cors for getting resources from external server
 app.use(cors());
+
+app.use(express.json())
 
 //get request for browser
 app.get('/',(req,res)=>{
   res.json({"From the backend side":"Welcome to TalentTrade!"})
 })
 
+//routes
+app.use('/api/users', userRoutes)
 
 const connectToMongoose = async () => {
   try {
@@ -46,19 +51,3 @@ async function verifyToken (req, res, next) {
     return res.status(401).send("Unauthorized Login")
   }
 }
-
-// post request (post user data)
-app.post("/api/users", verifyToken, async (req, res) => {
-  const { uid, name, email, picture } = req.user;
-
-  let user = await User.findne({ uid });
-
-  // if not user create one
-  if (!user) {
-    user = new User({ uid, name, email, picture})
-    await user.save();
-  }
-
-  // if user send as a response
-  res.send(user);
-});
