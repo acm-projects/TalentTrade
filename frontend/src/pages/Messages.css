@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container {
+    left: 10%;
+    right: 10%;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.contacts-container {
+    border-style: solid;
+    border-color: #E2E2E2;
+    border-radius: 25px;
+    margin-top: 100px;
+    padding: 50px;
+    width: 25%;
+    display: inline;
+}
+
+.messages-container {
+    border-style: solid;
+    border-color: #E2E2E2;
+    border-radius: 25px;
+    margin-top: 100px;
+    padding: 50px;
+    width: 65%;
+    display: inline;
+}
