@@ -6,7 +6,7 @@ const Signup = () => {
     return (
         <div>
             <NavBarPre />
-            <div className="signup">
+            <div className="signin">
                 <div className="verticalcenter">
                     <h1>Welcome!</h1>
                     <h2>Sign up to connect and trade<br></br>
