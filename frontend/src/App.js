@@ -1,9 +1,11 @@
 //import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/preHome/preHome'
+import Profile from './pages/profilepage/profile'
+import EditProfile from './pages/profilepage/editProfile'
 //import logo from './logo.svg'
 import './App.css'
 import React from 'react'
-import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
@@ -19,11 +21,11 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>} />
+          <Route path='/profile' element={<Profile/>} />
+          <Route path='/profile/edit' element={<EditProfile/>} />
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }
