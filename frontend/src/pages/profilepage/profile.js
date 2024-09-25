@@ -22,7 +22,7 @@ const Profile = () => {
     }
     const teaching_skill2 = {
         Name: "Cooking",
-        Description: "learning for 4 years ",
+        Description: "learning for 4 years  hjh gkjhg kjh gjh gjkh gkg kjhgkjh gjhg jh kjh gjh gkjhgkjhg jhg jhg kjh  djhf ksjdh lkjds hskdjfh lksjd sdjkhf ksjd hfkjsd fkjsdh kfjhsdfjsld kfjhsdkj fskf",
         Rating_score: 4.6,
         Hours_taught:7
     }
@@ -53,6 +53,7 @@ const Profile = () => {
                 <div className='container'>
                     <TeachingCard teaching_skill = {teaching_skill1} />
                     <TeachingCard teaching_skill = {teaching_skill2} />
+                    <TeachingCard teaching_skill = {teaching_skill1} />
                 </div>
             </div>
             <div>

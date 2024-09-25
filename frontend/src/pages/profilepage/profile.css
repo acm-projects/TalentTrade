@@ -18,7 +18,7 @@
     justify-content:space-between;
     align-items: center;
     padding: 20px;
-    height:100%;
+    height:auto;
     width:100%
 }
 
@@ -29,7 +29,6 @@
 .topright {
     display: flex;
     justify-content: flex-end; 
-    height:100%;
 }
 
 .edit {
@@ -62,6 +61,10 @@
     border-top-right-radius: 15px;
     overflow: hidden; 
     padding:0;
+}
+
+.topText {
+    vertical-align: top;
 }
 
 .profileTextHeader {
@@ -113,9 +116,17 @@ p {
 
 .descriptionText {
     margin:0;
-    padding-left: 20px;
-    line-height: 0;
+    padding: 20px;
+    padding-top: 0px;
+    line-height: 1.5;
+    flex-grow: 1;
 }
+
+h6 {
+    margin: 0;
+    vertical-align: baseline;
+}
+
 
 .teachingCardText {
     line-height: 0;
@@ -125,6 +136,7 @@ p {
 .center {
     text-align: center;
 }
+
 
 @media only screen and (min-width: 600px) {
     .box {

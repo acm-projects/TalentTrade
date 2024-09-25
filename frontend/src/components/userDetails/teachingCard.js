@@ -12,9 +12,10 @@ const TeachingCard = ({ teaching_skill }) => {
             </div>
             <div className='descriptionText'> 
                 <h6>{teaching_skill.Description}</h6>
-                <h6>Hours Taught: {teaching_skill.Hours_taught}</h6>
+                <div className='bottom'>
+                    <h6>Hours Taught: {teaching_skill.Hours_taught}</h6>
+                </div>
             </div>
-            
         </div>
     )
 
