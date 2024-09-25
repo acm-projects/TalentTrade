@@ -20,9 +20,9 @@ const EditProfile = () => {
             <h1 className='margin0px'>Edit Profile</h1>
             <EditProfileForm user = { user }/>
             <h1 className='margin0px'>Edit Skills</h1>
-            <h2 className='profileSkillHeader alignLeft marginLeft5'>Teaching</h2>
+            <h2 className='profileSkillHeader alignLeft marginLeft15'>Teaching</h2>
             <EditTeachingSkills/>
-            <h2 className='profileSkillHeader alignLeft marginLeft5'>Learning</h2>
+            <h2 className='profileSkillHeader alignLeft marginLeft15'>Learning</h2>
         </div>
     )
 }
