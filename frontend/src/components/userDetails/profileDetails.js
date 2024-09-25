@@ -10,7 +10,7 @@ const ProfileDetails = ({ user }) => {
                     <div className='topleft'>
                         <img src={user.profilePicture} className='pfp'/>
                         <div className='profileText'>
-                            <h2 className='profileTextHeader'>{user.name}</h2>
+                            <h2 className='profileTextHeader'>{user.Fname} {user.Lname}</h2>
                             <p>{user.location}</p>
                             <p>{user.year}</p>
                         </div>
