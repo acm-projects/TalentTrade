@@ -1,12 +1,9 @@
 import { useState } from "react"
 
-const EditTeachingSkills = () => {
+const EditLearningSkills = () => {
 
     const [values, setValues] = useState({
         Name: '',
-        Description: '',
-        Rating_score: 0,
-        Hours_taught: 0,
     })
 
     const handleChange = (e) => {
@@ -25,10 +22,6 @@ const EditTeachingSkills = () => {
                     <label htmlFor="Name">Skill Name</label>
                     <input type="text" placeholder='enter skill' name="Name"
                     onChange={(e) => handleChange(e)}/>
-
-                    <label htmlFor="Description">Description</label>
-                    <input type="text" placeholder="enter description" name="Description"
-                    onChange={(e) => handleChange(e)}/>
                     
                     <button type='submit' className='submitButton'>Add </button>
                 </form>
@@ -37,4 +30,4 @@ const EditTeachingSkills = () => {
     )
 }
 
-export default EditTeachingSkills
+export default EditLearningSkills

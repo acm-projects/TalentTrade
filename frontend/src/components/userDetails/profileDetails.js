@@ -16,7 +16,7 @@ const ProfileDetails = ({ user }) => {
                         </div>
                     </div>
                     <div className='topright'>
-                        <Link to="/profile/edit" class="edit">
+                        <Link to="/profile/edit" className="edit">
                             Edit
                         </Link>
                     </div>
