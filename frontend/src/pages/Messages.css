@@ -5,24 +5,34 @@
     right: 10%;
     margin-left: 100px;
     margin-right: 100px;
+    display: flex;
 }
 
 .contacts-container {
     border-style: solid;
     border-color: #E2E2E2;
     border-radius: 25px;
-    margin-top: 100px;
+    border-width: 1px;
+    margin-top: 50px;
+    top: 5%;
+    left: 5%;
     padding: 50px;
-    width: 25%;
-    display: inline;
+    width: 28%;
+    height: 85%;
+    position: absolute;
 }
 
 .messages-container {
     border-style: solid;
     border-color: #E2E2E2;
     border-radius: 25px;
-    margin-top: 100px;
+    border-width: 1px;
+    margin-top: 50px;
+    top: 5%;
+    right: 5%;
     padding: 50px;
-    width: 65%;
-    display: inline;
+    width: 60%;
+    height: 85%;
+    position: absolute;
+    
 }
