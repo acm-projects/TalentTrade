@@ -1,94 +1,73 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-// import { firebaseConfig } from './firebaseauth';
-// import { initializeApp } from 'firebase/app';
+import React from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { firebaseConfig } from './firebaseauth';
+import { initializeApp } from 'firebase/app';
+import { Link } from 'react-router-dom'
 import './SigninForm.css'
-import { getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
-// import { getFirestore, setDoc, doc } from 'firebase/firestore'
-import { auth, googleProvider, firebaseConfig} from "./firebase-config";
+import{getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import { getFirestore, setDoc, doc } from 'firebase/firestore'
 
 function SigninForm() {
-    const navigate = useNavigate();
-    const [emailInput, setEmailInput] = useState('');
-    const [passwordInput, setPasswordInput] = useState('');
-    const [error, setError] = useState('');
+    const navigate=useNavigate()
 
-    const handleEmail = (event) => {
-        setEmailInput(event.target.value);
-    };
+    const [emailinput,setemailinput]=useState('')
+    const[passwordinput,setpasswordinput]=useState('')
 
-    const handlePassword = (event) => {
-        setPasswordInput(event.target.value);
-    };
-
-    const handleButtonClick = async () => {
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, emailInput, passwordInput);
-            console.log("Successfully logged in");
-            localStorage.setItem('loggedInUserId', userCredential.user.uid);
-            navigate('/');
-        } catch (error) {
-            console.error("Error during sign-in:", error);
-            if (error.code === "auth/invalid-credential") {
-                setError("Incorrect email or password");
-            } else if (error.code === "auth/user-not-found") {
-                setError("Account does not exist");
-            } else {
-                setError("An error occurred. Please try again.");
-            }
-        }
-    };
-
-    const handleGoogleSignIn = async () => {
-    try {
-        const result = await signInWithPopup(auth, googleProvider);
-        console.log(result);
-        const token = await result.user.getIdToken();
-
-        const response = await fetch("http://localhost:4000/api/protected", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-        },
-        });
-
-        const userData = await response.json();
-        console.log("User Data:", userData);
-    } catch (error) {
-        console.error("Error during sign-in:", error);
+    const handleemail=(event)=>{
+        setemailinput(event.target.value)
     }
-};
+    const handlepassword=(event)=>{
+        setpasswordinput(event.target.value)
+    }
+    const handlebuttonclick=()=>{
+        const app=initializeApp(firebaseConfig)
+        const auth=getAuth()
+        const db=getFirestore()
 
-return (
-    <div className='container'>
-        <div className="header">
-            Sign into TalentTrade
-        </div>
-        <div className="inputs">
-            <div className="input">
-                <input type="email" id="email" onChange={handleEmail} placeholder="Email" />
+        signInWithEmailAndPassword(auth,emailinput,passwordinput)
+        .then((userCredential)=>{
+            console.log("Successfully logged in");
+            const user=userCredential.user;
+            localStorage.setItem('loggedInUserId',user.uid);
+            navigate('/');
+})
+        .catch((error)=>{
+            const errorCode=error.code;
+            if(errorCode==="auth/invalid-credential"){
+            console.log("Incorrect email or password")
+            }
+            else{
+            console.log("Account does not exist");
+            }
+  })
+        
+    }
+
+
+    return (
+        <div className='container'>
+            <div className="header">
+                Sign into TalentTrade
             </div>
-            <div className="input">
-                <input type="password" id="password" onChange={handlePassword} placeholder="Password" />
+            <div className="inputs">
+                <div className="input">
+                    <input type="email" id="email" onChange={handleemail} placeholder="Email" />
+                </div>
+                <div className="input">
+                    <input type="password" id="password" onChange={handlepassword} placeholder="Password" />
+                </div>
+            </div>
+            <div className="submit-container">
+                <div className="submit" onClick={handlebuttonclick}>Sign in</div>
+            </div>
+            <div className="text">
+                <div className="redirect">
+                    <span>Don't have an account? <Link to="/signup" class="link">Sign up</Link></span>
+                </div>
             </div>
         </div>
-        {error && <div className="error-message">{error}</div>}
-        <div className="submit-container">
-            <div className="submit" onClick={handleButtonClick}>Sign in</div>
-        </div>
-        <div className="submit-container">
-            <button onClick={handleGoogleSignIn} className="p-3 bg-gray-400 rounded-lg">
-                Sign In with Google
-            </button>
-        </div>
-        <div className="text">
-            <div className="redirect">
-                <span>Don't have an account? <Link to="/signup" className="link">Sign up</Link></span>
-            </div>
-        </div>
-    </div>
-);
+    );
 }
 
 export default SigninForm;
