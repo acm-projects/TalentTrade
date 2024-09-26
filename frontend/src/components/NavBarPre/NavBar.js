@@ -13,9 +13,9 @@ function NavBarPre() {
                     </Link>
                 </div>
                 <div className='navbar-right'>
-                    <Link to="/browse" class="nav-string">
+                    {/* <Link to="/browse" class="nav-string">
                         Browse
-                    </Link>
+                    </Link> */}
                     <Link to="/FAQ" class="nav-string">
                         FAQ
                     </Link>
