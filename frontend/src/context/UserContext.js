@@ -26,7 +26,7 @@ export const userReducer = (state, action) => {
     }
 }
 
-export const WorkoutsContextProvider = ({ children }) => {
+export const UserContextProvider = ({ children }) => {
     //children is the app
 
     const [state, dispatch] = useReducer(userReducer, {

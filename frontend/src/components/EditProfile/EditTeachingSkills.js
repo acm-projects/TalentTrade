@@ -13,9 +13,33 @@ const EditTeachingSkills = () => {
         setValues({...values, [e.target.name]:e.target.value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(values)
+
+        const teaching_skill = {values}
+
+        const response = await fetch('/api/users/' + user._id, {
+            method: 'PATCH',
+            body: JSON.stringify(teaching_skill),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json = await response.json()
+        
+        if (response.ok){
+            //sucess message
+            setFormSubmitted(true)
+            setTimeout(() => {
+               setFormSubmitted(false)
+            }, 3000)
+
+            dispatch({type: 'SET_USER', payload: json})
+
+            console.log("new data added, json")
+        }
     }
 
     return (

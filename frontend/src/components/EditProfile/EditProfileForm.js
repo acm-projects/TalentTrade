@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useUserContext } from "../hooks/useUserContext"
+import { useUserContext } from "../../hooks/useUserContext"
 
 const EditProfileForm = ( {user} ) => {
     const {dispatch} = useUserContext()
@@ -27,7 +27,7 @@ const EditProfileForm = ( {user} ) => {
 
         const user = {values}
 
-        const response = await fetch('/api/users/${user._id}', {
+        const response = await fetch('/api/users/' + user._id, {
             method: 'PATCH',
             body: JSON.stringify(user),
             headers: {
@@ -44,7 +44,7 @@ const EditProfileForm = ( {user} ) => {
                setFormSubmitted(false)
             }, 3000)
 
-            dispatch({type: 'CREATE_WORKOUT', payload: json})
+            dispatch({type: 'SET_USER', payload: json})
 
             console.log("new data added, json")
         }
