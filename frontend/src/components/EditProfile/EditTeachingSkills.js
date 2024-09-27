@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useUserContext } from '../hooks/useUserContext';
 
-const EditTeachingSkills = () => {
+const EditTeachingSkills = ({userInfo}) => {
+    const { dispatch } = useUserContext();
 
     const [values, setValues] = useState({
         Name: '',
@@ -8,6 +10,8 @@ const EditTeachingSkills = () => {
         Rating_score: 0,
         Hours_taught: 0,
     })
+
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
         setValues({...values, [e.target.name]:e.target.value})
@@ -17,11 +21,13 @@ const EditTeachingSkills = () => {
         e.preventDefault()
         console.log(values)
 
-        const teaching_skill = {values}
+        const newTeachingSkill = values
 
-        const response = await fetch('/api/users/' + user._id, {
+        const response = await fetch('/api/users/' + userInfo._id, {
             method: 'PATCH',
-            body: JSON.stringify(teaching_skill),
+            body: JSON.stringify({
+                teaching_skill: [...userInfo.Skills.teaching_skill, newTeachingSkill],
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -55,6 +61,7 @@ const EditTeachingSkills = () => {
                     onChange={(e) => handleChange(e)}/>
                     
                     <button type='submit' className='submitButton'>Add </button>
+                    {formSubmitted && <span className="formSubmitted">Sucessfully Added!</span>}
                 </form>
             </div>
         </div>

@@ -25,18 +25,15 @@ const Profile = () => {
     }, [dispatch])  
 
     //access personal info data
+    let userInfo, teachingSkills, learningSkills;
+
     if (userData && userData.User && userData.User.Personal_info) {
-        const userInfo = userData.User.Personal_info;
+        userInfo = userData.User.Personal_info;
     }
 
-    //access teaching skills data
-    if (userData && userData.User && userData.User.Skills && userData.User.Skills.teaching_skill) {
-        const teachingSkill = userData.User.Skills.teaching_skill;
-    }
-
-    //access learning skills data
-    if (userData && userData.User && userData.User.Skills && userData.User.Skills.learning_skill) {
-        const learningSkill = userData.User.Skills.learning_skills;
+    if (userData && userData.User && userData.User.Skills) {
+        teachingSkill = userData.User.Skills.teaching_skill;
+        learningSkill = userData.User.Skills.learning_skill;
     }
 
     return (
@@ -48,20 +45,33 @@ const Profile = () => {
             <div>
                 <h2 className='profileSkillHeader '>Teaching</h2>
                 <div className='container'>
-                {teachingSkill && teachingSkill.map((skill)=> (
-                    <TeachingCard key={skill._id} teaching_skill={skill}/>
-                ))}
+
+                {teachingSkills.length > 0 ? (
+                    teachingSkills.map((skill) => (
+                        <TeachingCard key={skill._id} teaching_skill={skill} />
+                    ))
+                ) : (
+                    <p>No teaching skills available</p>
+                )}
+
+
                 </div>
             </div>
             <div>
             <h2 className='profileSkillHeader '>Learning</h2>
                 <div className='container'>
 
-                    {learningSkill && teachingSkill.map((skill) => (
-                        <div className='teachingCard border center'> 
-                            <h5> {learning_skill.Name} </h5>
-                        </div>
-                    ))}
+                    {learningSkills.length > 0 ? (
+                        learningSkills.map((skill) => (
+                            <div className='teachingCard border center' key={skill._id}>
+                                <h5>{skill.Name}</h5>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No learning skills available</p>
+                    )}
+
+
                 </div>
             </div>
         

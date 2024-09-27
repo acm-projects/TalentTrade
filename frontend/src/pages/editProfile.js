@@ -33,20 +33,23 @@ const EditProfile = () => {
         fetchUser()
     }, [dispatch])  
 
+    let userInfo, teachingSkills, learningSkills;
+
     if (userData && userData.User && userData.User.Personal_info) {
-        const user = userData.User.Personal_info;
+        userInfo = userData.User.Personal_info;
     }
+
     
     return (
         <div>
             <NavBar/>
             <h1 className='margin0px'>Edit Profile</h1>
-            <EditProfileForm user = { user }/>
+            <EditProfileForm user = { userInfo }/>
             <h1 className='margin0px'>Edit Skills</h1>
             <h2 className='profileSkillHeader alignLeft marginLeft15'>Teaching</h2>
-            <EditTeachingSkills/>
+            <EditTeachingSkills teachingSkill = { userInfo }/>
             <h2 className='profileSkillHeader alignLeft marginLeft15'>Learning</h2>
-            <EditLearningSkills/>
+            <EditLearningSkills learningSkill = {userInfo}/>
         </div>
     )
 }
