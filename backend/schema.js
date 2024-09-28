@@ -1,62 +1,74 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-
-const profileSchema= new Schema({
-  User:{
-    Personal_info:{
-      Username:{
-        type:String,
-        required:true
-      },
-      Email:{
-        type:String,
-        required:true
-      },
-      Password:{
-        type:String,
-        required:true
-      },
-      Fname:{
-        type:String,
-        required:true
-      },
-      Lname:{
-        type:String
-      },
-      DOB:{
-        type:String,
-        required:true
-      },
-      year:{
-        type:String     //freshman, sophomore, alumni, etc
-      }
-
-    },
-    Skills:{
-      teaching_skill:{
-        Name:{
-          type:String
+const profileSchema = new Schema({
+    User: {
+        Personal_info: {
+            Username: {
+                type: String,
+                required: false
+            },
+            Email: {
+                type: String,
+                required: true
+            },
+            Password: {
+                type: String,
+                required: true
+            },
+            Fname: {
+                type: String,
+                required: false
+            },
+            Lname: {
+                type: String,
+                required: false
+            },
+            DOB: {
+                type: String,
+                required: false
+            },
+            year: {
+                type: String,  // freshman, sophomore, alumni, etc.
+                required: false
+            }
         },
-        Description:{
-          type:String
-        },
-        Rating_score:{
-          type:Number
-        },
-        Hours_taught:{
-          type:Number
+        Skills: {
+            teaching_skills: [
+                {
+                    Name: {
+                        type: String,
+                        required: false
+                    },
+                    Description: {
+                        type: String,
+                        required: false
+                    },
+                    Rating_score: {
+                        type: Number,
+                        required: false
+                    },
+                    Hours_taught: {
+                        type: Number,
+                        required: false
+                    }
+                }
+            ],
+            learning_skills: [
+                {
+                    Name: {
+                        type: String,
+                        required: false
+                    },
+                    Description: {
+                        type: String,
+                        required: false
+                    }
+                }
+            ]
         }
-      },
-      learning_skill:{
-        Name:{
-          type:String
-        }
-      }
-
     }
-  }
-})
+}, {timestamps: true});
 
-module.exports=mongoose.model("UserProfile",profileSchema)
+module.exports = mongoose.model("UserProfile", profileSchema);
