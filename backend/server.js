@@ -4,8 +4,16 @@ const express=require('express')
 const app=express()    //express app
 const mongoose=require('mongoose')
 const userRoutes=require('./router')
+const cors = require('cors');
 
-app.use(express.json()) //middleware
+// middleware
+app.use(express.json())
+app.use(cors({
+  origin: 'http://localhost:3000', // allow requests from frontend
+  methods: ['POST'], // allowed methods
+  credentials: true // allowing cookies, etc
+}));
+
 
 //get request for browser
 app.get('/',(req,res)=>{
