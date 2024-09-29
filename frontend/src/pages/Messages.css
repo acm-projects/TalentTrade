@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*
 .container {
     left: 10%;
     right: 10%;
@@ -7,6 +8,7 @@
     margin-right: 100px;
     display: flex;
 }
+*/
 
 .contacts-container {
     border-style: solid;
@@ -36,3 +38,4 @@
     position: absolute;
     
 }
+

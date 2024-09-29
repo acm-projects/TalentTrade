@@ -1,11 +1,11 @@
 //import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/preHome'
+import PostHome from "./pages/Home"
 import Profile from './pages/profile'
 import EditProfile from './pages/editProfile'
 //import logo from './logo.svg'
 import './App.css'
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
@@ -20,6 +20,7 @@ function App() {
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path='/home' element={<PostHome/>} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/messages" element={<Messages />} />

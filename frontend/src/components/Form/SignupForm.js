@@ -78,7 +78,7 @@ function SignupForm() {
 
     return (
         
-        <div className='container'>
+        <div className='container a'>
             <div className="header">
                 Sign up for TalentTrade
             </div>

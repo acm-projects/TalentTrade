@@ -4,7 +4,7 @@ import '../pages/cheryl.css'
 function Cards() {
     return(
         <div>
-                <div className="container mediumBackground">
+                <div className="container cheryl mediumBackground">
                     <div className="box">
                         <img src="images/user.png" alt="Image 1" className="box__img" />
                         <h3 className="box__text">Math</h3>
@@ -32,22 +32,22 @@ function Cards() {
                         <ul className='cards__items'>
                             <li className='card__item blackBackground'>
                                 <div className='cards__item__info'>
-                                    <h1 className='statistic'>50K+</h1>
-                                    <h3 className='statistic white'>TRADERES</h3>
+                                    <h1 className='c noMargin'>50K+</h1>
+                                    <h3 className='statistic white c'>TRADERES</h3>
                                 </div>
                             </li>
 
                             <li className='card__item blackBackground'>
                                 <div className='cards__item__info'>
-                                    <h1 className='statistic'>30</h1>
-                                    <h3 className='statistic white'>AFFLILATED UNIVERSITIES</h3>
+                                    <h1 className='c noMargin'>30</h1>
+                                    <h3 className='statistic white c'>AFFLILATED UNIVERSITIES</h3>
                                 </div>
                             </li>
 
                             <li className='card__item blackBackground'>
                                 <div className='cards__item__info'>
-                                    <h1 className='statistic'>9/10</h1>
-                                    <h3 className='statistic white'>BY IGN</h3>
+                                    <h1 className='c noMargin'>9/10</h1>
+                                    <h3 className='statistic white c'>BY IGN</h3>
                                 </div>
                             </li>
                         </ul>

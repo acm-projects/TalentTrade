@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAuth } from "firebase/auth";
+import { auth } from '../components/Form/firebaseauth';
 import NavBar from '../components/PostNavBar';
 import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
@@ -8,7 +9,6 @@ import './cheryl.css'
 const Profile = () => {
     
     const [profile, setProfile] = useState(null);
-    const auth = getAuth();
     const user = auth.currentUser;
 
     //get profileschema data?

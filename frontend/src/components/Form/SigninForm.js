@@ -27,7 +27,7 @@ function SigninForm() {
                 console.log("Successfully logged in");
                 const user = userCredential.user;
                 localStorage.setItem('loggedInUserId', user.uid);
-                navigate('/');
+                navigate('/home');
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -57,7 +57,7 @@ function SigninForm() {
     };
 
     return (
-        <div className='container'>
+        <div className='container a'>
             <div className="header">
                 Sign into TalentTrade
             </div>

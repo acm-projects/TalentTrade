@@ -1,4 +1,7 @@
-export const firebaseConfig = {
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+
+ export const firebaseConfig = {
   apiKey: "AIzaSyAI7MV7tSiA3RcjfcD5fptou2HlWb2xgSk",
   authDomain: "talent-trade-bbb32.firebaseapp.com",
   projectId: "talent-trade-bbb32",
@@ -7,3 +10,6 @@ export const firebaseConfig = {
   appId: "1:965531803567:web:9f26211445cb9c440fd95a",
   measurementId: "G-07KGFH6JZD"
 };
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);

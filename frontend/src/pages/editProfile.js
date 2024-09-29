@@ -1,55 +1,44 @@
 import NavBar from '../components/PostNavBar';
 import EditProfileForm from '../components/EditProfile/EditProfileForm'
 import EditTeachingSkills from '../components/EditProfile/EditTeachingSkills';
+import EditLearningSkills from '../components/EditProfile/EditLearningSkills'
 import './cheryl.css'
-import { useEffect } from 'react'
-import { useUserContext } from '../hooks/useUserContext';
+import { useEffect, useState } from 'react'
+import { getAuth } from "firebase/auth";
 
 const EditProfile = () => {
-    // const user = {
-    //     Fname: "Cheryl",
-    //     Lname: "Wang",
-    //     Email: "whxcollege@gmail.com",
-    //     location: "The University of Texas at Dallas",
-    //     year: "Freshman",
-    //     aboutMe: "Hi, I'm cheryl! I'm passionate about exploring new ideas and always eager to learn something new. Whether it's diving into tech, working on creative projects, or connecting with others, I enjoy staying curious and open-minded. In my free time, I love hiking, reading, and experimenting with new recipes. Always up for a good conversation or a new challenge!",
-    //     profilePicture: "./images/user.png",
-    //     profileBanner: "./images/bottomBackground.png"
-    // }
 
-    const {userData, dispatch} = useUserContext()
+    const [profile, setProfile] = useState(null);
+    const auth = getAuth();
+    const user = auth.currentUser;
 
+    //get profileschema data?
     useEffect(() => {
-        const fetchUser = async () => {
-            const response = await fetch('/api/user')
-            const json = await response.json()
+        if (user) {
+            const fetchUser = async () => {
+                const response = await fetch('/api/user/' + user.uid)
+                const json = await response.json()
 
-            //check if response is ok
-            if (response.ok) {
-                dispatch({type: 'SET_USER', payload: json})
+                //check if response is ok
+                if (response.ok) {
+                    setProfile(json)
+                }
             }
+            fetchUser()
         }
-
-        fetchUser()
-    }, [dispatch])  
-
-    let userInfo, teachingSkills, learningSkills;
-
-    if (userData && userData.User && userData.User.Personal_info) {
-        userInfo = userData.User.Personal_info;
-    }
+    }, [user])  
 
     
     return (
         <div>
             <NavBar/>
             <h1 className='margin0px'>Edit Profile</h1>
-            <EditProfileForm user = { userInfo }/>
+            <EditProfileForm user = { profile.Personal_info }/>
             <h1 className='margin0px'>Edit Skills</h1>
             <h2 className='profileSkillHeader alignLeft marginLeft15'>Teaching</h2>
-            <EditTeachingSkills teachingSkill = { userInfo }/>
+            <EditTeachingSkills teachingSkill = { profile.Skills.teaching_skills }/>
             <h2 className='profileSkillHeader alignLeft marginLeft15'>Learning</h2>
-            <EditLearningSkills learningSkill = {userInfo}/>
+            <EditLearningSkills learningSkill = { profile.Skills.learning_skills}/>
         </div>
     )
 }

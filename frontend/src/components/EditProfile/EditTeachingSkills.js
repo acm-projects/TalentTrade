@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useUserContext } from '../hooks/useUserContext';
+import { useUserContext } from '../../hooks/useUserContext';
 
 const EditTeachingSkills = ({userInfo}) => {
     const { dispatch } = useUserContext();

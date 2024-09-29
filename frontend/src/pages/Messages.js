@@ -1,5 +1,5 @@
 import './Messages.css';
-import NavBarPost from '../components/NavBarPost/NavBar'
+import NavBarPost from '../components/PostNavBar'
 import Contacts from '../components/MessageBoxes/Contacts'
 
 const Messages = () => {
