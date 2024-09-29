@@ -1,53 +1,48 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { getAuth } from "firebase/auth";
 import NavBar from '../components/PostNavBar';
 import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
 import './cheryl.css'
-import { useUserContext } from '../hooks/useUserContext';
 
 const Profile = () => {
     
-    const {userData, dispatch} = useUserContext()
+    const [profile, setProfile] = useState(null);
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     //get profileschema data?
     useEffect(() => {
-        const fetchUser = async () => {
-            const response = await fetch('/api/user')
-            const json = await response.json()
+        if (user) {
+            const fetchUser = async () => {
+                const response = await fetch('/api/user/' + user.uid)
+                const json = await response.json()
 
-            //check if response is ok
-            if (response.ok) {
-                dispatch({type: 'SET_USER', payload: json})
+                //check if response is ok
+                if (response.ok) {
+                    setProfile(json)
+                }
             }
+            fetchUser()
         }
+    }, [user])  
 
-        fetchUser()
-    }, [dispatch])  
-
-    //access personal info data
-    let userInfo, teachingSkills, learningSkills;
-
-    if (userData && userData.User && userData.User.Personal_info) {
-        userInfo = userData.User.Personal_info;
-    }
-
-    if (userData && userData.User && userData.User.Skills) {
-        teachingSkill = userData.User.Skills.teaching_skill;
-        learningSkill = userData.User.Skills.learning_skill;
+    if (!profile) {
+        return <p>Loading profile...</p>;
     }
 
     return (
         <div>
             <NavBar/>
             <div>
-                <ProfileDetails user = {userInfo}/>
+                <ProfileDetails user = {profile.Personal_info}/>
             </div>
             <div>
                 <h2 className='profileSkillHeader '>Teaching</h2>
                 <div className='container'>
 
-                {teachingSkills.length > 0 ? (
-                    teachingSkills.map((skill) => (
+                {profile.Skills?.teaching_skill?.length > 0 ? (
+                    profile.Skills.teaching_skill.map((skill) => (
                         <TeachingCard key={skill._id} teaching_skill={skill} />
                     ))
                 ) : (
@@ -61,8 +56,8 @@ const Profile = () => {
             <h2 className='profileSkillHeader '>Learning</h2>
                 <div className='container'>
 
-                    {learningSkills.length > 0 ? (
-                        learningSkills.map((skill) => (
+                    {profile.Skills?.learning_skill?.length > 0 ? (
+                        profile.Skills.learning_skill.map((skill) => (
                             <div className='teachingCard border center' key={skill._id}>
                                 <h5>{skill.Name}</h5>
                             </div>
