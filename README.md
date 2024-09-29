@@ -155,7 +155,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 - Sunay Shehaan - Blizzy
 
 **Project Manager**
-- Noel Emmanuel - The Amazing
-  
+- Noel Emmanuel - The Amazing 23456
+
 **Industry Mentor**
 - Sam Stegall

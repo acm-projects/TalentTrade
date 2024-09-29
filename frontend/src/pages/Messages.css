@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container {
+    left: 10%;
+    right: 10%;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+}
+
+.contacts-container {
+    border-style: solid;
+    border-color: #E2E2E2;
+    border-radius: 25px;
+    border-width: 1px;
+    margin-top: 50px;
+    top: 5%;
+    left: 5%;
+    padding: 50px;
+    width: 28%;
+    height: 85%;
+    position: absolute;
+}
+
+.messages-container {
+    border-style: solid;
+    border-color: #E2E2E2;
+    border-radius: 25px;
+    border-width: 1px;
+    margin-top: 50px;
+    top: 5%;
+    right: 5%;
+    padding: 50px;
+    width: 60%;
+    height: 85%;
+    position: absolute;
+    
+}
