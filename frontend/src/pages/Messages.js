@@ -7,10 +7,22 @@ const Messages = () => {
         <div>
             <NavBarPost />
                 <div className="contacts-container">
-                    <h1>Hello</h1>
+                    <div className="self-contact">
+                        <img src={"/images/user.png"} class="profile-picture"/>
+                        <h3>Name</h3>
+                        <div className="secondary-text">
+                            email@email.com
+                        </div>
+                        <div className="other-contacts">
+                            <h3>Messages</h3>
+                        </div>
+                    </div>
                 </div>
                 <div className="messages-container">
-                    <h1>Hello</h1>
+                    <div className="messages-header">
+                        <img src={"/images/user.png"} class="profile-picture"/>
+                        Name
+                        </div>
                 </div>
         </div>
     )
