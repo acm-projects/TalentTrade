@@ -1,6 +1,7 @@
 import './Messages.css';
 import NavBarPost from '../components/NavBarPost/NavBar'
 import Contact from '../components/MessageBoxes/Contact'
+import Chat from '../components/MessageBoxes/Chat'
 
 const Messages = () => {
     return (
@@ -20,7 +21,8 @@ const Messages = () => {
                     <div className="messages-header">
                         <img src={"/images/user.png"} class="profile-picture"/>
                         Steve Jones
-                        </div>
+                    </div>
+                    <Chat />
                 </div>
         </div>
     )
