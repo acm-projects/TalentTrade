@@ -1,64 +1,80 @@
-import React from 'react'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
-import { Link } from 'react-router-dom'
-import './SignupForm.css'
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
-import { getFirestore, setDoc, doc } from 'firebase/firestore'
-
+import './SignupForm.css';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 function SignupForm() {
-    const navigate=useNavigate()
+    const navigate = useNavigate();
 
-    const [username,setusername]=useState('')
-    const [emailinput,setemailinput]=useState('')
-    const[passwordinput,setpasswordinput]=useState('')
+    const [username, setusername] = useState('');
+    const [emailinput, setemailinput] = useState('');
+    const [passwordinput, setpasswordinput] = useState('');
 
-    const handleusername=(event)=>{
-        setusername(event.target.value)
-    }
-    const handleemail=(event)=>{
-        setemailinput(event.target.value)
-    }
-    const handlepassword=(event)=>{
-        setpasswordinput(event.target.value)
-    }
-    const handlebuttonclick=()=>{
+    const handleusername = (event) => {
+        setusername(event.target.value);
+    };
 
-    
-        const app=initializeApp(firebaseConfig)
-        const auth=getAuth()
-        const db=getFirestore()
-    
+    const handleemail = (event) => {
+        setemailinput(event.target.value);
+    };
+
+    const handlepassword = (event) => {
+        setpasswordinput(event.target.value);
+    };
+
+    const handlebuttonclick = () => {
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
         createUserWithEmailAndPassword(auth, emailinput, passwordinput)
-        .then((userCredential)=>{
-            const user=userCredential.user;
-            const userData={
-                email: emailinput,
-                password:passwordinput,
-                usernamefinal:username
-            };
-            console.log("Account Created!! Yay !!");
-            const docRef=doc(db, "users", user.uid);
-            setDoc(docRef,userData)
-            .then(()=>{
-                navigate('/');
+            .then((userCredential) => {
+                const user = userCredential.user;
+
+                 // after auth, post req to create user (empty arrays for skills)
+                const userData = {
+                    User: {
+                        Personal_info: {
+                            Email: emailinput,
+                            Password: passwordinput,
+                            Username: username || null,
+                        },
+                        Skills: {
+                            teaching_skills: [],
+                            learning_skills: []
+                        }
+                    }
+                };
+
+                fetch('http://localhost:4000/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Failed to create user in MongoDB');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("User created successfully in MongoDB:", data);
+                    navigate('/');
+                })
+                .catch((error) => {
+                    console.error("Error during user creation in MongoDB:", error.message);
+                });
             })
-            .catch((error)=>{
-                console.error("error writing document", error);
-    
-            })
-          })
-          .catch((error)=>{
-            const errorCode=error.code;
-            if(errorCode=='auth/email-already-in-use'){
-                console.log("Email already exists bruh");
-            }
-        })
-    }
-    
+            .catch((error) => {
+                const errorCode = error.code;
+                if (errorCode === 'auth/email-already-in-use') {
+                    console.log("Email already exists bruh");
+                }
+            });
+    };
 
     return (
         
