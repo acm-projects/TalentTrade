@@ -8,7 +8,29 @@ import './SigninForm.css'
 import{getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import { getFirestore, setDoc, doc } from 'firebase/firestore'
 
+
 function SigninForm() {
+    const fetchUserProfileByEmail = async (email) => {
+        try {
+            const response = await fetch(`http://localhost:4000/api/users/email/${encodeURIComponent(email)}`, {
+              method: 'GET',
+              credentials: 'include',
+            });
+        
+            const userProfile = await response.json();
+            console.log(`Fetching user profile from: http://localhost:4000/api/users/email/${encodeURIComponent(email)}`);
+
+        
+            if (response.ok) {
+              console.log('User profile data:', userProfile);
+            } else {
+                console.log(response)
+              console.log('Error fetching user profile:', userProfile.message || 'Unknown error');
+            }
+          } catch (error) {
+            console.error('Error fetching user profile:', error.message || error);
+          }
+        };
     const navigate=useNavigate()
 
     const [emailinput,setemailinput]=useState('')
@@ -23,14 +45,20 @@ function SigninForm() {
     const handlebuttonclick=()=>{
         const app=initializeApp(firebaseConfig)
         const auth=getAuth()
-        const db=getFirestore()
+        //const db=getFirestore()
 
         signInWithEmailAndPassword(auth,emailinput,passwordinput)
         .then((userCredential)=>{
             console.log("Successfully logged in");
-            const user=userCredential.user;
+            const user=auth.currentUser;
+            const mongodb = context.services.get("mongodb-atlas");
+            const db = mongodb.db("userprofiles");
+            user= db.users.find({userName:"Blizzy"})
+            console.log(user._id.tostring())
             localStorage.setItem('loggedInUserId',user.uid);
             navigate('/');
+
+            fetchUserProfileByEmail(emailinput)
 })
         .catch((error)=>{
             const errorCode=error.code;
