@@ -49,7 +49,7 @@ function SigninForm() {
                 const user = result.user;
                 console.log("Google Sign-In successful:", user);
                 localStorage.setItem('loggedInUserId', user.uid);
-                navigate('/');
+                navigate('/home');
             })
             .catch((error) => {
                 console.error("Error with Google Sign-In:", error.message);

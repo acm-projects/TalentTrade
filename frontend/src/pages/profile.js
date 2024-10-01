@@ -11,11 +11,10 @@ const Profile = () => {
     const [profile, setProfile] = useState(null);
     const user = auth.currentUser;
 
-    //get profileschema data?
     useEffect(() => {
         if (user) {
             const fetchUser = async () => {
-                const response = await fetch('/api/user/' + user.uid)
+                const response = await fetch('/api/users/' + user.uid)
                 const json = await response.json()
 
                 //check if response is ok
@@ -38,7 +37,7 @@ const Profile = () => {
                 <ProfileDetails user = {profile.Personal_info}/>
             </div>
             <div>
-                <h2 className='profileSkillHeader '>Teaching</h2>
+                <h2 className='profileSkillHeader c'>Teaching</h2>
                 <div className='container'>
 
                 {profile.Skills?.teaching_skill?.length > 0 ? (
@@ -53,7 +52,7 @@ const Profile = () => {
                 </div>
             </div>
             <div>
-            <h2 className='profileSkillHeader '>Learning</h2>
+            <h2 className='profileSkillHeader c'>Learning</h2>
                 <div className='container'>
 
                     {profile.Skills?.learning_skill?.length > 0 ? (

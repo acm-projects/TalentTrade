@@ -16,7 +16,7 @@ const EditProfile = () => {
     useEffect(() => {
         if (user) {
             const fetchUser = async () => {
-                const response = await fetch('/api/user/' + user.uid)
+                const response = await fetch('/api/users/' + user.uid)
                 const json = await response.json()
 
                 //check if response is ok
