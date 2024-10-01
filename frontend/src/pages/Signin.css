@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1 {
+  font-size: 60pt;
+  line-height: 0;
+  color: #2C31ED;
+  position: relative;
+  text-align: left;
+}
+
+
+h2 {
+  font-size: 25pt;
+  font-weight: 500;
+  color: #2C31ED;
+  position: relative;
+  text-align: left;
+}
+
+.verticalcenter {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  text-align: left;
+}
+
+.formcolumn {
+  position: absolute;
+  height: auto;
+  width: 500px;
+  right: 10%;
+  top: 40%;
+}
+
+.signin {
+  height: auto;
+}
