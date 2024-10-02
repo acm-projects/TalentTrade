@@ -10,7 +10,7 @@ const cors = require('cors');
 app.use(express.json())
 app.use(cors({
   origin: 'http://localhost:3000', // allow requests from frontend
-  methods: ['POST'], // allowed methods
+  methods: ['GET','PATCH','POST'], // allowed methods
   credentials: true // allowing cookies, etc
 }));
 
