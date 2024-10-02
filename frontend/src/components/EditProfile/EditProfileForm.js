@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useUserContext } from "../../hooks/useUserContext"
 
 const EditProfileForm = ( {user} ) => {
-    const {dispatch} = useUserContext()
+    //const {dispatch} = useUserContext()
 
     const [values, setValues] = useState({
         Fname: user.Fname,
@@ -38,13 +38,12 @@ const EditProfileForm = ( {user} ) => {
         const json = await response.json()
         
         if (response.ok){
-            //sucess message
             setFormSubmitted(true)
             setTimeout(() => {
                setFormSubmitted(false)
             }, 3000)
 
-            dispatch({type: 'SET_USER', payload: json})
+            //dispatch({type: 'SET_USER', payload: json})
 
             console.log("new data added, json")
         }

@@ -2,17 +2,18 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
 const ProfileDetails = ({ user }) => {
+    //console.log(user)
     return (
         <div>
             <div className='border'>
-                <img src={user.profileBanner} className='bannerPicture'/>
+                <img src={"/images/background.png"} className='bannerPicture'/>
                 <div className='top'> 
                     <div className='topleft'>
-                        <img src={user.profilePicture} className='pfp'/>
+                        <img src={"/images/user.png"} className='pfp'/>
                         <div className='profileText'>
-                            <h2 className='profileTextHeader'>{user.Fname} {user.Lname}</h2>
-                            <p>{user.location}</p>
-                            <p>{user.year}</p>
+                            <p className='profileTextHeader c'>{user.Fname} {user.Lname}</p>
+                            <p className='pc'>{user.location}</p>
+                            <p className='pc'>{user.year}</p>
                         </div>
                     </div>
                     <div className='topright'>
@@ -24,8 +25,8 @@ const ProfileDetails = ({ user }) => {
                 
             </div>
             <div className='border aboutMe'>
-                <h2 className='profileTextHeader'>About Me</h2>
-                <p>{user.aboutMe}</p>
+                <p className='h2c profileTextHeader'>About Me</p>
+                <p className="pc">{user.aboutMe}</p>
             </div>
         </div>
     )
