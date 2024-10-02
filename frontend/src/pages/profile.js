@@ -14,7 +14,10 @@ const Profile = () => {
     useEffect(() => {
         if (user) {
             const fetchUser = async () => {
-                const response = await fetch('/api/users/' + user.uid)
+                console.log(user.email)
+                const response = await fetch('/api/users/' + encodeURIComponent(user.email))
+                console.log('/api/users/' + encodeURIComponent(user.email))
+                console.log(response)
                 const json = await response.json()
 
                 //check if response is ok
