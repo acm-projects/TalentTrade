@@ -23,11 +23,13 @@ const EditProfileForm = ( {user} ) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values)
+        //console.log(values)
 
         const updatedUser = {...values}
 
-        const response = await fetch('/api/users/' + user._id, {
+        console.log(updatedUser)
+
+        const response = await fetch('http://localhost:4000/api/users/' + user.Email, {
             method: 'PATCH',
             body: JSON.stringify(updatedUser),
             headers: {
@@ -46,6 +48,7 @@ const EditProfileForm = ( {user} ) => {
             //dispatch({type: 'SET_USER', payload: json})
 
             console.log("new data added, json")
+            console.log(json)
         }
 
     }
