@@ -17,7 +17,7 @@ const PostHome = () => {
                 <Cards/>
             </div>
             <div className='darkBackground'>
-                <h2 className='white c'>Welcome to TalentTrade!</h2>
+                <p className='white h2c'>Welcome to TalentTrade!</p>
                 <h4 className='white c'>Connect, Teach, and Learn</h4>
             </div>
            

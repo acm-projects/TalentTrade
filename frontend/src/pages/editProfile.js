@@ -9,14 +9,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const EditProfile = () => {
 
     const [profile, setProfile] = useState(null);
-    const [user, setUser] = useState(null);
     const [email, setEmail] = useState(null);
     const auth = getAuth()
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
-                setUser(currentUser);
                 setEmail(currentUser.email)
             } else {
                 console.log("No user is signed in");
@@ -55,6 +54,7 @@ const EditProfile = () => {
         return <p>Loading profile...</p>;
     }
 
+    console.log(profile)
 
     
     return (

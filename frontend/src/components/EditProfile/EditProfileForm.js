@@ -25,13 +25,17 @@ const EditProfileForm = ( {user} ) => {
         e.preventDefault()
         //console.log(values)
 
-        const updatedUser = {...values}
-
-        console.log(updatedUser)
+        const User = {
+                User: {
+                    Personal_info: values
+                }
+            }
+        
+        console.log(User)
 
         const response = await fetch('http://localhost:4000/api/users/' + user.Email, {
             method: 'PATCH',
-            body: JSON.stringify(updatedUser),
+            body: JSON.stringify(User),
             headers: {
                 'Content-Type': 'application/json'
             }
