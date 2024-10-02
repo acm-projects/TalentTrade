@@ -6,7 +6,15 @@ const Browse = () => {
     return (
         <div>
             <NavBarPost />
-                <div className="page-header"></div>
+                <div className="page-header">
+                    <div className="filter">
+                        Sort By
+                        <select className="filter-dropdown">
+                            <option value="rating">Highest Rating</option>
+                            <option value="alphabetical">Alphabetical</option>
+                        </select>
+                    </div>
+                </div>
                 <Profile />
         </div>
     )
