@@ -20,7 +20,7 @@ function NavBarPost() {
                         FAQ
                     </Link>
                     <Link to="/messages" class="messages-icon">
-                        <img src={"/images/message.png"} class="navbar-icon-m" />
+                        <img src={"/images/message.svg"} class="navbar-icon-m" />
                     </Link>
                     <Link to="/profile" class="profile-icon">
                         <img src={"/images/user.png"} class="navbar-icon-l" />
