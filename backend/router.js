@@ -5,14 +5,11 @@ const mongoose=require('mongoose')
 const router=express.Router()
 
 //getting single user data
-router.get('/:id',async (req,res)=>{
-  const {id}=req.params
+router.get('/:email',async (req,res)=>{
+  const {email}=req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error:'No such user'})
-  }
 
-  const Userdata=await UserProfile.findById(id)
+  const Userdata=await UserProfile.find({"User.Personal_info.Email":email})
 
   if(!Userdata){
     return res.status(404).json({error: 'No such user'})
@@ -62,14 +59,11 @@ router.delete('/:id',async (req,res)=>{
 //updating user data
 
 )
-router.patch('/:id',async (req,res)=>{
-  const {id}=req.params
+router.patch('/:email',async (req,res)=>{
+  const {email}=req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error:'No such user'})
-  }
 
-  const Userdata=await UserProfile.findOneAndUpdate({_id:id},{
+  const Userdata=await UserProfile.findOneAndUpdate({"User.Personal_info.Email":email},{
     ...req.body
   },{ new: true})
 
