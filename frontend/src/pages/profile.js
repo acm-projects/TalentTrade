@@ -15,10 +15,9 @@ const Profile = () => {
         if (user) {
             const fetchUser = async () => {
                 console.log(user.email)
-                const response = await fetch('/api/users/' + encodeURIComponent(user.email))
-                console.log('/api/users/' + encodeURIComponent(user.email))
-                console.log(response)
+                const response = await fetch('http://localhost:4000/api/users/' + encodeURIComponent(user.email))
                 const json = await response.json()
+                console.log(json)
 
                 //check if response is ok
                 if (response.ok) {
