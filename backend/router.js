@@ -9,7 +9,7 @@ router.get('/:email',async (req,res)=>{
   const {email}=req.params
 
 
-  const Userdata=await UserProfile.find({"User.Personal_info.Email":email})
+  const Userdata=await UserProfile.findOne({"User.Personal_info.Email":email})
 
   if(!Userdata){
     return res.status(404).json({error: 'No such user'})
@@ -62,10 +62,26 @@ router.delete('/:id',async (req,res)=>{
 router.patch('/:email',async (req,res)=>{
   const {email}=req.params
 
+  const updateFields = {};
+  const { User } = req.body;
 
-  const Userdata=await UserProfile.findOneAndUpdate({"User.Personal_info.Email":email},{
-    ...req.body
-  },{ new: true})
+  if (User?.Personal_info) {
+    updateFields["User.Personal_info"] = User.Personal_info;
+  }
+
+  if (User?.Skills?.learning_skills) {
+    updateFields["User.Skills.learning_skills"] = User.Skills.learning_skills;
+  }
+  if (User?.Skills?.teaching_skills) {
+    updateFields["User.Skills.teaching_skills"] = User.Skills.teaching_skills;
+  }
+
+
+  const Userdata = await UserProfile.findOneAndUpdate(
+    { "User.Personal_info.Email": email }, 
+    { $set: updateFields }, 
+    { new: true } 
+  )
 
   if(!Userdata){
     return res.status(404).json({error: 'No such user'})
