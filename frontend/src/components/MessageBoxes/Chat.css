@@ -8,7 +8,6 @@
     display: flex;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    /* align-items: flex-end; */
 }
 
 .visible-messages {
@@ -16,7 +15,6 @@
     height: fit-content;
     display: block;
 }
-
 
 .other-message-row {
     width: 100%;
