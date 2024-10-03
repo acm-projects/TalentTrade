@@ -5,15 +5,16 @@ import NavBarPre from '../components/NavBarPre/NavBar';
 const Signup = () => {
     return (
         <div>
-            <NavBarPre />
-            <div className="signin">
-                <div className="verticalcenter">
-                    <h1>Welcome!</h1>
-                    <h2>Sign up to connect and trade<br></br>
-                        skills with students.</h2>
+            <div className="background"><img src={"/images/signinBG.svg"} class="background-img" /></div>
+            <div className="verticalcenter">
+                <div className="welcome">Welcome!</div>
+                <div className="subtitle">
+                    Sign up to connect and trade<br></br>
+                    skills with students.
                 </div>
-                <div className="formcolumn"><SignupForm /></div>
             </div>
+            <div className="formcolumn"><SignupForm /></div>
+            <NavBarPre />
         </div>
     )
 }
