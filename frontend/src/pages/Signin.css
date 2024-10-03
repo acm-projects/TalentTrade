@@ -4,7 +4,11 @@
   display: flex;
   height: auto;
   width: 100%;
+<<<<<<< HEAD
   font-size: 60pt;
+=======
+  font-size: 50pt;
+>>>>>>> BrowsePage
   font-weight: 700;
   color: #2C31ED;
   position: relative;
