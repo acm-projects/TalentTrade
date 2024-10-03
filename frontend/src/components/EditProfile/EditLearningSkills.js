@@ -1,9 +1,6 @@
 import { useState } from "react"
-import { useUserContext } from '../../hooks/useUserContext';
 
-const EditLearningSkills = ({userInfo}) => {
-
-    const { dispatch } = useUserContext();
+const EditLearningSkills = ({userInfo, email}) => {
 
     const [values, setValues] = useState({
         Name: '',
@@ -12,19 +9,33 @@ const EditLearningSkills = ({userInfo}) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        setValues({...values, [e.target.name]:e.target.value})
+        setValues({[e.target.name]:e.target.value})
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(values)
 
-        const newLearningSkill = values
+        const User = {
+            User: {
+                Skills: {
+                    learning_skills: [
+                        ...(userInfo || []),
+                        
+                            values
+                        ,
+                        
+                    ]
+                }
+            }
+        }
 
-        const response = await fetch('/api/users/' + userInfo._id, {
+        console.log(User)
+
+        const response = await fetch('http://localhost:4000/api/users/' + email, {
             method: 'PATCH',
             body: JSON.stringify({
-                learning_skill: [...userInfo.Skills.learning_skill, newLearningSkill],
+                User
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -40,9 +51,10 @@ const EditLearningSkills = ({userInfo}) => {
                setFormSubmitted(false)
             }, 3000)
 
-            dispatch({type: 'SET_USER', payload: json})
+            //dispatch({type: 'SET_USER', payload: json})
 
             console.log("new data added, json")
+            console.log(json)
         }
     }
 

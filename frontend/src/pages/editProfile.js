@@ -64,9 +64,9 @@ const EditProfile = () => {
             <EditProfileForm user = { profile.User.Personal_info }/>
             <h1 className='margin0px c'>Add Skills</h1>
             <p className='profileSkillHeader alignLeft marginLeft15 h2c'>Teaching</p>
-            <EditTeachingSkills teachingSkill = { profile.User.Skills.teaching_skills }/>
+            <EditTeachingSkills userInfo = { profile.User.Skills.teaching_skills } email = {profile.User.Personal_info.Email}/>
             <p className='profileSkillHeader alignLeft marginLeft15 h2c'>Learning</p>
-            <EditLearningSkills learningSkill = { profile.User.Skills.learning_skills}/>
+            <EditLearningSkills userInfo = { profile.User.Skills.learning_skills} email = {profile.User.Personal_info.Email}/>
         </div>
     )
 }
