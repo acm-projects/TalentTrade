@@ -8,14 +8,12 @@ import './cheryl.css'
 const Profile = () => {
     
     const [profile, setProfile] = useState(null);
-    const [user, setUser] = useState(null);
     const [email, setEmail] = useState(null);
     const auth = getAuth()
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
-                setUser(currentUser);
                 setEmail(currentUser.email)
             } else {
                 console.log("No user is signed in");
@@ -24,7 +22,7 @@ const Profile = () => {
         return () => unsubscribe();
     }, [auth]);
 
-    console.log(profile)
+    //console.log(profile)
 
     useEffect(() => {
         if (email) {
@@ -33,8 +31,8 @@ const Profile = () => {
                     console.log('/api/users/' + email)
                     const response = await fetch('http://localhost:4000/api/users/' + encodeURIComponent(email));
 
-                    console.log('Response status:', response.status);
-                    console.log('Response content-type:', response.headers.get('content-type'));
+                    //console.log('Response status:', response.status);
+                    //console.log('Response content-type:', response.headers.get('content-type'));
 
                     if (response.ok) {
                         console.log(response)
@@ -67,7 +65,7 @@ const Profile = () => {
                 <h2 className='profileSkillHeader c'>Teaching</h2>
                 <div className='container'>
 
-                {profile.User.Skills?.teaching_skills?.length > 0 ? (
+                {profile.User?.Skills?.teaching_skills?.length > 0 ? (
                     profile.User.Skills.teaching_skills.map((skill) => (
                         <TeachingCard key={skill._id} teaching_skill={skill} />
                     ))
