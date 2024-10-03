@@ -1,42 +1,50 @@
-import { useState } from "react"
+import React, { useState, useContext, useEffect } from 'react';
+//import { SkillContext } from "../../context/SkillContext";
 
-const EditLearningSkills = ({userInfo, email}) => {
+const EditLearningSkills = ({skills, email}) => {
+
+    //const { skill, dispatch } = useContext(SkillContext);
+    
+    // useEffect(() => {
+    //     dispatch({type: 'SET_SKILLS', payload: learning_skills})
+    // }, [dispatch, learning_skills]);
 
     const [values, setValues] = useState({
         Name: '',
+        Description: ''
     })
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        setValues({[e.target.name]:e.target.value})
+        setValues({...values, [e.target.name]:e.target.value})
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values)
+        //console.log(values)
 
+        console.log(skills)
         const User = {
             User: {
                 Skills: {
                     learning_skills: [
-                        ...(userInfo || []),
-                        
-                            values
-                        ,
-                        
+                        ...(skills || []),
+                        {
+                            Name: values.Name,        
+                            Description: values.Description        
+                        }                
                     ]
                 }
             }
         }
 
+
         console.log(User)
 
         const response = await fetch('http://localhost:4000/api/users/' + email, {
             method: 'PATCH',
-            body: JSON.stringify({
-                User
-            }),
+            body: JSON.stringify(User),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -51,10 +59,14 @@ const EditLearningSkills = ({userInfo, email}) => {
                setFormSubmitted(false)
             }, 3000)
 
-            //dispatch({type: 'SET_USER', payload: json})
+            console.log(skills)
 
             console.log("new data added, json")
             console.log(json)
+            //dispatch({ type: 'ADD_SKILL', payload: newSkill });
+
+
+            //setValues({ Name: '', Description: '' });
         }
     }
 
@@ -63,7 +75,11 @@ const EditLearningSkills = ({userInfo, email}) => {
              <div className="container">
                 <form className='form' onSubmit={handleSubmit}>                    
                     <label htmlFor="Name">Skill Name</label>
-                    <input type="text" placeholder='enter skill' name="Name"
+                    <input className="c" type="text" placeholder='enter skill' name="Name" required
+                    onChange={(e) => handleChange(e)}/>
+
+                    <label htmlFor="Description">Skill Description</label>
+                    <input className="c" type="text" placeholder='enter description' name="Description" required
                     onChange={(e) => handleChange(e)}/>
                     
                     <button type='submit' className='submitButton'>Add </button>

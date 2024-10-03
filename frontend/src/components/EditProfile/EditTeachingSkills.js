@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { useUserContext } from '../../hooks/useUserContext';
+//import { useSkillContext } from '../../hooks/useLearningSkillContext';
 
-const EditTeachingSkills = ({userInfo}) => {
-    const { dispatch } = useUserContext();
+const EditTeachingSkills = ({skills, email}) => {
+    //const { dispatch } = useSkillContext();
 
     const [values, setValues] = useState({
         Name: '',
@@ -19,15 +19,27 @@ const EditTeachingSkills = ({userInfo}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values)
+        //console.log(values)
 
-        const newTeachingSkill = values
-
-        const response = await fetch('/api/users/' + userInfo._id, {
+        const User = {
+            User: {
+                Skills: {
+                    teaching_skills: [
+                        ...(skills || []),
+                        {
+                            Name: values.Name,        
+                            Description: values.Description,
+                            Rating_score: 0,
+                            Hours_taught: 0,   
+                        }                
+                    ]
+                }
+            }
+        }
+        console.log(User)
+        const response = await fetch('http://localhost:4000/api/users/' + email, {
             method: 'PATCH',
-            body: JSON.stringify({
-                teaching_skill: [...userInfo.Skills.teaching_skill, newTeachingSkill],
-            }),
+            body: JSON.stringify(User),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -42,9 +54,10 @@ const EditTeachingSkills = ({userInfo}) => {
                setFormSubmitted(false)
             }, 3000)
 
-            dispatch({type: 'SET_USER', payload: json})
+            //dispatch({type: 'CREATE_SKILL', payload: json})
 
             console.log("new data added, json")
+            console.log(json)
         }
     }
 
@@ -53,11 +66,11 @@ const EditTeachingSkills = ({userInfo}) => {
              <div className="container">
                 <form className='form' onSubmit={handleSubmit}>                    
                     <label htmlFor="Name">Skill Name</label>
-                    <input type="text" placeholder='enter skill' name="Name"
+                    <input className="c" type="text" placeholder='enter skill' name="Name"
                     onChange={(e) => handleChange(e)}/>
 
                     <label htmlFor="Description">Description</label>
-                    <input type="text" placeholder="enter description" name="Description"
+                    <input className="c" type="text" placeholder="enter description" name="Description"
                     onChange={(e) => handleChange(e)}/>
                     
                     <button type='submit' className='submitButton'>Add </button>

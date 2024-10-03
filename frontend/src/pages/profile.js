@@ -83,7 +83,10 @@ const Profile = () => {
                     {profile.User.Skills?.learning_skills?.length > 0 ? (
                         profile.User.Skills.learning_skills.map((skill) => (
                             <div className='teachingCard border center' key={skill._id}>
-                                <p className='profileTextHeader c textCenter topBottomPadding'>{skill.Name}</p>
+                                
+                                <p className='profileTextHeader c textCenter topBottomPadding'>{skill.Name}</p> 
+                                {skill.Description && 
+                                <span className="pc padding10 c">{skill.Description}</span>}
                             </div>
                         ))
                     ) : (
