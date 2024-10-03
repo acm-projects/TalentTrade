@@ -89,3 +89,24 @@
     font-family: "Work Sans";
     font-size: 12pt;
 }
+
+.icon {
+    height: 10px;
+    width: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #DCDFFF;
+    border-radius: 5px;
+  }

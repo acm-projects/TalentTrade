@@ -137,8 +137,8 @@ function SigninForm() {
                 <div className="submit" onClick={handlebuttonclick}>Sign in</div>
             </div>
             <div className="submit-container">
-                <div className="submit" onClick={handleGoogleSignIn}>
-                    Sign in with Google
+                <div className="submit-google" onClick={handleGoogleSignIn}>
+                    <img src={"/images/google.svg"} class="google-icon" />Sign in with Google
                 </div>
             </div>
             <div className="text">
