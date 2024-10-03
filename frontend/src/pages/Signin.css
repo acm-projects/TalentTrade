@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-h1 {
+.welcome {
+  display: flex;
+  height: auto;
+  width: 100%;
   font-size: 60pt;
-  line-height: 0;
+  font-weight: 700;
   color: #2C31ED;
   position: relative;
   text-align: left;
 }
 
 
-h2 {
+.subtitle {
+  display: flex;
+  position: relative;
+  height: auto;
+  width: 100%;
   font-size: 25pt;
   font-weight: 500;
   color: #2C31ED;
@@ -18,20 +25,38 @@ h2 {
 }
 
 .verticalcenter {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  min-width: 30%;
   position: absolute;
-  top: 40%;
-  left: 10%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  left: 15%;
   text-align: left;
 }
 
 .formcolumn {
   position: absolute;
-  height: auto;
+  display: flex;
+  height: 100%;
   width: 500px;
-  right: 10%;
-  top: 40%;
+  right: 20%;
+  align-items: center;
 }
 
-.signin {
-  height: auto;
+.background {
+  display: flex;
+  position: absolute;
+  height: 19vw;
+  width: 100vw;
+  bottom: 0px;
+}
+
+.background-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
 }
