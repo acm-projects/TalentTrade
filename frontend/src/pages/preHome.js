@@ -18,7 +18,7 @@ const Home = () => {
                 <Cards/>
             </div>
             <div className='darkBackground'>
-                <h2 className='white c'>Join TalentTrade today!</h2>
+                <p className='white h2c'>Join TalentTrade today!</p>
                 <h4 className='white c'>Connect, Teach, and Learn</h4>
             </div>
            
