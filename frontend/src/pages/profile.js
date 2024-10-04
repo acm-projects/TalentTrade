@@ -3,6 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import NavBar from '../components/PostNavBar';
 import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
+import LearningCard from '../components/userDetails/learningCard';
 import './cheryl.css'
 
 const Profile = () => {
@@ -53,7 +54,8 @@ const Profile = () => {
         return <p>Loading profile...</p>;
     }
 
-    console.log(profile.User.Skills.teaching_skills)
+    //handle clicking delete button
+
 
     return (
         <div>
@@ -82,12 +84,7 @@ const Profile = () => {
 
                     {profile.User.Skills?.learning_skills?.length > 0 ? (
                         profile.User.Skills.learning_skills.map((skill) => (
-                            <div className='teachingCard border center' key={skill._id}>
-                                
-                                <p className='profileTextHeader c textCenter topBottomPadding'>{skill.Name}</p> 
-                                {skill.Description && 
-                                <span className="pc padding10 c">{skill.Description}</span>}
-                            </div>
+                            <LearningCard key={skill._id} learning_skill={skill} userID={profile._id} />
                         ))
                     ) : (
                         <p>No learning skills available</p>

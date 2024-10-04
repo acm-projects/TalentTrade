@@ -442,9 +442,13 @@ textarea {
     text-align: center;
 }
 
-.topBottomPadding {
+.topBottomPadding.c {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.topPadding.c {
+    padding-top: 20px;
 }
 
 .padding10.c {
@@ -472,7 +476,7 @@ textarea {
     display: flex;
     justify-content: space-between; /* Aligns Hours Taught and Delete icon to the left and right */
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     height: 40px;
 }
 
