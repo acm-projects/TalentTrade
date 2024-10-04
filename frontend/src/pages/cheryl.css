@@ -125,6 +125,19 @@ banner, profile info, about me styling */
     justify-content: flex-end; 
 }
 
+.bottom {
+    display: flex;
+    height: 100%;
+}
+
+.bottomleft {
+    display: flex;
+}
+
+.bottomright {
+    align-items: flex-end;
+}
+
 .edit {
     vertical-align: top;
     cursor: pointer;
@@ -438,6 +451,41 @@ textarea {
     padding: 10px 10px 10px 10px;
 }
 
+
+.top {
+    display: flex;
+    justify-content: space-between; /* Pushes elements to opposite sides */
+    align-items: center;
+}
+
+.topleft {
+    flex-grow: 1; /* Title will expand as much as possible */
+}
+
+.topright {
+    text-align: right;
+}
+
+
+
+.bottom {
+    display: flex;
+    justify-content: space-between; /* Aligns Hours Taught and Delete icon to the left and right */
+    align-items: center;
+    margin-top: 20px;
+    height: 40px;
+}
+
+.bottomright {
+    cursor: pointer;
+    color: red; /* Style for delete icon */
+    align-self: flex-end;
+    padding: 10px;
+}
+
+.bottomleft {
+    padding-left: 20px;
+}
 
 @media only screen and (min-width: 600px) {
   .box {

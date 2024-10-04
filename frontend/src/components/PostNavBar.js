@@ -5,7 +5,7 @@ function NavBarPost() {
         <>
         <nav className="navbar">
             <div className="navbar-left">
-                <Link to="/" className="user-icon">
+                <Link to="/home" className="user-icon">
                 <img src={"/images/logo.svg"} className="logo" />
                 </Link>
             </div>

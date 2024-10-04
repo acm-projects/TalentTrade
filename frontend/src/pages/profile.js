@@ -67,7 +67,7 @@ const Profile = () => {
 
                 {profile.User?.Skills?.teaching_skills?.length > 0 ? (
                     profile.User.Skills.teaching_skills.map((skill) => (
-                        <TeachingCard key={skill._id} teaching_skill={skill} />
+                        <TeachingCard key={skill._id} teaching_skill={skill} userID={profile._id} />
                     ))
                 ) : (
                     <p>No teaching skills available</p>

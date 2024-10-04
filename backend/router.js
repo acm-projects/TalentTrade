@@ -38,20 +38,44 @@ router.post('/', async (req, res) => {
 });
 
 
-//deleting a user data
+//deleting a skill
 router.delete('/:id',async (req,res)=>{
   const {id}=req.params
+  const { skillId, skillType } = req.body;
+
+  console.log("Received ID:", id);
+  console.log("Received Body:", req.body);
+  console.log(skillId)
+  console.log(skillType)
 
   if(!mongoose.Types.ObjectId.isValid(id)){
     return res.status(404).json({error:'No such user'})
   }
 
-  const Userdata=await UserProfile.findOneAndDelete({_id:id})
-
-  if(!Userdata){
-    return res.status(404).json({error: 'No such user'})
+  const update = {};
+  if (skillType === 'learning') {
+    update['$pull'] = { 'User.Skills.learning_skills': { _id: skillId } };
+  } else if (skillType === 'teaching') {
+    update['$pull'] = { 'User.Skills.teaching_skills': { _id: skillId } };
+  } else {
+    return res.status(400).json({ error: 'Invalid skill type' });
   }
-  res.status(200).json(Userdata)
+
+  try {
+    const updatedUser = await UserProfile.findOneAndUpdate(
+      { _id: id },
+      update,
+      { new: true } 
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(updatedUser); 
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 
 }
 

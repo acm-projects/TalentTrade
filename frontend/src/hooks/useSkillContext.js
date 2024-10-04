@@ -1,7 +1,7 @@
 import { SkillContext } from "../context/SkillContext"
 import { useContext } from "react"
 
-export const useUserContext = () => {
+export const useSkillContext = () => {
     const context = useContext(SkillContext)
 
     if (!context) {
