@@ -1,7 +1,7 @@
 import { useState } from "react"
 //import { useSkillContext } from '../../hooks/useLearningSkillContext';
 
-const EditTeachingSkills = ({skills, email}) => {
+const EditTeachingSkills = ({skills : initialSkills, email}) => {
     //const { dispatch } = useSkillContext();
 
     const [values, setValues] = useState({
@@ -10,7 +10,7 @@ const EditTeachingSkills = ({skills, email}) => {
         Rating_score: 0,
         Hours_taught: 0,
     })
-
+    const [skills, setSkills] = useState(initialSkills || [])
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
@@ -21,18 +21,17 @@ const EditTeachingSkills = ({skills, email}) => {
         e.preventDefault()
         //console.log(values)
 
+        const newSkill = {
+            Name: values.Name,
+            Description: values.Description
+        };
+
+        const updatedSkills = [...skills, newSkill];
+
         const User = {
             User: {
                 Skills: {
-                    teaching_skills: [
-                        ...(skills || []),
-                        {
-                            Name: values.Name,        
-                            Description: values.Description,
-                            Rating_score: 0,
-                            Hours_taught: 0,   
-                        }                
-                    ]
+                    teaching_skills: updatedSkills                    
                 }
             }
         }
@@ -58,6 +57,8 @@ const EditTeachingSkills = ({skills, email}) => {
 
             console.log("new data added, json")
             console.log(json)
+            setSkills(updatedSkills);
+            setValues({ Name: '', Description: '' });
         }
     }
 

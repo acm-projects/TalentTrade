@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 //import { SkillContext } from "../../context/SkillContext";
 
-const EditLearningSkills = ({skills, email}) => {
+const EditLearningSkills = ({skills : initialSkills, email}) => {
 
     //const { skill, dispatch } = useContext(SkillContext);
     
@@ -14,6 +14,7 @@ const EditLearningSkills = ({skills, email}) => {
         Description: ''
     })
 
+    const [skills, setSkills] = useState(initialSkills || [])
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
@@ -24,17 +25,17 @@ const EditLearningSkills = ({skills, email}) => {
         e.preventDefault()
         //console.log(values)
 
-        console.log(skills)
+        const newSkill = {
+            Name: values.Name,
+            Description: values.Description
+        };
+
+        const updatedSkills = [...skills, newSkill];
+
         const User = {
             User: {
                 Skills: {
-                    learning_skills: [
-                        ...(skills || []),
-                        {
-                            Name: values.Name,        
-                            Description: values.Description        
-                        }                
-                    ]
+                    learning_skills: updatedSkills                    
                 }
             }
         }
@@ -59,14 +60,14 @@ const EditLearningSkills = ({skills, email}) => {
                setFormSubmitted(false)
             }, 3000)
 
-            console.log(skills)
-
-            console.log("new data added, json")
+            //console.log("new data added, json")
             console.log(json)
             //dispatch({ type: 'ADD_SKILL', payload: newSkill });
+            //console.log("updated skills: ")
+            setSkills(updatedSkills);
+            
 
-
-            //setValues({ Name: '', Description: '' });
+            setValues({ Name: '', Description: '' });
         }
     }
 

@@ -2,13 +2,15 @@ import {useSkillContext} from "../../hooks/useSkillContext"
 
 const TeachingCard = ({ teaching_skill, userID }) => {
 
+    
     const { dispatch } = useSkillContext()
+
+    //deleting a skill
     const handleClick = async () => {
         const skill = {
             "skillId": teaching_skill._id,
             "skillType": "teaching", 
         }
-        console.log(skill)
         const response = await fetch(`http://localhost:4000/api/users/${userID}`, {
             method: 'DELETE',
             headers: {
