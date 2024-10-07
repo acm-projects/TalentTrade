@@ -32,6 +32,22 @@ const profileSchema = new Schema({
             year: {
                 type: String,  // freshman, sophomore, alumni, etc.
                 required: false
+            },
+            location: {
+                type: String,
+                required: false
+            },
+            aboutMe: {
+                type: String,
+                required: false
+            },
+            profilePicture: {
+                type: String,
+                required: false
+            },
+            profileBanner: {
+                type: String,
+                required: false
             }
         },
         Skills: {

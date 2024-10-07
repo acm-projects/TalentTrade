@@ -1,5 +1,5 @@
 const express=require('express')
-const UserProfile=require('./schema')
+const UserProfile=require('../models/UserSchema')
 const mongoose=require('mongoose')
 
 const router=express.Router()
