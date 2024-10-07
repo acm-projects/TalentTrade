@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
 import './SigninForm.css';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 function SignupForm() {
     const navigate = useNavigate();
@@ -76,6 +76,23 @@ function SignupForm() {
             });
     };
 
+    const handleGoogleSignIn = () => {
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                console.log("Google Sign-In successful:", user);
+                localStorage.setItem('loggedInUserId', user.uid);
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error("Error with Google Sign-In:", error.message);
+            });
+    };
+
     return (
         
         <div className='container'>
@@ -95,6 +112,11 @@ function SignupForm() {
             </div>
             <div className="submit-container">
                 <div className="submit" onClick={handlebuttonclick}>Sign up</div>
+            </div>
+            <div className="submit-container">
+                <div className="submit-google" onClick={handleGoogleSignIn}>
+                    <img src={"/images/google.svg"} class="google-icon" />Sign up with Google
+                </div>
             </div>
             <div className="text">
                 <div className="redirect">
