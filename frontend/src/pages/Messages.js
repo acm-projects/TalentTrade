@@ -8,10 +8,21 @@ const Messages = () => {
         <div>
             <NavBarPost />
                 <div className="contacts-container">
-                    <h1>Hello</h1>
+                    <div className="self-contact">
+                        <img src={"/images/user.png"} class="profile-picture"/>
+                        <h3>Name</h3>
+                    </div>
+                    <div className="other-contact-containers">
+                        <h3>Messages</h3>
+                        <Contact />
+                    </div>
                 </div>
                 <div className="messages-container">
-                    <h1>Hello</h1>
+                    <div className="messages-header">
+                        <img src={"/images/user.png"} class="profile-picture"/>
+                        Steve Jones
+                    </div>
+                    <Chat />
                 </div>
         </div>
     )
