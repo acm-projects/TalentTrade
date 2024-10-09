@@ -40,26 +40,30 @@ export const ChatContextProvider = ({ children, user }) => {
 
     useEffect(() => {
         const getUserChats = async () => {
-            if (user?._id) {
+            if (user?.email) {
                 setIsUserChatsLoading(true);
                 setUserChatsError(null);
-
-                const response = await getRequest(`${baseUrl}/chats/${user?._id}`);
-
+    
+                const response = await getRequest(`${baseUrl}/chats?email=${encodeURIComponent(user.email)}`)
+    
                 setIsUserChatsLoading(false);
-
+    
                 if (response.error) {
-                    return setUserChatsError(response);
+                    return console.log("Error fetching user chats:", response);
                 }
-
-                setUserChats(response);
-                console.log("UserChats:", response);
+    
+                const filteredChats = response.filter((chat) => {
+                    return !chat.members.includes(user.email);
+                });
+    
+                setUserChats(filteredChats); 
+                console.log("UserChats:", filteredChats);
             }
         };
-
+    
         getUserChats();
     }, [user]);
-
+    
     return (
         <ChatContext.Provider 
         value={{
