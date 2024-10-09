@@ -3,6 +3,7 @@ import SignupForm from '../components/Form/SignupForm';
 import NavBarPre from '../components/NavBarPre/NavBar';
 
 const Signup = () => {
+
     return (
         <div>
             <div className="background"><img src={"/images/signinBG.svg"} class="background-img" /></div>

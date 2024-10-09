@@ -1,104 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { firebaseConfig } from './firebaseauth';
-import { initializeApp } from 'firebase/app';
-import './SigninForm.css';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { AuthContext } from '../../contexts/AuthContext';
 
 function SignupForm() {
     const navigate = useNavigate();
+    const { signUpWithEmail, signUpWithGoogle, authLoading } = useContext(AuthContext);
 
-    const [username, setusername] = useState('');
-    const [emailinput, setemailinput] = useState('');
-    const [passwordinput, setpasswordinput] = useState('');
+    const [username, setUsername] = useState('');
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleusername = (event) => {
-        setusername(event.target.value);
+    const handleUsername = (event) => setUsername(event.target.value);
+    const handleEmail = (event) => setEmailInput(event.target.value);
+    const handlePassword = (event) => setPasswordInput(event.target.value);
+
+    const validateForm = () => {
+        if (!username || !emailInput || !passwordInput) {
+            setErrorMessage('All fields are required');
+            return false;
+        }
+        setErrorMessage('');
+        return true;
     };
 
-    const handleemail = (event) => {
-        setemailinput(event.target.value);
+    const handleButtonClick = () => {
+        if (validateForm()) {
+            signUpWithEmail(emailInput, passwordInput, username, navigate);
+        }
     };
 
-    const handlepassword = (event) => {
-        setpasswordinput(event.target.value);
-    };
-
-    const handlebuttonclick = () => {
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-
-        createUserWithEmailAndPassword(auth, emailinput, passwordinput)
-            .then((userCredential) => {
-                const user = userCredential.user;
-
-                 // after auth, post req to create user (empty arrays for skills)
-                const userData = {
-                    User: {
-                        Personal_info: {
-                            Email: emailinput,
-                            Password: passwordinput,
-                            Username: username || null,
-                        },
-                        Skills: {
-                            teaching_skills: [],
-                            learning_skills: []
-                        }
-                    }
-                };
-
-                fetch('http://localhost:4000/api/users', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(userData),
-                })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Failed to create user in MongoDB');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log("User created successfully in MongoDB:", data);
-                    navigate('/');
-                })
-                .catch((error) => {
-                    console.error("Error during user creation in MongoDB:", error.message);
-                });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                if (errorCode === 'auth/email-already-in-use') {
-                    console.log("Email already exists bruh");
-                }
-            });
-    };
+    const handleGoogleSignIn = () => signUpWithGoogle(navigate);
 
     return (
-        
         <div className='container'>
             <div className="header">
                 Sign up for TalentTrade
             </div>
             <div className="inputs">
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <div className="input">
-                    <input type="text" id="username" value={username} onChange={handleusername} placeholder="Username"/>
+                    <input
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={handleUsername}
+                        placeholder="Username"
+                        disabled={authLoading}
+                    />
                 </div>
                 <div className="input">
-                    <input type="email" id="email" value={emailinput} onChange={handleemail} placeholder="Email" />
+                    <input
+                        type="email"
+                        id="email"
+                        value={emailInput}
+                        onChange={handleEmail}
+                        placeholder="Email"
+                        disabled={authLoading}
+                    />
                 </div>
                 <div className="input">
-                    <input type="password" id="password" value={passwordinput} onChange={handlepassword} placeholder="Password" />
+                    <input
+                        type="password"
+                        id="password"
+                        value={passwordInput}
+                        onChange={handlePassword}
+                        placeholder="Password"
+                        disabled={authLoading}
+                    />
                 </div>
             </div>
             <div className="submit-container">
-                <div className="submit" onClick={handlebuttonclick}>Sign up</div>
+                <div
+                    className="submit"
+                    onClick={handleButtonClick}
+                    style={{ cursor: authLoading ? 'not-allowed' : 'pointer' }}
+                >
+                    {authLoading ? 'Signing Up...' : 'Sign up'}
+                </div>
+            </div>
+            <div className="submit-container">
+                <div className="submit-google" onClick={handleGoogleSignIn}>
+                    <img src={"/images/google.svg"} className="google-icon" alt="Google Sign-In" />Sign up with Google
+                </div>
             </div>
             <div className="text">
                 <div className="redirect">
-                    <span>Already have an account? <Link to="/signin" class="link">Sign in</Link></span>
+                    <span>Already have an account? <Link to="/signin" className="link">Sign in</Link></span>
                 </div>
             </div>
         </div>
