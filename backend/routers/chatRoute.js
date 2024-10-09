@@ -1,12 +1,11 @@
 const express = require('express')
-const mongoose=require('mongoose')
-const {createChat, findUserChats, findChats} = require('../controllers/chatController');
+const {createChat, findUserChats, findChat} = require('../controllers/chatController');
 
 
 const router=express.Router();
 
 router.post("/", createChat);
-router.get("/:firstId", findUserChats);
-router.get("/:firstId/:secondId", findChats);
+router.get("/:userId", findUserChats);
+router.get("/find/:firstId/:secondId", findChat);
 
 module.exports = router;
