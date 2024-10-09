@@ -8,37 +8,43 @@ import { ChatContextProvider } from './contexts/ChatContext';
 import { AuthContextProvider, AuthContext } from './contexts/AuthContext';
 import { useContext } from 'react';
 
-function App() {
+function AppRoutes() {
   const { user, authLoading } = useContext(AuthContext);
 
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <AuthContextProvider>
-      <BrowserRouter>
+    <ChatContextProvider user={user}>
+      <div className="pages">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/messages"
+            element={user ? <Messages /> : <Signin />}
+          />
+          <Route
+            path="/browse"
+            element={user ? <Browse /> : <Signin />}
+          />
+        </Routes>
+      </div>
+    </ChatContextProvider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthContextProvider>
         <div className="App">
-          {authLoading ? (
-            <div>Loading...</div>
-          ) : (
-            <ChatContextProvider user={user}>
-              <div className="pages">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/signin" element={<Signin />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route
-                    path="/messages"
-                    element={user ? <Messages /> : <Signin />}
-                  />
-                  <Route
-                    path="/browse"
-                    element={user ? <Browse /> : <Signin />}
-                  />
-                </Routes>
-              </div>
-            </ChatContextProvider>
-          )}
+          <AppRoutes />
         </div>
-      </BrowserRouter>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 

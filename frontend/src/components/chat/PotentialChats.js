@@ -4,7 +4,7 @@ import { ChatContext } from "../../contexts/ChatContext"
 const PotentialChats = () => {
     const {potentialChats} = useContext(ChatContext);
     console.log("Potential Chats", potentialChats);
-    return (<>start chat</>)
+    return (<></>)
 }
 
 export default PotentialChats;

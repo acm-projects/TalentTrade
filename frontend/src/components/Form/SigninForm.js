@@ -26,6 +26,7 @@ function SigninForm() {
             .then((userCredential) => {
                 console.log("Successfully logged in");
                 const user = userCredential.user;
+                console.log(user);
                 localStorage.setItem('loggedInUserId', user.uid);
                 navigate('/');
             })

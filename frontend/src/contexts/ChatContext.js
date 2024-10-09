@@ -13,6 +13,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
         const getUsers = async() => {
             const response = await getRequest(`${baseUrl}/users`);
+    
             if (response.error) {
                 return console.log("Error fetching users:", response);
             }
@@ -52,6 +53,7 @@ export const ChatContextProvider = ({ children, user }) => {
                 }
 
                 setUserChats(response);
+                console.log("UserChats:", response);
             }
         };
 

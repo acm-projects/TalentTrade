@@ -69,6 +69,7 @@ export const AuthContextProvider = ({ children }) => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             setUser(userCredential.user);
             navigate('/'); // Navigate to home page on successful login
+            console.log(user);
         } catch (error) {
             console.error('Error signing in:', error.message);
             setAuthError(error.message);
