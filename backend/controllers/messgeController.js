@@ -10,7 +10,7 @@ const createMessage = async (req, res) => {
   });
   try {
     const response = await newMessage.save();
-    res.status(200).json(response );
+    res.status(200).json({ response });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
