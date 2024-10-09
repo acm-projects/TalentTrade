@@ -86,5 +86,8 @@ function SigninForm() {
         </div>
     );
 }
+const app = initializeApp(firebaseConfig);
+const auth=getAuth()
+export const getcurrentuser=()=> auth.currentUser;
 
 export default SigninForm;

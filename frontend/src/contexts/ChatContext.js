@@ -1,14 +1,15 @@
 import { createContext, useState, useEffect } from 'react';
 import { baseUrl, getRequest } from "../utils/services";
+import { getcurrentuser } from '../components/Form/SigninForm';
 
 export const ChatContext = createContext();
+const user=getcurrentuser()
 
 export const ChatContextProvider = ({ children, user }) => {
     const [userChats, setUserChats] = useState(null);
     const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
     const [userChatsError, setUserChatsError] = useState(null);
     const [potentialChats, setPotentialChats] = useState([]);
-
     useEffect(() => {
 
         const getUsers = async() => {
@@ -43,9 +44,9 @@ export const ChatContextProvider = ({ children, user }) => {
             if (user?.email) {
                 setIsUserChatsLoading(true);
                 setUserChatsError(null);
-    
-                const response = await getRequest(`${baseUrl}/chats?email=${encodeURIComponent(user.email)}`)
-    
+
+                const response = await getRequest(`${baseUrl}/chats/${user.email}`);
+
                 setIsUserChatsLoading(false);
     
                 if (response.error) {
