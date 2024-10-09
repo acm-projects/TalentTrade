@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .accordion-container {
+    max-width: 80vw;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+  }
+  
+  .wrapper {
+    border-bottom: 2px solid #000000;
+    overflow: hidden;
+  }
+  
+  .wrapper .question-container {
+    width: 100%;
+    text-align: left;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .question-content {
+    font-family: 'Work Sans';
+    font-weight: 600;
+    font-size: 30pt;
+  }
+
+  .question-container.active {
+    /* color: #2C31ED; */
+    color: #150080;
+  }
+  
+  .wrapper .question-container:hover {
+    /* color: #150080; */
+    color: #2C31ED;
+  }
+  
+  .wrapper .answer-container {
+    padding: 0 1rem;
+    transition: height .2s ease-in-out;
+  }
+  
+  .wrapper .answer-content {
+    font-family: 'Work Sans';
+    font-weight: 500;
+    padding: 1.5rem 2rem;
+    font-size: 20pt;
+  }

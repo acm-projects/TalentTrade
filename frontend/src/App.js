@@ -6,6 +6,7 @@ import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Messages from './pages/Messages'
 import Browse from './pages/Browse'
+import FAQ from './pages/FAQ'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/browse" element={<Browse />} />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </div>
       </BrowserRouter>
