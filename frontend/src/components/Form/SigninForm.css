@@ -3,10 +3,19 @@
 .container {
     display: block;
     flex-direction: column;
-    /* margin-top: 80%; */
-    /* margin: auto; */
-    /* margin-top: 200px; */
+    animation: slideRightAnimation ease 0.5s;
 }
+
+@keyframes slideRightAnimation {
+    0% {
+      opacity: 0%;
+      translate: 300%;
+    }
+    100% {
+      opacity: 100%;
+      translate: 0%;
+    }
+  }
 
 .redirect {
     font-size: 12pt;

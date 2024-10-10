@@ -9,8 +9,21 @@
   color: #2C31ED;
   position: relative;
   text-align: left;
+  animation: slideLeftAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
+@keyframes slideLeftAnimation {
+  0% {
+    opacity: 0%;
+    translate: -300%;
+  }
+  100% {
+    opacity: 100%;
+    margin-right: 0%;
+  }
+}
 
 .subtitle {
   display: flex;
@@ -22,6 +35,9 @@
   color: #2C31ED;
   position: relative;
   text-align: left;
+  animation: slideLeftAnimation ease 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .verticalcenter {
