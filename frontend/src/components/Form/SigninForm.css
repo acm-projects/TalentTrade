@@ -83,10 +83,15 @@
     border-color: #2C31ED;
     border-radius: 8px;
     border-width: 2px;
-    /* font-family: "Work Sans"; */
     font-size: 12pt;
     font-weight: 600;
     cursor: pointer;
+    transition: all .15s ease-in-out;
+}
+
+.submit:hover {
+    background: #150080;
+    border-color: #150080;
 }
 
 .submit-google {
@@ -101,15 +106,24 @@
     border-color: #E2E2E2;
     border-radius: 8px;
     border-width: 1px;
-    /* font-family: "Work Sans"; */
     font-size: 12pt;
     font-weight: 600;
     cursor: pointer;
+    transition: all .15s ease-in-out;
+}
+
+.submit-google:hover {
+    background: #EEEEEE;
 }
 
 .link {
     text-decoration: none;
     color: #2C31ED;
+    transition: all .15s ease-in-out;
+}
+
+.link:hover {
+    color: #150080;
 }
 
 .google-icon {

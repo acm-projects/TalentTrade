@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  left: 15%;
+  left: 10%;
   text-align: left;
 }
 
@@ -42,7 +42,7 @@
   display: flex;
   height: 100%;
   width: 500px;
-  right: 20%;
+  right: 15%;
   align-items: center;
 }
 
