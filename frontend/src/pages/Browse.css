@@ -32,5 +32,13 @@
     padding: 10px;
     align-self: center;
     margin-top: 5px;
+    transition: all .15s ease-in-out;
 }
 
+.filter-dropdown:hover {
+    border-color: #2C31ED;
+}
+
+.filter-dropdown:focus {
+    border-color: #2C31ED;
+}

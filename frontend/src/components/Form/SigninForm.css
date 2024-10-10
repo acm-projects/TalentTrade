@@ -103,7 +103,7 @@
 }
 
 .input input:hover {
-    border-color: #2C31ED
+    border-color: #2C31ED;
 }
 
 .input input:focus {
