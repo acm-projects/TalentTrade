@@ -5,6 +5,7 @@ import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
 import { Link } from 'react-router-dom';
 import './SigninForm.css';
+import { getRequest,baseUrl } from '../../utils/services';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 function SigninForm() {
@@ -29,6 +30,11 @@ function SigninForm() {
                 console.log(user);
                 localStorage.setItem('loggedInUserId', user.uid);
                 navigate('/');
+                const displaysomn=async()=>{
+                const response = await getRequest(`${baseUrl}/chats/${user.email}`);
+                console.log(response[0]._id);}
+                displaysomn();
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -51,6 +57,7 @@ function SigninForm() {
                 console.log("Google Sign-In successful:", user);
                 localStorage.setItem('loggedInUserId', user.uid);
                 navigate('/');
+             
             })
             .catch((error) => {
                 console.error("Error with Google Sign-In:", error.message);
