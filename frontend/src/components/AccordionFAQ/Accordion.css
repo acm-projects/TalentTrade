@@ -35,16 +35,14 @@
   .question-content {
     font-family: 'Work Sans';
     font-weight: 600;
-    font-size: 30pt;
+    font-size: 20pt;
   }
 
   .question-container.active {
-    /* color: #2C31ED; */
     color: #150080;
   }
   
   .wrapper .question-container:hover {
-    /* color: #150080; */
     color: #2C31ED;
   }
   
@@ -55,7 +53,8 @@
   
   .wrapper .answer-content {
     font-family: 'Work Sans';
-    font-weight: 500;
-    padding: 1.5rem 2rem;
-    font-size: 20pt;
+    font-weight: 450;
+    line-height: 1.5;
+    padding-bottom: 1.5rem;
+    font-size: 15pt;
   }
