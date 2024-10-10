@@ -11,6 +11,8 @@
     position: absolute;
     top: 40%;
     left: 10%;
+    /* animation: slideBottomAnimation ease 0.5s; */
+    animation: fadeInAnimation ease 0.5s;
   }
   
   .wrapper {
@@ -61,3 +63,15 @@
     padding-bottom: 1.5rem;
     font-size: 15pt;
   }
+
+
+  @keyframes slideBottomAnimation {
+    0% {
+        opacity: 0%;
+        translate: 0% 300%;
+    }
+    100% {
+        opacity: 100%;
+        translate: 0% 0%;
+    }
+}
