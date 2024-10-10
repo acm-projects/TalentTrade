@@ -30,6 +30,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    transition: all .15s ease-in-out;
   }
   
   .question-content {
@@ -40,10 +41,12 @@
 
   .question-container.active {
     color: #150080;
+    transition: all .15s ease-in-out;
   }
   
   .wrapper .question-container:hover {
     color: #2C31ED;
+    margin-left: 5px;
   }
   
   .wrapper .answer-container {
