@@ -1,5 +1,5 @@
 //import { useEffect } from 'react'
-import Cards from '../components/Cards'
+import Cards from '../components/homeCards/Cards'
 import NavBar from '../components/PostNavBar';
 import './cheryl.css'
 
@@ -12,12 +12,12 @@ const PostHome = () => {
                 Teach by learning.
                 </h1>
             </div>
-            <div className='topBackground'></div>
+            <div className='topBackground c'></div>
             <div>
                 <Cards/>
             </div>
-            <div className='darkBackground'>
-                <p className='white h2c'>Welcome to TalentTrade!</p>
+            <div className='darkBackground c'>
+                <p className='white h2c c'>Welcome to TalentTrade!</p>
                 <h4 className='white c'>Connect, Teach, and Learn</h4>
             </div>
            

@@ -58,8 +58,8 @@ const EditProfileForm = ( {user} ) => {
     
 
     return (
-        <div className="container">
-            <form className='form' onSubmit={handleSubmit}>
+        <div className="container c">
+            <form className='form c' onSubmit={handleSubmit}>
                 <label htmlFor="profilePicture">Profile Picture</label>
                 <input className="c" type="file" name="profilePicture"
                 onChange={(e) => handleChange(e)}/>
@@ -92,8 +92,8 @@ const EditProfileForm = ( {user} ) => {
                 <textarea className="c" name="aboutMe" id="aboutMe" cols='30' rows="" value={values.aboutMe}
                 onChange={(e) => handleChange(e)}></textarea>
                 
-                <button type='submit' className='submitButton'>Update </button>
-                {formSubmitted && <span className="formSubmitted">Sucessfully Updated!</span>}
+                <button type='submit' className='submitButton c'>Update </button>
+                {formSubmitted && <span className="formSubmitted c">Sucessfully Updated!</span>}
             </form>
         </div>
     )

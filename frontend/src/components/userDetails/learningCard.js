@@ -25,10 +25,10 @@ const LearningCard = ({ learning_skill, userID }) => {
       }
 
     return (
-        <div className='teachingCard border center' key={learning_skill._id}>
+        <div className='teachingCard border center c' key={learning_skill._id}>
             <p className='profileTextHeader c textCenter topPadding'>{learning_skill.Name}</p> 
             {learning_skill.Description && <span className="pc padding10 c">{learning_skill.Description}</span>}
-            <div className="bottomright"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>
+            <div className="bottomright c"><span className="material-symbols-outlined c" onClick={handleClick}>delete</span></div>
         </div>
     )
 }

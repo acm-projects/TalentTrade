@@ -1,5 +1,5 @@
 //import { useEffect } from 'react'
-import Cards from '../components/Cards'
+import Cards from '../components/homeCards/Cards'
 //change to prenavabr when done
 import NavBar from '../components/NavBarPre/NavBar';
 import './cheryl.css'
@@ -13,12 +13,12 @@ const Home = () => {
                 Teach by learning.
                 </h1>
             </div>
-            <div className='topBackground'></div>
+            <div className='topBackground c'></div>
             <div>
                 <Cards/>
             </div>
-            <div className='darkBackground'>
-                <p className='white h2c'>Join TalentTrade today!</p>
+            <div className='darkBackground c'>
+                <p className='white h2c c'>Join TalentTrade today!</p>
                 <h4 className='white c'>Connect, Teach, and Learn</h4>
             </div>
            

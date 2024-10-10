@@ -65,7 +65,7 @@ const Profile = () => {
             </div>
             <div>
                 <h2 className='profileSkillHeader c'>Teaching</h2>
-                <div className='container'>
+                <div className='container c'>
 
                 {profile.User?.Skills?.teaching_skills?.length > 0 ? (
                     profile.User.Skills.teaching_skills.map((skill) => (
@@ -80,7 +80,7 @@ const Profile = () => {
             </div>
             <div>
             <h2 className='profileSkillHeader c'>Learning</h2>
-                <div className='container'>
+                <div className='container c'>
 
                     {profile.User.Skills?.learning_skills?.length > 0 ? (
                         profile.User.Skills.learning_skills.map((skill) => (

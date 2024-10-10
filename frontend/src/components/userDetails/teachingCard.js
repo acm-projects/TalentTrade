@@ -28,17 +28,17 @@ const TeachingCard = ({ teaching_skill, userID }) => {
       }
 
     return (
-        <div className='teachingCard border teachingCardText'>
-            <div className='top'>
-                <div className='topleft'><p className="profileTextHeader c">{teaching_skill.Name}</p></div>
-                <div className='topright'> <p className='pc'>{teaching_skill.Rating_score}</p></div>
+        <div className='teachingCard border teachingCardText c'>
+            <div className='top c'>
+                <div className='topleft c'><p className="profileTextHeader c">{teaching_skill.Name}</p></div>
+                <div className='topright c'> <p className='pc'>{teaching_skill.Rating_score}</p></div>
             </div>
-            <div className='descriptionText'> 
+            <div className='descriptionText c'> 
                 <p className="pc">{teaching_skill.Description}</p>
             </div>
-            <div className='bottom'>
-                <div><p className="pc bottomleft">Hours Taught: {teaching_skill.Hours_taught}</p></div>
-            <div className="bottomright"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>
+            <div className='bottom c'>
+                <div><p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught}</p></div>
+            <div className="bottomright c"><span className="material-symbols-outlined c" onClick={handleClick}>delete</span></div>
         </div>  
     </div>
     )

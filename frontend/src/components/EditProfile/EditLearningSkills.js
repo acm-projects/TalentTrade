@@ -73,8 +73,8 @@ const EditLearningSkills = ({skills : initialSkills, email}) => {
 
     return (
         <div>
-             <div className="container">
-                <form className='form' onSubmit={handleSubmit}>                    
+             <div className="container c">
+                <form className='form c' onSubmit={handleSubmit}>                    
                     <label htmlFor="Name">Skill Name</label>
                     <input className="c" type="text" placeholder='enter skill' name="Name" required
                     onChange={(e) => handleChange(e)}/>
@@ -83,8 +83,8 @@ const EditLearningSkills = ({skills : initialSkills, email}) => {
                     <input className="c" type="text" placeholder='enter description' name="Description" required
                     onChange={(e) => handleChange(e)}/>
                     
-                    <button type='submit' className='submitButton'>Add </button>
-                    {formSubmitted && <span className="formSubmitted">Sucessfully Added!</span>}
+                    <button type='submit' className='submitButton c'>Add </button>
+                    {formSubmitted && <span className="formSubmitted c">Sucessfully Added!</span>}
                 </form>
             </div>
         </div>
