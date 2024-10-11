@@ -120,7 +120,7 @@ function SignupForm() {
             </div>
             <div className="text">
                 <div className="redirect">
-                    <span>Already have an account? <Link to="/signin" class="link">Sign in</Link></span>
+                    <span>Already have an account? <Link to='/signin' state={{ isSigningIn: true }} className="link">Sign in</Link></span>
                 </div>
             </div>
         </div>

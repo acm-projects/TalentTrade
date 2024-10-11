@@ -80,7 +80,7 @@ function SigninForm() {
             </div>
             <div className="text">
                 <div className="redirect">
-                    <span>Don't have an account? <Link to="/signup" className="link">Sign up</Link></span>
+                    <span>Don't have an account? <Link to='/signin' state={{ isSigningIn: false }} className="link">Sign up</Link></span>
                 </div>
             </div>
         </div>
