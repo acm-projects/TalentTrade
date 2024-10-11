@@ -13,13 +13,10 @@ function NavBarPre() {
                     </Link>
                 </div>
                 <div className='navbar-right'>
-
                     <Link to="/FAQ" className="nav-string">FAQ</Link>
-
-                    <Link to='/signin' state={{ isSigningIn: true }} className="nav-button-outlined">
+                    <Link to='/signin' state={{ isSigningIn: true }} className="nav-button-hollow">
                         Sign in
                     </Link>
-
                     <Link to='/signin' state={{ isSigningIn: false }} className="nav-button-solid">
                         Sign up
                     </Link>

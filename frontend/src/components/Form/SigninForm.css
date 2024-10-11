@@ -6,46 +6,6 @@
     /* animation: fadeInAnimation ease 0.3s; */
 }
 
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-    }
-}
-
-@keyframes slideRightAnimation {
-    0% {
-      opacity: 0%;
-      translate: 300%;
-    }
-    100% {
-      opacity: 100%;
-      translate: 0%;
-    }
-  }
-
-@keyframes cascadeAnimation {
-    0% {
-        /* opacity: 0%; */
-        translate: 0 -40px;
-    }
-    100% {
-        /* opacity: 100%; */
-        translate: 0 0px;
-    }
-}
-
-@keyframes jumpAnimation {
-    0% {
-        translate: 0 40px;
-    }
-    100% {
-        translate: 0 0px;
-    }
-}
-
 .redirect {
     font-size: 12pt;
     font-weight: 600;
@@ -65,7 +25,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  animation: cascadeAnimation ease 0.5s;
+  animation: cascadeAnimation ease 0.7s;
 }
 
 .inputs {
@@ -92,6 +52,10 @@
     font-family: "Work Sans";
     font-size: 12pt;
     animation: jumpAnimation ease 0.5s;
+}
+
+.input input::placeholder {
+    color: #15008055;
 }
 
 .input input:hover {
@@ -151,7 +115,9 @@
 }
 
 .submit-google:hover {
-    background: #EEEEEE;
+    background: #DCDFFF;
+    border-color: #DCDFFF;
+    color: #2C31ED;
 }
 
 .link {
@@ -170,4 +136,44 @@
     display: block;
     float: left;
     margin-right: 10px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes slideRightAnimation {
+    0% {
+      opacity: 0%;
+      translate: 300%;
+    }
+    100% {
+      opacity: 100%;
+      translate: 0%;
+    }
+  }
+
+@keyframes cascadeAnimation {
+    0% {
+        /* opacity: 0%; */
+        translate: 0 -40px;
+    }
+    100% {
+        /* opacity: 100%; */
+        translate: 0 0px;
+    }
+}
+
+@keyframes jumpAnimation {
+    0% {
+        translate: 0 40px;
+    }
+    100% {
+        translate: 0 0px;
+    }
 }

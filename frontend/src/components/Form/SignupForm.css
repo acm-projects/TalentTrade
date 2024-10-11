@@ -1,51 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-.container {
-    display: block;
-    flex-direction: column;
-    /* animation: fadeInAnimation ease 0.3s; */
-}
-
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-    }
-}
-
-@keyframes slideRightAnimation {
-    0% {
-      opacity: 0%;
-      translate: 300%;
-    }
-    100% {
-      opacity: 100%;
-      translate: 0%;
-    }
-  }
-
-@keyframes cascadeAnimation {
-    0% {
-        /* opacity: 0%; */
-        translate: 0 -40px;
-    }
-    100% {
-        /* opacity: 100%; */
-        translate: 0 0px;
-    }
-}
-
-@keyframes jumpAnimation {
-    0% {
-        translate: 0 40px;
-    }
-    100% {
-        translate: 0 0px;
-    }
-}
-
 .redirect-b {
     font-size: 12pt;
     font-weight: 600;
@@ -65,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  animation: jumpAnimation ease 0.3s;
+  animation: jumpAnimation ease 0.7s;
 }
 
 .inputs-b {
@@ -91,7 +45,7 @@
     font-weight: 600;
     font-family: "Work Sans";
     font-size: 12pt;
-    animation: fadeInAnimation ease 0.6s;
+    animation: slowFadeInAnimation ease .6s;
 }
 
 .username input:hover {
@@ -100,6 +54,10 @@
 
 .username input:focus {
     border-color: #150080;
+}
+
+.username input::placeholder {
+    color: #15008055;
 }
 
 .input-b input {
@@ -121,17 +79,16 @@
     animation: cascadeAnimation ease 0.5s;
 }
 
+.input-b input::placeholder {
+    color: #15008055;
+}
+
 .input-b input:hover {
     border-color: #2C31ED;
 }
 
 .input-b input:focus {
     border-color: #150080;
-}
-
-.submit-container {
-    display: flex;
-    margin-top: 20px;
 }
 
 .submit-b {
@@ -178,23 +135,19 @@
 }
 
 .submit-google-b:hover {
-    background: #EEEEEE;
-}
-
-.link {
-    text-decoration: none;
+    background: #DCDFFF;
+    border-color: #DCDFFF;
     color: #2C31ED;
-    transition: all .15s ease-in-out;
 }
 
-.link:hover {
-    color: #150080;
-}
-
-.google-icon {
-    width: 20px;
-    height: 20px;
-    display: block;
-    float: left;
-    margin-right: 10px;
+@keyframes slowFadeInAnimation {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
 }
