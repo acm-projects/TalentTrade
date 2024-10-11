@@ -1,9 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
-import { Link } from 'react-router-dom';
 import './SigninForm.css';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
@@ -75,7 +73,7 @@ function SigninForm() {
             </div>
             <div className="submit-container">
                 <div className="submit-google" onClick={handleGoogleSignIn}>
-                    <img src={"/images/google.svg"} alt="google" className="google-icon" />Sign in with Google
+                    <img src={"/images/google.svg"} alt="google" className="google-icon" draggable="false" />Sign in with Google
                 </div>
             </div>
             <div className="text">

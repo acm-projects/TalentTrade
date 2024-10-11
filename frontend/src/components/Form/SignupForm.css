@@ -19,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  animation: jumpAnimation ease 0.7s;
+  animation: fadeWaitAnimation ease 1.2s;
 }
 
 .inputs-b {
@@ -45,7 +45,7 @@
     font-weight: 600;
     font-family: "Work Sans";
     font-size: 12pt;
-    animation: slowFadeInAnimation ease .6s;
+    animation: fadeWaitAnimation ease .8s;
 }
 
 .username input:hover {
@@ -138,16 +138,4 @@
     background: #DCDFFF;
     border-color: #DCDFFF;
     color: #2C31ED;
-}
-
-@keyframes slowFadeInAnimation {
-    0% {
-        opacity: 0%;
-    }
-    50% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-    }
 }
