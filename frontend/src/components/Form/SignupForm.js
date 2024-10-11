@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
-import './SigninForm.css';
+import './SignupForm.css';
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 function SignupForm() {
@@ -96,30 +96,30 @@ function SignupForm() {
     return (
         
         <div className='container'>
-            <div className="header">
+            <div className="header-b">
                 Sign up for TalentTrade
             </div>
             <div className="inputs">
-                <div className="input">
+                <div className="username">
                     <input type="text" id="username" value={username} onChange={handleusername} placeholder="Username"/>
                 </div>
-                <div className="input">
+                <div className="input-b">
                     <input type="email" id="email" value={emailinput} onChange={handleemail} placeholder="Email" />
                 </div>
-                <div className="input">
+                <div className="input-b">
                     <input type="password" id="password" value={passwordinput} onChange={handlepassword} placeholder="Password" />
                 </div>
             </div>
             <div className="submit-container">
-                <div className="submit" onClick={handlebuttonclick}>Sign up</div>
+                <div className="submit-b" onClick={handlebuttonclick}>Sign up</div>
             </div>
             <div className="submit-container">
-                <div className="submit-google" onClick={handleGoogleSignIn}>
+                <div className="submit-google-b" onClick={handleGoogleSignIn}>
                     <img src={"/images/google.svg"} class="google-icon" />Sign up with Google
                 </div>
             </div>
             <div className="text">
-                <div className="redirect">
+                <div className="redirect-b">
                     <span>Already have an account? <Link to='/signin' state={{ isSigningIn: true }} className="link">Sign in</Link></span>
                 </div>
             </div>

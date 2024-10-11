@@ -8,10 +8,10 @@ import SignupForm from '../components/Form/SignupForm';
 const Signin = () => {
     const location = useLocation();
     const [isSigningIn, setIsSigningIn] = useState(true);
+    const [transitionDirection, setTransitionDirection] = useState('');
 
     useEffect(() => {
         const signingInState = location.state?.isSigningIn ?? true;
-        console.log("Location state: ", location.state);
         setIsSigningIn(signingInState);
     }, [location.state]);
 

@@ -46,7 +46,7 @@
     }
 }
 
-.redirect {
+.redirect-b {
     font-size: 12pt;
     font-weight: 600;
     display: flex;
@@ -54,10 +54,10 @@
     align-items: center;
     position: relative;
     margin-top: 20px;
-    animation: jumpAnimation ease 0.8s;
+    animation: cascadeAnimation ease 0.8s;
 }
 
-.header {
+.header-b {
   font-size: 26pt;
   font-weight: 600;
   color: #000000;
@@ -65,17 +65,17 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  animation: cascadeAnimation ease 0.5s;
+  animation: jumpAnimation ease 0.3s;
 }
 
-.inputs {
+.inputs-b {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.input input {
+.username input {
     height: 44px;
     width: 400px;
     padding-left: 20px;
@@ -91,14 +91,41 @@
     font-weight: 600;
     font-family: "Work Sans";
     font-size: 12pt;
-    animation: jumpAnimation ease 0.5s;
+    animation: fadeInAnimation ease 0.6s;
 }
 
-.input input:hover {
+.username input:hover {
     border-color: #2C31ED;
 }
 
-.input input:focus {
+.username input:focus {
+    border-color: #150080;
+}
+
+.input-b input {
+    height: 44px;
+    width: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    background: transparent;
+    border: #000000;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    outline: none;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Work Sans";
+    font-size: 12pt;
+    animation: cascadeAnimation ease 0.5s;
+}
+
+.input-b input:hover {
+    border-color: #2C31ED;
+}
+
+.input-b input:focus {
     border-color: #150080;
 }
 
@@ -107,7 +134,7 @@
     margin-top: 20px;
 }
 
-.submit {
+.submit-b {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,15 +150,15 @@
     font-weight: 600;
     cursor: pointer;
     transition: all .15s ease-in-out;
-    animation: jumpAnimation ease 0.6s;
+    animation: cascadeAnimation ease 0.6s;
 }
 
-.submit:hover {
+.submit-b:hover {
     background: #150080;
     border-color: #150080;
 }
 
-.submit-google {
+.submit-google-b {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,10 +174,10 @@
     font-weight: 600;
     cursor: pointer;
     transition: all .15s ease-in-out;
-    animation: jumpAnimation ease 0.7s;
+    animation: cascadeAnimation ease 0.7s;
 }
 
-.submit-google:hover {
+.submit-google-b:hover {
     background: #EEEEEE;
 }
 
