@@ -115,7 +115,7 @@ function SignupForm() {
             </div>
             <div className="submit-container">
                 <div className="submit-google-b" onClick={handleGoogleSignIn}>
-                    <img src={"/images/google.svg"} class="google-icon" />Sign up with Google
+                    <img src={"/images/google.svg"} alt="google" className="google-icon" />Sign up with Google
                 </div>
             </div>
             <div className="text">

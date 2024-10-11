@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 
@@ -8,8 +8,8 @@ function NavBarPre() {
         <>
             <nav className="navbar">
                 <div className="navbar-left">
-                    <Link to="/" className="user-icon">
-                        <img src={"/images/logo.svg"} alt="logo" className="logo" />
+                    <Link to="/">
+                        <img src={"/images/logo.svg"} alt="logo" className="logo" draggable="false"/>
                     </Link>
                 </div>
                 <div className='navbar-right'>

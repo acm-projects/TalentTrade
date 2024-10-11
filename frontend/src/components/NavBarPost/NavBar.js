@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import '../NavBarPre/NavBar.css'
 
@@ -7,23 +7,26 @@ function NavBarPost() {
     return (
         <>
             <nav className="navbar">
-                <div class="navbar-left">
-                    <Link to="/" className="user-icon">
-                        <img src={"/images/logo.svg"} class="logo" />
+                <div className="navbar-left">
+                    <Link to="/">
+                        <img src={"/images/logo.svg"} alt="logo" className="logo" draggable="false"/>
                     </Link>
                 </div>
                 <div className='navbar-right'>
-                    <Link to="/browse" class="nav-string">
+                    <Link to="/browse" className="nav-string">
                         Browse
                     </Link>
-                    <Link to="/FAQ" class="nav-string">
+                    <Link to="/FAQ" className="nav-string">
                         FAQ
                     </Link>
-                    <Link to="/messages" class="messages-icon">
-                        <img src={"/images/message.svg"} class="navbar-icon-m" />
+                    <Link to="/profile">
+                    <img src={"/images/settings.svg"} alt="settings" className="navbar-icon-m" draggable="false"/>
                     </Link>
-                    <Link to="/profile" class="profile-icon">
-                        <img src={"/images/user.png"} class="navbar-icon-l" />
+                    <Link to="/messages">
+                        <img src={"/images/message.svg"} alt="message" className="navbar-icon-m" draggable="false"/>
+                    </Link>
+                    <Link to="/profile">
+                        <img src={"/images/user.png"} alt="user" className="navbar-icon-l" draggable="false"/>
                     </Link>
                 </div>
             </nav>
