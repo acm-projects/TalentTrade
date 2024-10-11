@@ -48,7 +48,8 @@
   
   .wrapper .question-container:hover {
     color: #2C31ED;
-    margin-left: 5px;
+    translate: 4%;
+    transform: scale(1.07);
   }
   
   .wrapper .answer-container {

@@ -14,7 +14,7 @@
     font-weight: 700;
     color: #2C31ED;
     text-align: center;
-    animation: slideTopAnimation ease 0.3s;
+    animation: slideTopAnimation ease 0.5s;
 }
 
 @keyframes slideTopAnimation {
