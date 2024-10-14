@@ -1,6 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-/*
+h3 {
+    font-family: 'Work Sans';
+    font-size: 16pt;
+    font-weight: 600;
+    text-align: left;
+    position: relative;
+}
+
+.messages-header {
+    display: flex;
+    width: 100%;
+    height: 80pt;
+    font-family: 'Work Sans';
+    font-size: 20pt;
+    font-weight: 600;
+    text-align: left;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: #E2E2E2;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 .container {
     left: 10%;
     right: 10%;
@@ -8,7 +30,6 @@
     margin-right: 100px;
     display: flex;
 }
-*/
 
 .contacts-container {
     border-style: solid;
@@ -18,10 +39,30 @@
     margin-top: 50px;
     top: 5%;
     left: 5%;
-    padding: 50px;
-    width: 28%;
+    padding: 30px;
+    width: 21%;
     height: 85%;
     position: absolute;
+}
+
+.self-contact {
+    display: flex;
+    height: 80px;
+    line-height: 7px;
+    align-items: center;
+}
+
+.other-contacts-container {
+    height: max-content;
+    display: flex;
+    margin-top: 7%;
+    text-align: left;
+}
+
+.secondary-text {
+    color: #150080;
+    font-weight: 550;
+    position: relative;
 }
 
 .messages-container {
@@ -32,10 +73,70 @@
     margin-top: 50px;
     top: 5%;
     right: 5%;
-    padding: 50px;
+    padding: 30px;
     width: 60%;
     height: 85%;
     position: absolute;
-    
 }
 
+.profile-picture {
+    width: 70px;
+    height: 70px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    float: left;
+    display: block;
+}
+
+/* Additional CSS for Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.search-bar input {
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    font-weight: 600;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+    margin-right: 10px; /* Space between input and button */
+}
+
+.search-button {
+    background-color: #150080; /* Same as your existing theme color */
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth background change on hover */
+}
+
+.search-button:hover {
+    background-color: #3E5B8A; /* Optional: Slightly lighter shade on hover */
+}
+
+.searched-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 10px 0; /* Padding for better spacing */
+}
+
+.searched-user button {
+    background-color: #150080; /* Same color as the search button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

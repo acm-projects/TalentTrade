@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import NavBar from '../components/PostNavBar';
+import NavBar from '../components/NavBarPost/PostNavBar';
 import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
