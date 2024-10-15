@@ -5,7 +5,7 @@ const mongoose=require('mongoose')
 
 const router=express.Router()
 
-//getting single user data
+//getting single user data by email
 router.get('/:email',async (req,res)=>{
   const {email}=req.params
 
@@ -18,7 +18,20 @@ router.get('/:email',async (req,res)=>{
   res.status(200).json(Userdata)
 
 }
+)
 
+router.get('/other/:username',async (req,res)=>{
+  const {username}=req.params
+
+
+  const Userdata=await UserProfile.findOne({"User.Personal_info.Username":username})
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
+
+}
 )
 
 //creating a new user data
@@ -82,10 +95,6 @@ router.delete('/:id',async (req,res)=>{
   const {id}=req.params
   const { skillId, skillType } = req.body;
 
-  console.log("Received ID:", id);
-  console.log("Received Body:", req.body);
-  console.log(skillId)
-  console.log(skillType)
 
   if(!mongoose.Types.ObjectId.isValid(id)){
     return res.status(404).json({error:'No such user'})
@@ -120,16 +129,17 @@ router.delete('/:id',async (req,res)=>{
 
 
 //updating user data
-
 )
 router.patch('/:email',async (req,res)=>{
-  const {email}=req.params
+  const { email }=req.params
 
   const updateFields = {};
   const { User } = req.body;
 
   if (User?.Personal_info) {
-    updateFields["User.Personal_info"] = User.Personal_info;
+    Object.keys(User.Personal_info).forEach((info) => {
+      updateFields[`User.Personal_info.${info}`] = User.Personal_info[info];
+    });
   }
 
   if (User?.Skills?.learning_skills) {
@@ -141,7 +151,7 @@ router.patch('/:email',async (req,res)=>{
 
 
   const Userdata = await UserProfile.findOneAndUpdate(
-    { "User.Personal_info.Email": email }, 
+    { "User.Personal_info.Email": email },
     { $set: updateFields }, 
     { new: true } 
   )

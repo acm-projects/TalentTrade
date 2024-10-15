@@ -2,7 +2,12 @@
 
 /*NAV BAR CSS */
 @import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+
+*.c {
+    font-family: 'Work Sans';
+}
 
 .navbar {
     display: flex;
@@ -54,7 +59,6 @@
 h1.c {
     font-size: 50px;
     color: var(--medium);
-    font-family: 'Konkhmer Sleokchher', sans-serif;
     text-align: center;
     padding-top: 40px;
     line-height: 1.25;
@@ -62,8 +66,8 @@ h1.c {
 
 .h2c {
     font-size: 40px;
-    font-family: 'Konkhmer Sleokchher', sans-serif;
     text-align: center;
+    font-weight: bold;
     padding-top: 30px;
     margin:0;
 }
@@ -74,7 +78,6 @@ h3.c {
 
 h4.c {
     font-size: 30px;
-    font-family: 'Konkhmer Sleokchher', sans-serif;
     text-align: center;
     margin:0;
     padding-bottom: 80px;
@@ -181,15 +184,14 @@ banner, profile info, about me styling */
 }
 
 .profileTextHeader.c {
-    font-family: 'Konkhmer Sleokchher', sans-serif;
     font-size: 15pt;
     margin:0;
     padding: 0;
     text-align: left;
+    font-weight: bold;
 }
 
 .profileSkillHeader.c {
-    font-family: 'Konkhmer Sleokchher', sans-serif;
     font-size: 20pt;
     margin-top: 40px;
     margin-bottom: 0;
@@ -487,6 +489,28 @@ textarea.c {
 
 .bottomleft.c {
     padding-left: 20px;
+}
+
+.hoverEnlarge {
+    animation-duration: 2s;
+    transition: transform .3s ease-in-out;
+}
+
+.hoverEnlarge:hover {
+    
+    transform: scale(1.05);
+    
+}
+
+.hoverEnlarge2 {
+    animation-duration: 1s;
+    transition: transform .3s ease-in-out;
+}
+
+.hoverEnlarge2:hover {
+    
+    transform: scale(1.25);
+    
 }
 
 @media only screen and (min-width: 600px) {
