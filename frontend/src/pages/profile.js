@@ -51,7 +51,7 @@ const Profile = () => {
     }, [email])  
 
     if (!profile) {
-        return <p>Loading profile...</p>;
+        return <div className="loading a">Loading profile...</div>;
     }
 
     //handle clicking delete button

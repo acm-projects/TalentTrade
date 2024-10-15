@@ -3,6 +3,7 @@ import EditProfileForm from '../components/EditProfile/EditProfileForm'
 import EditTeachingSkills from '../components/EditProfile/EditTeachingSkills';
 import EditLearningSkills from '../components/EditProfile/EditLearningSkills'
 import './cheryl.css'
+import './editProfile.css'
 import { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 

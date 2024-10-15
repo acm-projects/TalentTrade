@@ -222,6 +222,20 @@ h6.c {
     text-align: center;
 }
 
+.loading.a {
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    font-size: 32pt;
+    font-weight: 600;
+    padding-top: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-content: center;
+}
+
 /* form css */
 label.c {
     font-size: 15px;
