@@ -10,7 +10,7 @@ const PostHome = () => {
             <NavBar/>
             <div className=''>
                 <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
-                Teach by learning.
+                teach by learning.
                 </h1>
             </div>
             <div className='topBackground c'></div>

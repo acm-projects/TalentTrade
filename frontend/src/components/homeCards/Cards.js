@@ -33,7 +33,7 @@ function Cards() {
                             <li className='card__item blackBackground c'>
                                 <div className='cards__item__info c'>
                                     <h1 className='statistic noMargin c '>50K+</h1>
-                                    <h3 className='statistic noMargin white c'>TRADERES</h3>
+                                    <h3 className='statistic noMargin white c'>TRADERS</h3>
                                 </div>
                             </li>
 
