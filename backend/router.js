@@ -1,3 +1,4 @@
+const axios=require('axios')
 const express=require('express')
 const UserProfile=require('./schema')
 const mongoose=require('mongoose')
@@ -36,6 +37,44 @@ router.post('/', async (req, res) => {
       res.status(400).json({ error: error.message });
   }
 });
+
+router.post('/recommendations', async (req,res)=>{
+  try{
+    const email=req.body.email
+    const specificUser= await UserProfile.findOne({'User.Personal_info.Email': email}).lean()
+    console.log(specificUser)
+    
+    if (!specificUser){
+      return res.status(404).json({message: 'User not found'})
+    }
+
+    const username=specificUser.User.Personal_info.Username
+    const allusers= await UserProfile.find({}).lean()
+    console.log({username:username, usersdata:allusers})
+
+    const flaskResponse= await axios.post('http://localhost:8000/api/getrecommendations', {
+      username:username,
+      usersdata: allusers
+    },{
+      headers: {
+        'Content-Type': 'application/json'
+      }});
+    const usernames=Object.keys(flaskResponse.data)
+
+    const userProfilePromises = usernames.map(username => 
+      UserProfile.findOne({ "User.Personal_info.Username": username }).exec())
+
+    const UserProfiles= await Promise.all(userProfilePromises)
+
+    res.json(UserProfiles)
+
+
+  }
+  catch(error){
+    console.error('Error:',error);
+    res.status(500).json({message:'Server error'});
+  }
+})
 
 
 //deleting a skill
