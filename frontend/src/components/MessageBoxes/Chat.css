@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.chat-header {
+    background-color: #F8F8F8;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #E2E2E2;
+    font-weight: 600;
+    font-size: 16pt;
+}
+
 .message-window {
     width: 100%;
-    height: 53vh;
-    padding-top: 100px;
+    height: calc(100vh - 180px); /* Adjusted to account for header and chat box */
+    padding-top: 20px;
     overflow-y: auto;
     display: flex;
     border-bottom-left-radius: 15px;
@@ -16,29 +32,27 @@
     display: block;
 }
 
-.other-message-row {
+.message-row {
     width: 100%;
     height: fit-content;
     min-height: 55px;
-    display: block;
+    display: flex;
     margin-bottom: 2px;
 }
 
 .self-message-row {
-    width: 100%;
-    height: fit-content;
-    min-height: 55px;
-    display: block;
-    margin-bottom: 2px;
+    justify-content: flex-end;
 }
 
-.other-message-box {
+.other-message-row {
+    justify-content: flex-start;
+}
+
+.message-box {
     max-width: 40%;
     width: fit-content;
     height: fit-content;
     padding: 15px;
-    background-color: #DCDFFF;
-    color: #000000;
     border-radius: 20px;
     display: flex;
     font-weight: 550;
@@ -46,17 +60,16 @@
 }
 
 .self-message-box {
-    max-width: 40%;
-    width: fit-content;
-    height: fit-content;
-    padding: 15px;
     background-color: #2C31ED;
     color: #FFFFFF;
     border-radius: 15px;
-    display: flex;
-    font-weight: 550;
-    line-height: 25px;
-    float: right;
+    align-self: flex-end;
+}
+
+.other-message-box {
+    background-color: #DCDFFF;
+    color: #000000;
+    align-self: flex-start;
 }
 
 .chat-box {
@@ -65,13 +78,11 @@
     margin: auto;
     padding-left: 10px;
     padding-right: 10px;
-    width: 100%;
+    width: calc(100% - 20px);
     height: 60px;
     margin-top: 20px;
     background: #ffffff;
-    border: #E2E2E2;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid #E2E2E2;
     border-radius: 15px;
 }
 
@@ -86,7 +97,7 @@
     outline: none;
     color: #000000;
     font-weight: 600;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     font-size: 12pt;
 }
 
@@ -95,18 +106,23 @@
     width: 10px;
 }
 
-/* width */
+/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     background: transparent;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: #DCDFFF;
     border-radius: 5px;
-  }
+}
+
+/* Remove if not needed */
+.other-user-name {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 2px;
+}

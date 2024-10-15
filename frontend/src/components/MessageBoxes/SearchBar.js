@@ -1,6 +1,5 @@
-// SearchBar.js
 import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa'; // Import search icon
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = ({ onSearch }) => {
     const [searchInput, setSearchInput] = useState('');
@@ -10,7 +9,7 @@ const SearchBar = ({ onSearch }) => {
             alert('Please enter a username or email to search.');
             return;
         }
-        onSearch(searchInput); // Call the onSearch prop with the current input
+        onSearch(searchInput);
     };
 
     return (

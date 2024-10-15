@@ -6,15 +6,15 @@ const ChatContext = createContext();
 const ChatProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [selectedChat, setSelectedChat] = useState();
-    const [chats, setChats] = useState();
+    const [chats, setChats] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         setUser(userInfo);
     
-        const protectedRoutes = ['/home', '/profile', '/messages', '/profile/edit']; // define routes that require authentication
-        if (!userInfo && protectedRoutes.includes(window.location.pathname)) {
+        //const protectedRoutes = ['/home', '/profile', '/messages', '/profile/edit']; // define routes that require authentication
+        if (!userInfo){// && protectedRoutes.includes(window.location.pathname)) {
             navigate('/');
         }
     }, [navigate]);

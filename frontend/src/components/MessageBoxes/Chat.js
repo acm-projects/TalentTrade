@@ -1,89 +1,128 @@
-import React from 'react'
-import './Chat.css'
- 
+import React, { useEffect, useState, useRef } from 'react';
+import './Chat.css';
+import { ChatState } from '../../context/ChatProvider';
+import { getAuth } from 'firebase/auth';
+
 function Chat() {
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [newMessage, setNewMessage] = useState('');
+    const messagesEndRef = useRef(null);
+
+    const { user, selectedChat } = ChatState();
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const sendMessage = async (event) => {
+        if (event.key === 'Enter' && newMessage) {
+            try {
+                const auth = getAuth();
+                const token = await auth.currentUser.getIdToken(true);
+
+                setNewMessage('');
+                const response = await fetch('http://localhost:4000/api/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ content: newMessage, chatId: selectedChat._id }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+
+                const messageData = await response.json();
+                setMessages(prevMessages => [...prevMessages, messageData]);
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        }
+    };
+
+    const fetchMessages = async () => {
+        if (!selectedChat) return;
+        try {
+            setLoading(true);
+            const auth = getAuth();
+            const token = await auth.currentUser.getIdToken(true);
+
+            const response = await fetch(`http://localhost:4000/api/messages/${selectedChat._id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch messages');
+            }
+
+            const messagesData = await response.json();
+            setMessages(messagesData);
+        } catch (error) {
+            console.error('Error fetching messages:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchMessages();
+    }, [selectedChat]);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const isCurrentUserMessage = (message) => {
+        return message.sender._id === user._id;
+    };
+
+    const getChatPartnerName = () => {
+        if (!selectedChat || !selectedChat.users) return 'Chat';
+        const chatPartner = selectedChat.users.find(u => u._id !== user._id);
+        return chatPartner ? chatPartner.name : 'Chat';
+    };
+
+    if (loading) {
+        return <div>Loading messages...</div>;
+    }
+
     return (
-        <div>
-            <div className="message-window">
-                <div className="visible-messages">
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            hi
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            hi
-                        </div>
-                    </div>
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            how are you?
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            im good
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            you?
-                        </div>
-                    </div>
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            a hopeless romantic all my life surrunded by couples all the time i guess i should take it as a sign oh why oh why oh why oh why
-                            im feeling lonely oh i wish id find a lover that could hold me now im crying in my room so skeptical of love say it say it but still
-                            i want it more more more i gave a second chance to cupid but now im left here feeling stupid oh the way he makes me feel that love isnt
-                            real cupid is so dumb
-                        </div>
-                    </div>
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            i look for his arrows every day i guess he got lost or flew away waiting around is a waste been counting the days since november is loving
-                            as good as they say im feeling lonely oh i wish id find a lover that could hold me now im crying in my room so skeptical of love say it say
-                            but still i want it more more more i gave a second chance to cupid but now im left here feeling stupid oh the way he makes me feel that love
-                            isnt real cupid is so dumb
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            on god brotha
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            anyway you said you wanted to learn geometry?
-                        </div>
-                    </div>
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            i sure did
-                        </div>
-                    </div>
-                    <div className="other-message-row">
-                        <div className="other-message-box">
-                            you go to utd right? wanna meet up at SU soon
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            im a bit busy, maybe we could meet online instead?
-                        </div>
-                    </div>
-                    <div className="self-message-row">
-                        <div className="self-message-box">
-                            we could try a teams meeting or smt
-                        </div>
+        <div className="chat-container">
+    <div className="chat-header">
+        <h2>{getChatPartnerName()}</h2>
+    </div>
+    <div className="message-window">
+        <div className="visible-messages">
+            {messages.map((message, index) => (
+                <div key={index} className={`message-row ${isCurrentUserMessage(message) ? "self-message-row" : "other-message-row"}`}>
+                    <div className={`message-box ${isCurrentUserMessage(message) ? "self-message-box" : "other-message-box"}`}>
+                        {message.content}
                     </div>
                 </div>
-            </div>
-            <div className="chat-box">
-                <input type="text" id="text" placeholder="Message..." autoComplete="off"/>
-            </div>
+            ))}
+            <div ref={messagesEndRef} />
         </div>
-    )
+    </div>
+    <div className="chat-box">
+        <input
+            onKeyDown={sendMessage}
+            type="text"
+            id="text"
+            placeholder="Message..."
+            autoComplete="off"
+            onChange={(e) => setNewMessage(e.target.value)}
+            value={newMessage}
+        />
+    </div>
+</div>
+    );
 }
 
-export default Chat
+export default Chat;
