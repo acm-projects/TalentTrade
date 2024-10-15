@@ -7,7 +7,7 @@ const profileSchema = new Schema({
         Personal_info: {
             Username: {
                 type: String,
-                required: false
+                required: true
             },
             Email: {
                 type: String,
@@ -19,15 +19,15 @@ const profileSchema = new Schema({
             },
             Fname: {
                 type: String,
-                required: false
+                required: true
             },
             Lname: {
                 type: String,
-                required: false
+                required: true
             },
             DOB: {
                 type: String,
-                required: false
+                required: true
             },
             year: {
                 type: String,  // freshman, sophomore, alumni, etc.
