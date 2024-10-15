@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from collections import OrderedDict
 
 import pandas as pd
 from pandas import json_normalize
@@ -79,14 +80,15 @@ def get_recommendations(user, alldata):       #algorithm function begins, takes 
   final_similarity_matrix=teaching_learning_similarity_matrix*0.5 + learning_skill_similarity_matrix*0.25 + teaching_skill_similarity_matrix*0.2 + year_similarity_matrix*0.1
 
   recommendations=final_similarity_matrix[user].drop([user]) # removing current user from recommendations
-  recommendations=recommendations.sort_values(ascending=False).head(10)       # taking the top 10 values from highest similarity score
-  recommendations_dict = recommendations.to_dict()    #converting to dictionary
-  print(recommendations_dict)
-  for key, value in recommendations_dict.items():
-    print(f"Key: {key} (type: {type(key)}), Value: {value} (type: {type(value)})")
+  recommendations=recommendations.sort_values(ascending=False).head(12)       # taking the top 10 values from highest similarity score
+  recommendations_dict = recommendations.to_dict()  
+  recommendation_list=[(key, value) for key, value in recommendations_dict.items()]  #converting to list because json acts funny with dict
+  #print(recommendations_dict)
+  #for key, value in recommendations_dict.items():
+    #print(f"Key: {key} (type: {type(key)}), Value: {value} (type: {type(value)})")
 
 
-  return recommendations_dict   #returning json data from dictionary
+  return recommendation_list   #returning list of tuples of usernames wirth scores
   
 
 @app.route('/api/getrecommendations',methods=['POST'])   #post request from express

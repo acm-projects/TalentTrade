@@ -72,7 +72,8 @@ router.post('/recommendations', async (req,res)=>{
       headers: {
         'Content-Type': 'application/json'
       }});
-    const usernames=Object.keys(flaskResponse.data)
+    const recommendationsresponse=flaskResponse.data
+    const usernames=recommendationsresponse.map(tuple => tuple[0])
 
     const userProfilePromises = usernames.map(username => 
       UserProfile.findOne({ "User.Personal_info.Username": username }).exec())
