@@ -1,0 +1,29 @@
+//import { useEffect } from 'react'
+import Cards from '../components/homeCards/Cards'
+import NavBar from '../components/PostNavBar';
+import './cheryl.css'
+import 'animate.css'
+
+const PostHome = () => {
+    return (
+        <div>
+            <NavBar/>
+            <div className=''>
+                <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
+                Teach by learning.
+                </h1>
+            </div>
+            <div className='topBackground c'></div>
+            <div>
+                <Cards/>
+            </div>
+            <div className='darkBackground c'>
+                <p className='white h2c c'>Welcome to TalentTrade!</p>
+                <h4 className='white c'>Connect, Teach, and Learn</h4>
+            </div>
+           
+        </div>
+    )
+}
+
+export default PostHome
