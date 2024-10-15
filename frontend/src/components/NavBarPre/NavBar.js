@@ -4,6 +4,7 @@ import './NavBar.css'
 
 
 function NavBarPre() {
+    console.log("C2");
     return (
         <>
             <nav className="navbar">
@@ -24,6 +25,7 @@ function NavBarPre() {
             </nav>
         </>
     )
+    console.log("C3");
 }
 
 export default NavBarPre

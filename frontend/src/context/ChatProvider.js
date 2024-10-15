@@ -12,16 +12,16 @@ const ChatProvider = ({ children }) => {
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         setUser(userInfo);
-    
+        console.log(window.location.pathname)
         //const protectedRoutes = ['/home', '/profile', '/messages', '/profile/edit']; // define routes that require authentication
-        if (!userInfo){// && protectedRoutes.includes(window.location.pathname)) {
+        if (window.location.pathname != "/signin" && !userInfo) {// && protectedRoutes.includes(window.location.pathname)) {
             navigate('/');
         }
     }, [navigate]);
-    
+
 
     return (
-        <ChatContext.Provider value={{ user, setUser , selectedChat, setSelectedChat, chats, setChats }}>
+        <ChatContext.Provider value={{ user, setUser, selectedChat, setSelectedChat, chats, setChats }}>
             {children}
         </ChatContext.Provider>
     );
