@@ -75,11 +75,11 @@ const EditLearningSkills = ({skills : initialSkills, email}) => {
         <div>
              <div className="container c">
                 <form className='form c' onSubmit={handleSubmit}>                    
-                    <label htmlFor="Name">Skill Name</label>
+                    <label className="c" htmlFor="Name">Skill Name</label>
                     <input className="c" type="text" placeholder='enter skill' name="Name" required
                     onChange={(e) => handleChange(e)}/>
 
-                    <label htmlFor="Description">Skill Description</label>
+                    <label className="c" htmlFor="Description">Skill Description</label>
                     <input className="c" type="text" placeholder='enter description' name="Description" required
                     onChange={(e) => handleChange(e)}/>
                     

@@ -1,40 +1,26 @@
-import { useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import NavBar from '../components/PostNavBar';
-import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
 import './cheryl.css'
 
-const Profile = () => {
-    
+
+const OtherUser = () => {
+    const { username } = useParams();
     const [profile, setProfile] = useState(null);
-    const [email, setEmail] = useState(null);
-    const auth = getAuth()
+    console.log(username)
 
+    //get user info
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
-                setEmail(currentUser.email)
-            } else {
-                console.log("No user is signed in");
-            }
-        });
-        return () => unsubscribe();
-    }, [auth]);
-
-    //console.log(profile)
-
-    useEffect(() => {
-        if (email) {
+        if (username) {
             const fetchUser = async () => {
                 try {
-                    console.log('/api/users/' + email)
-                    const response = await fetch('http://localhost:4000/api/users/' + encodeURIComponent(email));
+                    console.log('/api/users/other/' + username)
+                    const response = await fetch('http://localhost:4000/api/users/other/' + username);
 
                     //console.log('Response status:', response.status);
                     //console.log('Response content-type:', response.headers.get('content-type'));
-
                     if (response.ok) {
                         console.log(response)
                         const json = await response.json();
@@ -48,20 +34,43 @@ const Profile = () => {
             };
             fetchUser()
         }
-    }, [email])  
+    }, [username])  
 
     if (!profile) {
         return <p>Loading profile...</p>;
     }
 
-    //handle clicking delete button
-
+    const user = profile.User.Personal_info
 
     return (
         <div>
             <NavBar/>
             <div>
-                <ProfileDetails user = {profile.User.Personal_info}/>
+            <div>
+            <div className='border c'>
+                <img src={"/images/background.png"} className='bannerPicture c'/>
+                <div className='top c'> 
+                    <div className='topleft c'>
+                        <img src={"/images/user.png"} className='pfp c'/>
+                        <div className='profileText c'>
+                            <p className='profileTextHeader c'>{user.Fname} {user.Lname}</p>
+                            <p className='pc'>{user.location}</p>
+                            <p className='pc'>{user.year}</p>
+                        </div>
+                    </div>
+                    <div className='topright c'>
+                        <Link to="/profile/edit" className="edit c">
+                            Message
+                        </Link>
+                    </div>
+                </div>
+                
+            </div>
+            <div className='border aboutMe c'>
+                <p className='h2c profileTextHeader c'>About Me</p>
+                <p className="pc">{user.aboutMe}</p>
+            </div>
+        </div>
             </div>
             <div>
                 <h2 className='profileSkillHeader c'>Teaching</h2>
@@ -69,7 +78,7 @@ const Profile = () => {
 
                 {profile.User?.Skills?.teaching_skills?.length > 0 ? (
                     profile.User.Skills.teaching_skills.map((skill) => (
-                        <TeachingCard key={skill._id} teaching_skill={skill} userID={profile._id} self='true'/>
+                        <TeachingCard key={skill._id} teaching_skill={skill} userID={profile._id}  self='false'/>
                     ))
                 ) : (
                     <p>No teaching skills available</p>
@@ -84,7 +93,7 @@ const Profile = () => {
 
                     {profile.User.Skills?.learning_skills?.length > 0 ? (
                         profile.User.Skills.learning_skills.map((skill) => (
-                            <LearningCard key={skill._id} learning_skill={skill} userID={profile._id} self='true' />
+                            <LearningCard key={skill._id} learning_skill={skill} userID={profile._id} />
                         ))
                     ) : (
                         <p>No learning skills available</p>
@@ -98,4 +107,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default OtherUser

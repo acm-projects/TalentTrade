@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Messages from './pages/Messages'
+import OtherUser from './pages/OtherUser'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/messages" element={<Messages />} />
             <Route path='/profile' element={<Profile/>} />
             <Route path='/profile/edit' element={<EditProfile/>} />
+            <Route path='/:username' element={<OtherUser/>} />
           </Routes>
         </div>
       </BrowserRouter>

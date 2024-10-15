@@ -1,26 +1,27 @@
 import React from "react"
+import 'animate.css'
 
 function Cards() {
     return(
         <div>
                 <div className="container mediumBackground c">
-                    <div className="box c">
+                    <div className="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.png" alt="Image 1" className="box__img c" />
                         <h3 className="box__text c">Math</h3>
                     </div>
-                    <div class="box c">
+                    <div class="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.png" alt="Image 2" className="box__img c" />
                         <h3 className="box__text c">Music</h3>
                     </div>
-                    <div class="box c">
+                    <div class="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.png" alt="Image 3" className="box__img c" />
                         <h3 className="box__text c">Art</h3>
                     </div>
-                    <div class="box c">
+                    <div class="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.png" alt="Image 4" className="box__img c" />
                         <h3 className="box__text c">Cooking</h3>
                     </div>
-                    <div class="box c">
+                    <div class="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.png" alt="Image 5" className="box__img c" />
                         <h3 className="box__text c">Programming</h3>
                     </div>

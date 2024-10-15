@@ -1,6 +1,6 @@
 import {useSkillContext} from "../../hooks/useSkillContext"
 
-const TeachingCard = ({ teaching_skill, userID }) => {
+const TeachingCard = ({ teaching_skill, userID, self }) => {
 
     
     const { dispatch } = useSkillContext()
@@ -38,7 +38,7 @@ const TeachingCard = ({ teaching_skill, userID }) => {
             </div>
             <div className='bottom c'>
                 <div><p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught}</p></div>
-            <div className="bottomright c"><span className="material-symbols-outlined c" onClick={handleClick}>delete</span></div>
+            {self=='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
         </div>  
     </div>
     )

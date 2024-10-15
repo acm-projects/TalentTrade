@@ -2,13 +2,14 @@
 import Cards from '../components/homeCards/Cards'
 import NavBar from '../components/PostNavBar';
 import './cheryl.css'
+import 'animate.css'
 
 const PostHome = () => {
     return (
         <div>
             <NavBar/>
-            <div>
-                <h1 className='c'>Learn by teaching,<br/>
+            <div className=''>
+                <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
                 Teach by learning.
                 </h1>
             </div>
