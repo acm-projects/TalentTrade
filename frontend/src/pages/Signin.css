@@ -74,7 +74,7 @@ select:-webkit-autofill:focus {
   display: flex;
   height: 100%;
   width: 500px;
-  right: 15%;
+  right: 10%;
   align-items: center;
 }
 
