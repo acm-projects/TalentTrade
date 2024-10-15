@@ -4,6 +4,17 @@ const mongoose=require('mongoose')
 
 const router=express.Router()
 
+//get all users
+router.get('/', async (req, res) => {
+  try {
+    const UsersData = await UserProfile.find({}).sort({createdAt: -1}); 
+    res.status(200).json(UsersData);
+  } catch (error) {
+    console.error('Error fetching users:', error); 
+    res.status(500).json({ message: 'Error fetching users', error: error }); 
+  }
+})
+
 //getting single user data by email
 router.get('/:email',async (req,res)=>{
   const {email}=req.params

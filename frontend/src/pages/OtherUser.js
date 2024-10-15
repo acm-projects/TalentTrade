@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import NavBar from '../components/PostNavBar';
+import NavBar from '../components/NavBarPost/NavBar'
 import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
 import './cheryl.css'

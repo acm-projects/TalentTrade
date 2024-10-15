@@ -1,4 +1,4 @@
-import NavBar from '../components/PostNavBar';
+import NavBar from '../components/NavBarPost/NavBar'
 import EditProfileForm from '../components/EditProfile/EditProfileForm'
 import EditTeachingSkills from '../components/EditProfile/EditTeachingSkills';
 import EditLearningSkills from '../components/EditProfile/EditLearningSkills'
