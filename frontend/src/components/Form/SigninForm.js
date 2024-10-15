@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { firebaseConfig } from './firebaseauth';
 import { initializeApp } from 'firebase/app';
-import { Link } from 'react-router-dom';
 import './SigninForm.css';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+
 
 function SigninForm() {
     const navigate = useNavigate();
@@ -73,13 +72,13 @@ function SigninForm() {
                 <div className="submit" onClick={handlebuttonclick}>Sign in</div>
             </div>
             <div className="submit-container">
-                <div className="submit" onClick={handleGoogleSignIn}>
-                    Sign in with Google
+                <div className="submit-google" onClick={handleGoogleSignIn}>
+                    <img src={"/images/google.svg"} alt="google" className="google-icon" draggable="false" />Sign in with Google
                 </div>
             </div>
             <div className="text">
                 <div className="redirect">
-                    <span>Don't have an account? <Link to="/signup" className="link">Sign up</Link></span>
+                    <span>Don't have an account? <Link to='/signin' state={{ isSigningIn: false }} className="link">Sign up</Link></span>
                 </div>
             </div>
         </div>

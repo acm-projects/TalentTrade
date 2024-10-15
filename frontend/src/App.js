@@ -10,9 +10,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
 import Signin from './pages/Signin'
-import Signup from './pages/Signup'
 import Messages from './pages/Messages'
 import OtherUser from './pages/OtherUser'
+
+// pages & components
+import Browse from './pages/Browse'
+import FAQ from './pages/FAQ'
 
 function App() {
   return (
@@ -23,11 +26,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path='/home' element={<PostHome/>} />
             <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
             <Route path="/messages" element={<Messages />} />
             <Route path='/profile' element={<Profile/>} />
             <Route path='/profile/edit' element={<EditProfile/>} />
             <Route path='/:username' element={<OtherUser/>} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </div>
       </BrowserRouter>
