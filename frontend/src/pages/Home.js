@@ -1,6 +1,6 @@
 //import { useEffect } from 'react'
 import Cards from '../components/homeCards/Cards'
-import NavBar from '../components/PostNavBar';
+import NavBar from '../components/NavBarPost/NavBar';
 import './cheryl.css'
 import 'animate.css'
 

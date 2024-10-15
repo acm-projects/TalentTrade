@@ -23,13 +23,6 @@ h3 {
     border-bottom-style: solid;
 }
 
-.container {
-    left: 10%;
-    right: 10%;
-    margin-left: 100px;
-    margin-right: 100px;
-    display: flex;
-}
 
 .contacts-container {
     border-style: solid;

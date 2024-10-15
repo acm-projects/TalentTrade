@@ -12,7 +12,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Signin from './pages/Signin'
 import Messages from './pages/Messages'
 import OtherUser from './pages/OtherUser'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
 import Browse from './pages/Browse'
