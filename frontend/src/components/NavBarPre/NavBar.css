@@ -59,7 +59,7 @@
 }
 
 .nav-string:hover {
-    color: #2C31ED;
+    color: #2C31ED; 
 }
 
 .nav-button-hollow {
@@ -127,6 +127,7 @@
 
 .navbar-icon-m:hover {
     background-color: #2C31ED;
+    cursor: pointer;
 }
 
 .navbar-icon-l {
@@ -139,5 +140,6 @@
 
 .navbar-icon-l:hover {
     filter: brightness(0.9);
+    cursor: pointer;
 }
 
