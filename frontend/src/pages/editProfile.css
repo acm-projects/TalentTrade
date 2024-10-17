@@ -176,6 +176,7 @@
 
 .edit-submit {
     display: flex;
+    font-family: 'Work Sans';
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -202,7 +203,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: fit-content;
+    height: max-content;
     min-height: 50px;
     border-width: 1px;
     border-bottom-width: 3px;
@@ -237,12 +238,36 @@
     display: flex;
     font-size: 12pt;
     font-weight: 600;
-    color: #000000;
-    animation: cascadeAnimation ease 0.8s;
-    /* animation-delay: 1s; */
+    color: transparent;
+    padding-top: 5px;
+    height: 20px;
+    animation: fadeInOutLeftAnimation ease 1s;
 }
 
 .two-column-grid {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+}
+
+@keyframes fadeInOutLeftAnimation {
+    0% {
+        /* opacity: 0%; */
+        color: transparent;
+        translate: -20px;
+    }
+    25% {
+        /* opacity: 100%; */
+        color: #000000;
+        translate: 0px;
+    }
+    75% {
+        /* opacity: 100%; */
+        color: #000000;
+        translate: 0px;
+    }
+    100% {
+        /* opacity: 0%; */
+        color: transparent;
+        translate: 20px;
+    }
 }

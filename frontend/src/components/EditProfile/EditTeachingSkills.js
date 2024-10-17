@@ -76,8 +76,10 @@ const EditTeachingSkills = ({skills : initialSkills, email}) => {
                     <input className="edit-input" type="text" placeholder="Enter description" name="Description"
                     onChange={(e) => handleChange(e)}/>
                     
-                    <button type='submit' className='edit-submit'>Add </button>
-                    {formSubmitted && <span className="form-submitted">Sucessfully Added!</span>}
+                    <button type='submit' className='edit-submit'>Add skill</button>
+                    <div className="form-submitted">
+                        {formSubmitted && <span className="form-submitted">Sucessfully added!</span>}
+                    </div>
                 </form>
             </div>
         </div>
