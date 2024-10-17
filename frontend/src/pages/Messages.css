@@ -89,7 +89,6 @@ h3 {
     display: block;
 }
 
-/* Additional CSS for Search Bar */
 .search-bar {
     display: flex;
     align-items: center;
@@ -104,11 +103,11 @@ h3 {
     border-radius: 5px;
     padding: 10px;
     flex: 1;
-    margin-right: 10px; /* Space between input and button */
+    margin-right: 10px;
 }
 
 .search-button {
-    background-color: #150080; /* Same as your existing theme color */
+    background-color: #150080;
     font-family: 'Work Sans';
     font-size: 12pt;
     font-weight: 600;
@@ -117,11 +116,11 @@ h3 {
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth background change on hover */
+    transition: background-color 0.3s;
 }
 
 .search-button:hover {
-    background-color: #3E5B8A; /* Optional: Slightly lighter shade on hover */
+    background-color: #3E5B8A;
 }
 
 .searched-user {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./Messages.css";
 import NavBarPost from "../components/NavBarPost/PostNavBar";
 import Contact from "../components/MessageBoxes/Contact";
@@ -6,6 +6,9 @@ import Chat from "../components/MessageBoxes/Chat";
 import { FaSearch } from 'react-icons/fa';
 import { ChatState } from "../context/ChatProvider";
 import { getAuth } from "firebase/auth";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:4000";
 
 const Messages = () => {
     const [search, setSearch] = useState("");
@@ -13,29 +16,97 @@ const Messages = () => {
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
+    const [currentUserMongoId, setCurrentUserMongoId] = useState(null);
+    const [chatPartner, setChatPartner] = useState(null);
+    const [socketConnected, setSocketConnected] = useState(false);
+    const [socket, setSocket] = useState(null);
 
-    const { setSelectedChat, chats, setChats } = ChatState();
+    const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
     useEffect(() => {
         const auth = getAuth();
-        const user = auth.currentUser;
-        if (user) {
-            setCurrentUser(user);
-        }
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setCurrentUser(user);
+                fetchCurrentUserMongoId();
+            }
+        });
+
+        return () => unsubscribe();
     }, []);
 
-    const handleSearch = async () => {
+    useEffect(() => {
+        if (currentUserMongoId) {
+            const newSocket = io(ENDPOINT);
+            newSocket.on("connect", () => {
+                console.log(`Socket connected with id: ${newSocket.id}`);
+                setSocketConnected(true);
+            });
+            newSocket.on("disconnect", () => {
+                console.log(`Socket disconnected: ${newSocket.id}`);
+                setSocketConnected(false);
+            });
+            newSocket.emit("setup", currentUserMongoId);
+            newSocket.on("connected", () => {
+                console.log(`Socket setup completed for user: ${currentUserMongoId}`);
+            });
+            setSocket(newSocket);
+
+            return () => {
+                console.log(`Cleaning up socket connection: ${newSocket.id}`);
+                newSocket.disconnect();
+            };
+        }
+    }, [currentUserMongoId]);
+
+    const fetchCurrentUserMongoId = async () => {
+        try {
+            const auth = getAuth();
+            const user = auth.currentUser;
+            if (!user) {
+                throw new Error('User is not authenticated');
+            }
+            const token = await user.getIdToken(true);
+
+            const response = await fetch('http://localhost:4000/api/users/current', {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch current user info');
+            }
+
+            const userData = await response.json();
+            console.log(`Fetched current user MongoDB ID: ${userData._id}`);
+            setCurrentUserMongoId(userData._id);
+        } catch (error) {
+            console.error('Error fetching current user MongoDB ID:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (selectedChat && currentUserMongoId) {
+            const partner = selectedChat.users.find(u => u._id !== currentUserMongoId);
+            console.log(`Chat partner set: ${partner?.User?.Personal_info?.Username || partner?.User?.Personal_info?.Email}`);
+            setChatPartner(partner);
+        }
+    }, [selectedChat, currentUserMongoId]);
+
+    const handleSearch = useCallback(async () => {
         if (!search) {
             setSearchResults([]);
             return;
         }
-    
+
         try {
             setLoading(true);
-    
+
             const auth = getAuth();
             const token = await auth.currentUser.getIdToken(true);
-    
+
             const response = await fetch(`http://localhost:4000/api/users?search=${search}`, {
                 method: "GET",
                 headers: {
@@ -43,15 +114,14 @@ const Messages = () => {
                     "Content-Type": "application/json",
                 },
             });
-    
+
             if (!response.ok) {
                 const errorData = await response.json();
-                console.error("Error response:", errorData);
                 throw new Error(
                     `HTTP error! status: ${response.status}, message: ${errorData.message || 'Unknown error'}`
                 );
             }
-    
+
             const data = await response.json();
             setSearchResults(data);
         } catch (error) {
@@ -60,11 +130,9 @@ const Messages = () => {
         } finally {
             setLoading(false);
         }
-    };
-    
-    
-    
-    const accessChat = async (userId) => {
+    }, [search]);
+
+    const accessChat = useCallback(async (userId) => {
         try {
             setLoadingChat(true);
             const auth = getAuth();
@@ -89,25 +157,27 @@ const Messages = () => {
             const chatData = await response.json();
 
             if (!chats.find((c) => c._id === chatData._id)) {
-                setChats([chatData, ...chats]);
+                setChats(prevChats => [chatData, ...prevChats]);
             }
 
             setSelectedChat(chatData);
             setLoadingChat(false);
-            console.log("Chat accessed or created successfully:", chatData);
         } catch (error) {
             console.error("Error accessing chat:", error);
             alert("Error accessing the chat: " + error.message);
         } finally {
             setLoadingChat(false);
         }
-    };
+    }, [chats, setChats, setSelectedChat]);
 
-    const fetchChats = async () => {
-        setLoadingChat(true);
+    const fetchChats = useCallback(async () => {
         try {
             const auth = getAuth();
-            const token = await auth.currentUser.getIdToken(true);
+            const user = auth.currentUser;
+            if (!user) {
+                throw new Error('User is not authenticated');
+            }
+            const token = await user.getIdToken(true);
 
             const response = await fetch("http://localhost:4000/api/chats", {
                 method: "GET",
@@ -126,13 +196,11 @@ const Messages = () => {
 
             const chatsData = await response.json();
             setChats(chatsData);
-            console.log("Chats fetched successfully:", chatsData);
         } catch (error) {
             console.error("Error fetching chats:", error);
             alert("Error fetching chats: " + error.message);
         }
-        setLoadingChat(false);
-    };
+    }, [setChats]);
 
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
@@ -141,7 +209,14 @@ const Messages = () => {
             setCurrentUser(parsedUserInfo);
             fetchChats();
         }
-    }, []);
+    }, [fetchChats]);
+
+    const getChatPartnerName = useCallback(() => {
+        if (!chatPartner) return "Loading...";
+        return chatPartner.User?.Personal_info?.Username || 
+               chatPartner.User?.Personal_info?.Email || 
+               "Chat Partner";
+    }, [chatPartner]);
 
     return (
         <div>
@@ -204,11 +279,9 @@ const Messages = () => {
                         className="profile-picture"
                         alt="User"
                     />
-                    {currentUser
-                        ? currentUser.displayName || currentUser.email
-                        : "Loading..."}
+                    {getChatPartnerName()}
                 </div>
-                <Chat />
+                <Chat socket={socket} socketConnected={socketConnected} />
             </div>
         </div>
     );

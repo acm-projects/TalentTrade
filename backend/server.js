@@ -6,7 +6,7 @@ const chatRoutes = require('./routes/chatRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const cors = require('cors');
 const admin = require('./config/firebaseAdmin');
-const http = require('http');
+const socketio = require('socket.io');
 
 const app = express();
 const checkFirebaseAdmin = (req, res, next) => {
@@ -32,48 +32,70 @@ app.use('/api/users', userRoutes);
 app.use('/api/chats', chatRoutes);
 app.use('/api/messages', messageRoutes);
 
-
-/* const io = require("socket.io")(server, {
-    cors: {
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST']
-    }
+const server = app.listen(4000, () => {
+    console.log('Server is running on port 4000');
 });
 
-let activeConnections = 0;
+const io = socketio(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST']
+  }
+});
+ 
+io.on('connection', socket => {
+  console.log(`New user connected with socket id: ${socket.id}`);
 
-io.on('connection', (socket) => {
-    activeConnections++;
-    console.log(`User connected: ${socket.id}, Active connections: ${activeConnections}`);
+  socket.on('setup', (userId) => {
+    socket.join(userId);
+    socket.emit('connected');
+    console.log(`User ${userId} setup completed`);
+  });
 
-    socket.on('disconnect', () => {
-        activeConnections--;
-        console.log(`User disconnected: ${socket.id}, Active connections: ${activeConnections}`);
+  socket.on('join chat', (room) => {
+    socket.join(room);
+    console.log(`User joined chat room: ${room}`);
+  });
+
+  socket.on('typing', (room) => {
+    console.log(`User is typing in room: ${room}`);
+    socket.in(room).emit('typing');
+  });
+
+  socket.on('stop typing', (room) => {
+    console.log(`User stopped typing in room: ${room}`);
+    socket.in(room).emit('stop typing');
+  });
+
+  socket.on('new message', (newMessageReceived) => {
+    var chat = newMessageReceived.chat;
+
+    if (!chat.users) {
+      console.log('chat.users not defined');
+      return;
+    }
+
+    chat.users.forEach(user => {
+      if (user._id == newMessageReceived.sender._id) return;
+
+      socket.in(user._id).emit('message received', newMessageReceived);
+      console.log(`New message sent to user: ${user._id}`);
     });
-});
+  });
 
-const connectToMongoose = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log('Connected to MongoDB');
-        server.listen(4000, () => {
-            console.log('Server and socket.io listening on port 4000');
-        });
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-    }
-};
-*/
+  socket.on('disconnect', () => {
+    console.log(`User disconnected with socket id: ${socket.id}`);
+  });
+});
 
 const connectToMongoose = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI)
-    app.listen(process.env.PORT, () => {
-      console.log('Connected to DB and Listening on port',process.env.PORT)
-    })
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.log("error")
+    console.error("Error connecting to MongoDB:", error);
   }
-}
+};
 
 connectToMongoose();

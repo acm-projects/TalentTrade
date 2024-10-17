@@ -12,7 +12,16 @@ router.route("/").get(firebaseAuthMiddleware, async (req, res, next) => {
   try {
     allUsers(req, res);
   } catch (error) {
-    next(error); // This will pass the error to the global error handler
+    next(error);
+  }
+});
+
+router.get('/current', firebaseAuthMiddleware, async (req, res) => {
+  try {
+    res.json({ _id: req.user._id });
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

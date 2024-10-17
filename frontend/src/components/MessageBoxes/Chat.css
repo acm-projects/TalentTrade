@@ -18,7 +18,7 @@
 
 .message-window {
     width: 100%;
-    height: calc(100vh - 180px); /* Adjusted to account for header and chat box */
+    height: calc(100vh - 180px);
     padding-top: 20px;
     overflow-y: auto;
     display: flex;
@@ -106,7 +106,6 @@
     width: 10px;
 }
 
-/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -120,7 +119,6 @@
     border-radius: 5px;
 }
 
-/* Remove if not needed */
 .other-user-name {
     font-size: 0.8em;
     color: #888;
