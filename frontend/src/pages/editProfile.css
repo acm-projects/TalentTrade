@@ -65,8 +65,25 @@
     border-color: #150080;
 }
 
-.edit-image {
-    width: 100%;
+.edit-upload {
+    content: 'Upload';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 44px;
+    color: #ffffff;
+    background: #2C31ED;
+    margin-top: 10px;
+    border-style: solid;
+    border-color: #2C31ED;
+    border-radius: 8px;
+    border-width: 2px;
+    font-size: 12pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+    animation: jumpAnimation ease 0.6s;
 }
 
 .edit-resize {
@@ -136,6 +153,9 @@
     border-color: #E2E2E2;
     border-style: solid;
     border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
 }
 
 .preview-banner {
@@ -153,4 +173,6 @@
     border-style: solid;
     border-color: #FFFFFF;
     border-width: 3px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

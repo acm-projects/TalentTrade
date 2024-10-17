@@ -66,13 +66,13 @@ const EditProfileForm = ( {user} ) => {
                             <img src={"/images/user.png"} alt="banner" className="preview-banner" draggable="false"/>
                             </div>
                         <div className="preview-profile-picture"><img src={"/images/user.png"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
-                    <label className="edit-label" htmlFor="profilePicture" draggable="false">Profile Picture</label>
-                    <input className="edit-image" type="file" name="profilePicture"
-                    onChange={(e) => handleChange(e)}/>
+                        <label className="edit-label" htmlFor="uploadProfile" draggable="false">Upload profile picture</label>
+                        <input className="edit-upload" type="file" name="profilePicture"
+                        onChange={(e) => handleChange(e)}/>
 
-                    <label className="edit-label" htmlFor="profileBanner" draggable="false">Banner Picture</label>
-                    <input className="edit-image" type="file" name="profileBanner"
-                    onChange={(e) => handleChange(e)}/>
+                        <label className="edit-label" htmlFor="uploadBanner" draggable="false">Upload banner</label>
+                        <input className="edit-upload" type="file" name="profileBanner"
+                        onChange={(e) => handleChange(e)}/>
                     </div>
                 </form>
             </div>
