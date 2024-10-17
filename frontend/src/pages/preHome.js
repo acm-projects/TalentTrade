@@ -3,6 +3,7 @@ import Cards from '../components/homeCards/Cards'
 //change to prenavabr when done
 import NavBar from '../components/NavBarPre/NavBar';
 import './cheryl.css'
+import 'animate.css'
 
 const Home = () => {
     return (
