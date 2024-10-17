@@ -6,10 +6,10 @@ import './cheryl.css'
 
 const Home = () => {
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
-                <h1 className='c'>Learn by teaching,<br/>
+                <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
                 Teach by learning.
                 </h1>
             </div>

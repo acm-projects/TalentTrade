@@ -4,7 +4,7 @@ import NavBarPre from '../components/NavBarPre/NavBar';
 
 const Signup = () => {
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBarPre />
             <div className="signin">
                 <div className="verticalcenter">

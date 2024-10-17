@@ -51,14 +51,14 @@ const Profile = () => {
     }, [email])  
 
     if (!profile) {
-        return <p>Loading profile...</p>;
+        return <p className='loading c animate__fadeIn animate__animated'>Loading profile...</p>;
     }
 
     //handle clicking delete button
 
 
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
                 <ProfileDetails user = {profile.User.Personal_info}/>

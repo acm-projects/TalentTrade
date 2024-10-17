@@ -58,7 +58,7 @@ const EditProfile = () => {
 
     
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <h1 className='margin0px c'>Edit Profile</h1>
             <EditProfileForm user = { profile.User.Personal_info }/>

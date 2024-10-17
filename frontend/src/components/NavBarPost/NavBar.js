@@ -8,7 +8,7 @@ function NavBarPost() {
         <>
             <nav className="navbar">
                 <div className="navbar-left">
-                    <Link to="/">
+                    <Link to="/home">
                         <img src={"/images/logo.svg"} alt="logo" className="logo" draggable="false"/>
                     </Link>
                 </div>
@@ -19,7 +19,7 @@ function NavBarPost() {
                     <Link to="/FAQ" className="nav-string">
                         FAQ
                     </Link>
-                    <Link to="/profile">
+                    <Link to="/profile/edit">
                     <img src={"/images/settings.svg"} alt="settings" className="navbar-icon-m" draggable="false"/>
                     </Link>
                     <Link to="/messages">
