@@ -3,7 +3,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     font-family: 'Work Sans', sans-serif;
 }
 
