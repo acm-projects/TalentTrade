@@ -61,13 +61,21 @@ const EditProfile = () => {
     return (
         <div>
             <NavBar/>
-            <h1 className='margin0px c'>Edit Profile</h1>
-            <EditProfileForm user = { profile.User.Personal_info }/>
-            <h1 className='margin0px c'>Add Skills</h1>
-            <p className='profileSkillHeader alignLeft marginLeft15 h2c c'>Teaching</p>
-            <EditTeachingSkills skills = { profile.User.Skills.teaching_skills } email = {profile.User.Personal_info.Email}/>
-            <p className='profileSkillHeader alignLeft marginLeft15 h2c c'>Learning</p>
-            <EditLearningSkills skills = { profile.User.Skills.learning_skills} email = {profile.User.Personal_info.Email}/>
+            <div className="edit-background">
+                <div className='body-card'>
+                    <h1 className='margin0px c'>Edit Profile</h1>
+                    <EditProfileForm user = { profile.User.Personal_info }/>
+                </div>
+                <div className='body-card'>
+                    <h1 className='margin0px c'>Add Skills</h1>
+                    <div className="two-column-grid">
+                        <p className='profileSkillHeader alignLeft marginLeft15 h2c c'>Teaching</p>
+                        <p className='profileSkillHeader alignLeft marginLeft15 h2c c'>Learning</p>
+                        <EditTeachingSkills skills = { profile.User.Skills.teaching_skills } email = {profile.User.Personal_info.Email}/>
+                        <EditLearningSkills skills = { profile.User.Skills.learning_skills} email = {profile.User.Personal_info.Email}/>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

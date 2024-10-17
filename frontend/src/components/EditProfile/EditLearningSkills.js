@@ -75,16 +75,16 @@ const EditLearningSkills = ({skills : initialSkills, email}) => {
         <div>
              <div className="container c">
                 <form className='form c' onSubmit={handleSubmit}>                    
-                    <label className="c" htmlFor="Name">Skill Name</label>
-                    <input className="c" type="text" placeholder='enter skill' name="Name" required
+                    <label className="edit-label" htmlFor="Name">Skill Name</label>
+                    <input className="edit-input" type="text" placeholder='Enter skill' name="Name" required
                     onChange={(e) => handleChange(e)}/>
 
-                    <label className="c" htmlFor="Description">Skill Description</label>
-                    <input className="c" type="text" placeholder='enter description' name="Description" required
+                    <label className="edit-label" htmlFor="Description">Skill Description</label>
+                    <input className="edit-input" type="text" placeholder='Enter description' name="Description" required
                     onChange={(e) => handleChange(e)}/>
                     
-                    <button type='submit' className='submitButton c'>Add </button>
-                    {formSubmitted && <span className="formSubmitted c">Sucessfully Added!</span>}
+                    <button type='submit' className='edit-submit'>Add </button>
+                    {formSubmitted && <span className="form-submitted">Sucessfully Added!</span>}
                 </form>
             </div>
         </div>

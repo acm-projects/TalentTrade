@@ -1,9 +1,28 @@
+.body-card {
+    margin: auto;
+    /* padding-top: 2%; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-bottom: 5%;
+    width: 90%;
+    height: fit-content;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0px 6px #1500804D;
+}
+
+.edit-background {
+    /* background: #6266FA; */
+    background: #DCDFFF;
+    padding: 100px;
+}
+
 .edit-container {
     display: flex;
     flex-wrap: no-wrap;
     flex-direction: row;
     justify-content: center;
-    padding: 10%;
+    padding: 5%;
     animation: jumpAnimation ease 0.5s;
   }
 
@@ -65,25 +84,62 @@
     border-color: #150080;
 }
 
-.edit-upload {
-    content: 'Upload';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 44px;
-    color: #ffffff;
+.edit-upload-profile {
+    color: transparent;
+    width: 50%;
+}
+.edit-upload-profile::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.edit-upload-profile::before {
+    content: 'Upload profile';
+    font-family: 'Work Sans';
+    color: #FFFFFF;
+    display: inline-block;
     background: #2C31ED;
-    margin-top: 10px;
-    border-style: solid;
-    border-color: #2C31ED;
     border-radius: 8px;
     border-width: 2px;
-    font-size: 12pt;
-    font-weight: 600;
+    padding: 12px 20px;
+    outline: none;
+    white-space: nowrap;
     cursor: pointer;
-    transition: all .15s ease-in-out;
-    animation: jumpAnimation ease 0.6s;
+    font-weight: 650;
+    font-size: 8pt;
+    transition: all ease 0.15s;
+    margin-bottom: 10px;
+}
+.edit-upload-profile:hover::before {
+    background: #150080;
+    border-color: #150080;
+}
+
+.edit-upload-banner {
+    color: transparent;
+    width: 50%;
+}
+.edit-upload-banner::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.edit-upload-banner::before {
+    content: 'Upload banner';
+    font-family: 'Work Sans';
+    color: #FFFFFF;
+    display: inline-block;
+    background: #2C31ED;
+    border-radius: 8px;
+    border-width: 2px;
+    padding: 12px 18px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 650;
+    font-size: 8pt;
+    transition: all ease 0.15s;
+    margin-bottom: 10px;
+}
+.edit-upload-banner:hover::before {
+    background: #150080;
+    border-color: #150080;
 }
 
 .edit-resize {
@@ -173,6 +229,20 @@
     border-style: solid;
     border-color: #FFFFFF;
     border-width: 3px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 20px;
+}
+
+.form-submitted {
+    display: flex;
+    font-size: 12pt;
+    font-weight: 600;
+    color: #000000;
+    animation: cascadeAnimation ease 0.8s;
+    /* animation-delay: 1s; */
+}
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
 }

@@ -66,12 +66,10 @@ const EditProfileForm = ( {user} ) => {
                             <img src={"/images/user.png"} alt="banner" className="preview-banner" draggable="false"/>
                             </div>
                         <div className="preview-profile-picture"><img src={"/images/user.png"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
-                        <label className="edit-label" htmlFor="uploadProfile" draggable="false">Upload profile picture</label>
-                        <input className="edit-upload" type="file" name="profilePicture"
+                        <input className="edit-upload-profile" type="file" name="profilePicture"
                         onChange={(e) => handleChange(e)}/>
 
-                        <label className="edit-label" htmlFor="uploadBanner" draggable="false">Upload banner</label>
-                        <input className="edit-upload" type="file" name="profileBanner"
+                        <input className="edit-upload-banner" type="file" name="profileBanner"
                         onChange={(e) => handleChange(e)}/>
                     </div>
                 </form>
@@ -92,7 +90,7 @@ const EditProfileForm = ( {user} ) => {
                     <input className="edit-input" type="email" value={values.Email} name="Email"
                     onChange={(e) => handleChange(e)}/>
 
-                    <label className="edit-label" htmlFor="location" draggable="false">Location</label>
+                    <label className="edit-label" htmlFor="location" draggable="false">University</label>
                     <input className="edit-input" type="text" value={values.location} name="location"
                     onChange={(e) => handleChange(e)}/>
 
@@ -105,7 +103,7 @@ const EditProfileForm = ( {user} ) => {
                     onChange={(e) => handleChange(e)}></textarea>
                     
                     <button type='submit' className='edit-submit' draggable="false">Update</button>
-                    {formSubmitted && <span className="formSubmitted c" draggable="false">Sucessfully Updated!</span>}
+                    {formSubmitted && <span className="form-submitted" draggable="false">Sucessfully Updated!</span>}
                 </form>
             </div>
         </div>
