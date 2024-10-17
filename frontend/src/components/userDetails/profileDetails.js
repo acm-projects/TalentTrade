@@ -9,7 +9,7 @@ const ProfileDetails = ({ user }) => {
                 <img src={"/images/background.png"} className='bannerPicture c'/>
                 <div className='top c'> 
                     <div className='topleft c'>
-                        <img src={"/images/user.png"} className='pfp c'/>
+                        <img src={"/images/user.svg"} className='profile-picture-l'/>
                         <div className='profileText c'>
                             <p className='profileTextHeader c'>{user.Fname} {user.Lname}</p>
                             <p className='pc'>{user.location}</p>

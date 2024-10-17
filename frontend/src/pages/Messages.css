@@ -81,3 +81,8 @@ h3 {
     float: left;
     display: block;
 }
+
+.profile-picture-l {
+    width: 100px;
+    height: 100px;
+}

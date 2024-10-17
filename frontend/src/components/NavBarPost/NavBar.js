@@ -26,7 +26,7 @@ function NavBarPost() {
                         <img src={"/images/message.svg"} alt="message" className="navbar-icon-m" draggable="false"/>
                     </Link>
                     <Link to="/profile">
-                        <img src={"/images/user.png"} alt="user" className="navbar-icon-l" draggable="false"/>
+                        <img src={"/images/user.svg"} alt="user" className="navbar-icon-l" draggable="false"/>
                     </Link>
                 </div>
             </nav>

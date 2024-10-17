@@ -63,9 +63,9 @@ const EditProfileForm = ( {user} ) => {
                 <form className='form c' onSubmit={handleSubmit}>
                     <div className="preview-card">
                         <div className="preview-banner">
-                            <img src={"/images/user.png"} alt="banner" className="preview-banner" draggable="false"/>
+                            <img src={"/images/user.svg"} alt="banner" className="preview-banner" draggable="false"/>
                             </div>
-                        <div className="preview-profile-picture"><img src={"/images/user.png"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
+                        <div className="preview-profile-picture"><img src={"/images/user.svg"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
                         <input className="edit-upload-profile" type="file" name="profilePicture"
                         onChange={(e) => handleChange(e)}/>
 

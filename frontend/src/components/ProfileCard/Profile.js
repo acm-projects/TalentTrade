@@ -6,7 +6,7 @@ function Profile() {
     return (
         <div className="profile-grid">
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Larry Jerry</div>
@@ -26,7 +26,7 @@ function Profile() {
                 </div>
             </div>
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Steve Jones</div>
@@ -46,7 +46,7 @@ function Profile() {
                 </div>
             </div>
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Bob Robertson</div>
@@ -75,7 +75,7 @@ function Profile() {
                 </div>
             </div>
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Cryan Creynolds</div>
@@ -104,7 +104,7 @@ function Profile() {
                 </div>
             </div>
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Adrian Tran</div>
@@ -133,7 +133,7 @@ function Profile() {
                 </div>
             </div>
             <div className="profile">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">Notta Scammer</div>
