@@ -20,15 +20,18 @@ const Messages = () => {
     const [chatPartner, setChatPartner] = useState(null);
     const [socketConnected, setSocketConnected] = useState(false);
     const [socket, setSocket] = useState(null);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [newChatTrigger, setNewChatTrigger] = useState(0);
 
     const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
+
 
     useEffect(() => {
         const auth = getAuth();
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setCurrentUser(user);
-                fetchCurrentUserMongoId();
+                fetchCurrentUserMongoId(user);
             }
         });
 
@@ -37,76 +40,56 @@ const Messages = () => {
 
     useEffect(() => {
         if (currentUserMongoId) {
-            const newSocket = io(ENDPOINT);
-            newSocket.on("connect", () => {
-                console.log(`Socket connected with id: ${newSocket.id}`);
-                setSocketConnected(true);
-            });
-            newSocket.on("disconnect", () => {
-                console.log(`Socket disconnected: ${newSocket.id}`);
-                setSocketConnected(false);
-            });
-            newSocket.emit("setup", currentUserMongoId);
-            newSocket.on("connected", () => {
-                console.log(`Socket setup completed for user: ${currentUserMongoId}`);
-            });
-            setSocket(newSocket);
-
-            return () => {
-                console.log(`Cleaning up socket connection: ${newSocket.id}`);
-                newSocket.disconnect();
-            };
+            setupSocket();
+            fetchChats();
         }
-    }, [currentUserMongoId]);
+    }, [currentUserMongoId, newChatTrigger]);
 
-    const fetchCurrentUserMongoId = async () => {
+    useEffect(() => {
+        if (selectedChat && currentUserMongoId) {
+            const partner = selectedChat.users.find(u => u._id !== currentUserMongoId);
+            setChatPartner(partner);
+        }
+    }, [selectedChat, currentUserMongoId]);
+
+    const setupSocket = () => {
+        const newSocket = io(ENDPOINT);
+        newSocket.on("connect", () => setSocketConnected(true));
+        newSocket.on("disconnect", () => setSocketConnected(false));
+        newSocket.emit("setup", currentUserMongoId);
+        setSocket(newSocket);
+
+        return () => newSocket.disconnect();
+    };
+
+    const fetchCurrentUserMongoId = async (user) => {
         try {
-            const auth = getAuth();
-            const user = auth.currentUser;
-            if (!user) {
-                throw new Error('User is not authenticated');
-            }
             const token = await user.getIdToken(true);
-
             const response = await fetch('http://localhost:4000/api/users/current', {
                 method: 'GET',
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
+                headers: { "Authorization": `Bearer ${token}` },
             });
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch current user info');
-            }
+            if (!response.ok) throw new Error('Failed to fetch current user info');
 
             const userData = await response.json();
-            console.log(`Fetched current user MongoDB ID: ${userData._id}`);
             setCurrentUserMongoId(userData._id);
         } catch (error) {
             console.error('Error fetching current user MongoDB ID:', error);
         }
     };
 
-    useEffect(() => {
-        if (selectedChat && currentUserMongoId) {
-            const partner = selectedChat.users.find(u => u._id !== currentUserMongoId);
-            console.log(`Chat partner set: ${partner?.User?.Personal_info?.Username || partner?.User?.Personal_info?.Email}`);
-            setChatPartner(partner);
-        }
-    }, [selectedChat, currentUserMongoId]);
-
     const handleSearch = useCallback(async () => {
         if (!search) {
             setSearchResults([]);
+            setShowDropdown(false);
             return;
         }
 
         try {
             setLoading(true);
-
             const auth = getAuth();
             const token = await auth.currentUser.getIdToken(true);
-
             const response = await fetch(`http://localhost:4000/api/users?search=${search}`, {
                 method: "GET",
                 headers: {
@@ -115,18 +98,14 @@ const Messages = () => {
                 },
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    `HTTP error! status: ${response.status}, message: ${errorData.message || 'Unknown error'}`
-                );
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const data = await response.json();
             setSearchResults(data);
+            setShowDropdown(true);
         } catch (error) {
             console.error("Error fetching user data:", error);
-            alert("An error occurred while fetching user data: " + error.message);
+            setSearchResults([]);
         } finally {
             setLoading(false);
         }
@@ -137,7 +116,6 @@ const Messages = () => {
             setLoadingChat(true);
             const auth = getAuth();
             const token = await auth.currentUser.getIdToken(true);
-
             const response = await fetch("http://localhost:4000/api/chats", {
                 method: "POST",
                 headers: {
@@ -147,12 +125,7 @@ const Messages = () => {
                 body: JSON.stringify({ userId }),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    errorData.message || `HTTP error! status: ${response.status}`
-                );
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const chatData = await response.json();
 
@@ -161,7 +134,8 @@ const Messages = () => {
             }
 
             setSelectedChat(chatData);
-            setLoadingChat(false);
+            setShowDropdown(false);
+            setNewChatTrigger(prev => prev + 1);
         } catch (error) {
             console.error("Error accessing chat:", error);
             alert("Error accessing the chat: " + error.message);
@@ -169,16 +143,14 @@ const Messages = () => {
             setLoadingChat(false);
         }
     }, [chats, setChats, setSelectedChat]);
-
+    
     const fetchChats = useCallback(async () => {
         try {
             const auth = getAuth();
             const user = auth.currentUser;
-            if (!user) {
-                throw new Error('User is not authenticated');
-            }
+            if (!user) throw new Error('User is not authenticated');
+            
             const token = await user.getIdToken(true);
-
             const response = await fetch("http://localhost:4000/api/chats", {
                 method: "GET",
                 headers: {
@@ -187,29 +159,33 @@ const Messages = () => {
                 },
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    errorData.message || `HTTP error! status: ${response.status}`
-                );
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const chatsData = await response.json();
-            setChats(chatsData);
+            console.log("Fetched chats data:", chatsData);
+
+            const processedChats = chatsData
+                .filter(chat => chat.users && chat.users.length > 1)
+                .map(chat => {
+                    const otherUser = chat.users.find(u => u._id !== currentUserMongoId);
+                    console.log("Other user data:", otherUser);
+                    return {
+                        ...chat,
+                        otherUser: otherUser,
+                        displayName: otherUser?.User?.Personal_info?.Username || 
+                                     otherUser?.User?.Personal_info?.Email || 
+                                     "Unknown User"
+                    };
+                })
+                .filter(chat => chat.otherUser);
+
+            console.log("Processed chats:", processedChats);
+            setChats(processedChats);
         } catch (error) {
             console.error("Error fetching chats:", error);
             alert("Error fetching chats: " + error.message);
         }
-    }, [setChats]);
-
-    useEffect(() => {
-        const userInfo = localStorage.getItem("userInfo");
-        if (userInfo) {
-            const parsedUserInfo = JSON.parse(userInfo);
-            setCurrentUser(parsedUserInfo);
-            fetchChats();
-        }
-    }, [fetchChats]);
+    }, [setChats, currentUserMongoId]);
 
     const getChatPartnerName = useCallback(() => {
         if (!chatPartner) return "Loading...";
@@ -223,16 +199,8 @@ const Messages = () => {
             <NavBarPost />
             <div className="contacts-container">
                 <div className="self-contact">
-                    <img
-                        src="/images/user.png"
-                        className="profile-picture"
-                        alt="Profile"
-                    />
-                    <h3>
-                        {currentUser
-                            ? currentUser.displayName || currentUser.email
-                            : "Loading..."}
-                    </h3>
+                    <img src="/images/user.png" className="profile-picture" alt="Profile" />
+                    <h3>{currentUser ? currentUser.displayName || currentUser.email : "Loading..."}</h3>
                 </div>
                 <div className="other-contact-containers">
                     <h3>Messages</h3>
@@ -242,43 +210,36 @@ const Messages = () => {
                             type="text"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
+                            onKeyUp={handleSearch}
                             placeholder="Search by username or email"
                         />
-                        <button
-                            className="search-button"
-                            onClick={handleSearch}
-                        >
-                            Search
-                        </button>
-                    </div>
-                    {loading ? (
-                        <div>Loading...</div>
-                    ) : (
-                        searchResults.map((user) => (
-                            <div className="searched-user" key={user._id}>
-                                <h4>
-                                    {user.User.Personal_info.Username ||
-                                        user.User.Personal_info.Email}
-                                </h4>
-                                <button
-                                    onClick={() => accessChat(user._id)}
-                                    disabled={loadingChat}
-                                >
-                                    {loadingChat ? "Loading..." : "Message"}
-                                </button>
+                        {loading ? (
+                            <div>Loading...</div>
+                        ) : showDropdown && (
+                            <div className="search-results-dropdown">
+                                {searchResults.map((user) => (
+                                    <div className="searched-user" key={user._id} onClick={() => accessChat(user._id)}>
+                                        {user.User.Personal_info.Username || user.User.Personal_info.Email}
+                                    </div>
+                                ))}
                             </div>
-                        ))
-                    )}
-                    <Contact />
+                        )}
+                    </div>
+                    {chats.map((chat) => (
+                        <Contact 
+                            key={chat._id} 
+                            chat={chat} 
+                            otherUser={chat.otherUser}
+                            displayName={chat.displayName}
+                            isSelected={selectedChat && selectedChat._id === chat._id}
+                            onClick={() => setSelectedChat(chat)}
+                        />
+                    ))}
                 </div>
             </div>
             <div className="messages-container">
                 <div className="messages-header">
-                    <img
-                        src="/images/user.png"
-                        className="profile-picture"
-                        alt="User"
-                    />
+                    <img src="/images/user.png" className="profile-picture" alt="User" />
                     {getChatPartnerName()}
                 </div>
                 <Chat socket={socket} socketConnected={socketConnected} />
