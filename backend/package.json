@@ -13,41 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "firebase": "^10.13.2",
     "firebase-admin": "^12.5.0",
-<<<<<<< HEAD
-    "mongoose": "^8.6.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.5"
-  }
-}
-
-{
-  "name": "talenttrade",
-  "version": "1.0.0",
-  "description": "<div align=\"center\">   <img src=\"https://media1.tenor.com/m/l1zSfOzSjIwAAAAC/trade-offer.gif\" alt=\"Trade Offer GIF\"> </div>",
-  "main": "Blizzyfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "start": "nodemon server.js"
-  },
-  "type": "commonjs",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "firebase": "^10.13.2",
-    "firebase-admin": "^12.5.0",
-=======
->>>>>>> 49942956b1da215df0752357bfe3e5138baa35fc
     "mongodb": "^6.9.0",
     "mongoose": "^8.6.3"
   },

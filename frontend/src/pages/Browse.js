@@ -1,61 +1,71 @@
 import './Browse.css';
 import NavBarPost from '../components/NavBarPost/NavBar'
 import Profile from '../components/ProfileCard/Profile'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import '../components/ProfileCard/Profile.css'
 
 const Browse = () => {
     //get current user's email
-    // const [email, setEmail] = useState(null);
-    // const auth = getAuth()
+    const [email, setEmail] = useState(null);
+    const auth = getAuth()
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    //         if (currentUser) {
-    //             setEmail(currentUser.email)
-    //         } else {
-    //             console.log("No user is signed in");
-    //         }
-    //     });
-    //     return () => unsubscribe();
-    // }, [auth]);
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                setEmail(currentUser.email)
+            } else {
+                console.log("No user is signed in");
+            }
+        });
+        return () => unsubscribe();
+    }, [auth]);
 
     //all users
     const [users, setUsers] = useState([])
+    const userEmail = useMemo(() => ({
+        email: email
+    }), [email]);
+    console.log(JSON.stringify(userEmail))
 
     //get all users with search algorithm
-    // useEffect( () => {
-    //     const fetchUsers = async () => {
-    //         const response = await fetch('http://localhost:4000/api/users/recommendations' + email, {
-    //             method: 'POST',
-    //             body: JSON.stringify(email),
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         const json = await response.json()
-    //         setUsers(json)
-    //     }
-    //     fetchUsers();
-    // }, [])
-
-    //get all users
     useEffect( () => {
         const fetchUsers = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/api/users'); 
-                const data = await response.json();
-        
-                setUsers(data);
-              } 
-            catch (error) {
-                console.error('Error fetching users:', error);
-            }
+            console.log(JSON.stringify(userEmail))
+            const response = await fetch('http://localhost:4000/api/users/recommendations', {
+                method: 'POST',
+                body: JSON.stringify(userEmail),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const json = await response.json()
+            setUsers(json)
         }
+        if (userEmail.email)
+            {
+                fetchUsers();
+            }
 
-        fetchUsers();
-    }, [])
+    }, [userEmail])
+
+
+    //get all users
+    // useEffect( () => {
+    //     const fetchUsers = async () => {
+    //         try {
+    //             const response = await fetch('http://localhost:4000/api/users'); 
+    //             const data = await response.json();
+        
+    //             setUsers(data);
+    //           } 
+    //         catch (error) {
+    //             console.error('Error fetching users:', error);
+    //         }
+    //     }
+
+    //     fetchUsers();
+    // }, [])
 
     console.log(users)
 
