@@ -1,7 +1,7 @@
 //import { useEffect } from 'react'
 import Cards from '../components/homeCards/Cards'
-//change to prenavabr when done
-import NavBar from '../components/NavBarPre/NavBar';
+import NavBar from '../components/NavBarPre/NavBar'
+import './Home.css'
 import './cheryl.css'
 import 'animate.css'
 
@@ -10,17 +10,19 @@ const Home = () => {
         <div>
             <NavBar/>
             <div>
-                <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
-                teach by learning.
-                </h1>
+                <div className='home-header'>
+                    <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
+                    teach by learning.
+                    </h1>
+                </div>
             </div>
-            <div className='topBackground c'></div>
+            <div className='top-background'></div>
             <div>
                 <Cards/>
             </div>
-            <div className='darkBackground c'>
+            <div className='darkBackground'>
                 <p className='white h2c c'>Join TalentTrade today!</p>
-                <h4 className='white c'>Connect, Teach, and Learn</h4>
+                <p className='caps-subtitle'>CONNECT, TEACH, and LEARN</p>
             </div>
            
         </div>

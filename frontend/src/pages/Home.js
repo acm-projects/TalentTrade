@@ -2,6 +2,7 @@
 import Cards from '../components/homeCards/Cards'
 import NavBar from '../components/NavBarPost/NavBar';
 import './cheryl.css'
+import './Home.css'
 import 'animate.css'
 
 const PostHome = () => {
@@ -19,7 +20,7 @@ const PostHome = () => {
             </div>
             <div className='darkBackground c'>
                 <p className='white h2c c'>Welcome to TalentTrade!</p>
-                <h4 className='white c'>Connect, Teach, and Learn</h4>
+                <h4 className='white c'>Connect, teach, and learn</h4>
             </div>
            
         </div>

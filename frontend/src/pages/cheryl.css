@@ -367,11 +367,12 @@ textarea.c {
   }
 
 .topBackground.c {
-    background-image: url('/public/images/background.png');
+    display: flex;
+    background-image: url('/public/images/background.svg');
     background-attachment: scroll; 
     background-size:cover;
     background-position: center;
-    padding-top: 190px;
+    /* padding-top: 190px; */
 }
 .bottomBackground.c {
   width:100%;
