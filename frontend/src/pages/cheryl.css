@@ -474,7 +474,7 @@ textarea.c {
 
 .hoverEnlarge:hover {
     
-    transform: scale(1.02);
+    transform: scale(1.05);
     
 }
 
@@ -485,12 +485,67 @@ textarea.c {
 
 .hoverEnlarge2:hover {
     
-    transform: scale(1.25);
+    transform: scale(1.1);
     
 }
 
 .fade.c {
     animation-duration: 0.45s;
+}
+
+/* questionaire page*/
+.qbody.c {
+    overflow: hidden;
+    background: #6266FA;
+    height: 100vh;
+}
+
+
+.QuestionHeader.c {
+    font-size: 5vw;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding-top: 190px;
+}
+
+.QuestionSubheader.c {
+    font-size: 2vw;
+    text-align: center;
+    color: white;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 25px;
+}
+
+.questionButton.c {
+    height: 35px;
+    color: #2C31ED;
+    background: white;
+    border-radius: 8px;
+    border: none;
+    font-size: 12pt;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+    animation: jumpAnimation ease 0.6s;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+.questionContainer.c {
+    position: fixed;
+    bottom: 21%;
+    left: 0;
+    right: 0;
+}
+
+.nextQuestionHeader.c {
+    padding-top: 60px;
 }
 
 @media only screen and (min-width: 600px) {
