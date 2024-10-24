@@ -69,8 +69,14 @@ const EditProfile = () => {
                 <div className='body-card'>
                     <h1 className='margin0px c'>Add Skills</h1>
                     <div className="two-column-grid">
-                        <p className='profileSkillHeader alignCenter h2c c'>Teaching</p>
-                        <p className='profileSkillHeader alignCenter h2c c'>Learning</p>
+                        <div className='teaching-header'>
+                            <img src={"/images/book.svg"} alt="book" className="skill-header-icon" draggable="false"/>
+                            Teaching
+                        </div>
+                        <div className='learning-header'>
+                            <img src={"/images/cap.svg"} alt="cap" className="skill-header-icon" draggable="false"/>
+                            Learning
+                        </div>
                         <EditTeachingSkills skills = { profile.User.Skills.teaching_skills } email = {profile.User.Personal_info.Email}/>
                         <EditLearningSkills skills = { profile.User.Skills.learning_skills} email = {profile.User.Personal_info.Email}/>
                     </div>

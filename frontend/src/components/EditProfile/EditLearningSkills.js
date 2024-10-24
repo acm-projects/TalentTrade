@@ -79,7 +79,7 @@ const EditLearningSkills = ({skills : initialSkills, email}) => {
                     <input className="edit-input" type="text" placeholder='Enter skill' name="Name" required
                     onChange={(e) => handleChange(e)}/>
 
-                    <label className="edit-label" htmlFor="Description">Skill Description</label>
+                    <label className="edit-label" htmlFor="Description">Description</label>
                     <input className="edit-input" type="text" placeholder='Enter description' name="Description" required
                     onChange={(e) => handleChange(e)}/>
                     

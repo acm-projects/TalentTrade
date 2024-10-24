@@ -57,6 +57,39 @@
     column-gap: 20px;
 }
 
+.teaching-header {
+    display: flex;
+    color: #150080;
+    font-size: 30px;
+    font-weight: 650;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-top: 40px;
+    margin-right: 2%;
+}
+
+.learning-header {
+    display: flex;
+    color: #154B51;
+    font-size: 30px;
+    font-weight: 650;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-top: 40px;
+    margin-right: 2%;
+}
+
+.skill-header-icon {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    margin-right: 2%;
+}
+
 .edit-input {
     margin-bottom: 20px;
     height: 44px;
