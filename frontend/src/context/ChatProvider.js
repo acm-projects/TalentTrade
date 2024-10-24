@@ -14,8 +14,8 @@ const ChatProvider = ({ children }) => {
         setUser(userInfo);
         console.log(window.location.pathname)
         //const protectedRoutes = ['/home', '/profile', '/messages', '/profile/edit']; // define routes that require authentication
-        const nonProtectedRoutes = ['/sigin', '/signup', '/faq']; // define routes that do not require authentication
-        if ((window.location.pathname !== "/signin" || window.location.pathname !== "/profile" || window.location.pathname !== "/profile") && !userInfo) { // && protectedRoutes.includes(window.location.pathname){
+        // const nonProtectedRoutes = ['/sigin', '/signup', '/faq']; // define routes that do not require authentication
+        if (window.location.pathname != "/signin" && !userInfo) { // && protectedRoutes.includes(window.location.pathname){
             navigate('/');
         }
     }, [navigate]);
