@@ -9,6 +9,7 @@
     background: #FFFFFF;
     border-radius: 8px;
     box-shadow: 0px 6px #1500804D;
+    animation: fadeInAnimation ease 0.5s;
 }
 
 .edit-background {
