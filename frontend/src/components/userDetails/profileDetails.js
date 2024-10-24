@@ -6,7 +6,7 @@ const ProfileDetails = ({ user }) => {
     return (
         <div>
             <div className='border c'>
-                <img src={"/images/background.png"} className='bannerPicture c'/>
+                <img src={"/images/defaultBanner.svg"} className='bannerPicture c'/>
                 <div className='top c'> 
                     <div className='topleft c'>
                         <img src={"/images/user.svg"} className='profile-picture-l'/>
