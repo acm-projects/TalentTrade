@@ -28,47 +28,46 @@ const Questionaire = () => {
                         </div>
                     </div>
                 )}
-                { currentPage==3 && (
-                    <div>
-                        <div className='animate__animated animate__fadeInDown c c'> 
-                            <p className='QuestionHeader nextQuestionHeader c'>How about teaching?</p>
-                            <p className='QuestionSubheader c'>What areas do you feel comfortable in?</p>
-                        </div>
-                        <div>
-                            <LearningSkillsForm/>
-                        </div>
-                        <div className='container c questionContainer'>
-                            <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>
-                            <button onClick={handleNext} className='questionButton c hoverEnlarge2'>Next</button>
-                        </div>
-                    </div>
-                )}
                 { currentPage==2 && (
                     <div>
                         <div className='animate__animated animate__fadeInDown c c'> 
                             <p className='QuestionHeader nextQuestionHeader c'>Let’s start with learning.</p>
                             <p className='QuestionSubheader c'>What areas are you interested in?</p>
                         </div>
-                        <div>
+                        <div className=' container c animate__animated animate__fadeIn'>
                             <LearningSkillsForm/>
                         </div>
-                        <div className='container c questionContainer'>
+                        <div className='container c '>
                             <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>
                             <button onClick={handleNext} className='questionButton c hoverEnlarge2'>Next</button>
                         </div>
                     </div>
                 )}
-
-            { currentPage==4 && (
+                { currentPage==3 && (
+                    <div>
+                        <div className='animate__animated animate__fadeInDown c c'> 
+                            <p className='QuestionHeader nextQuestionHeader c'>How about teaching?</p>
+                            <p className='QuestionSubheader c'>What areas do you feel comfortable in?</p>
+                        </div>
+                        <div className=' container c animate__animated animate__fadeIn'>
+                            <LearningSkillsForm/>
+                        </div>
+                        <div className='container c '>
+                            <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>
+                            <button onClick={handleNext} className='questionButton c hoverEnlarge2'>Next</button>
+                        </div>
+                    </div>
+                )}
+                { currentPage==4 && (
                     <div>
                         <div className='animate__animated animate__fadeInDown c c'> 
                             <p className='QuestionHeader nextQuestionHeader c'>Finalize your Profile</p>
                             <p className='QuestionSubheader c'>Let's get to know you!</p>
                         </div>
                         <div>
-                            <LearningSkillsForm/>
+                            
                         </div>
-                        <div className='container c questionContainer'>
+                        <div className='container c'>
                             <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>
                         </div>
                     </div>
