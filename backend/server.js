@@ -14,7 +14,6 @@ app.use(cors({
   credentials: true // allowing cookies, etc
 }));
 
-
 //get request for browser
 app.get('/',(req,res)=>{
   res.json({"From the backend side":"Welcome to TalentTrade!"})
