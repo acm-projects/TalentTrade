@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../QuestionForm/editProfile.css"
 
 const EditProfileForm = ( {user} ) => {
 
@@ -58,43 +59,54 @@ const EditProfileForm = ( {user} ) => {
     
 
     return (
-        <div className="container c">
-            <form className='form c' onSubmit={handleSubmit}>
-                <label className="c" htmlFor="profilePicture">Profile Picture</label>
-                <input className="c" type="file" name="profilePicture"
-                onChange={(e) => handleChange(e)}/>
+        <div className="edit-container">
+            <div className="edit-container-left">
+                <form className='form c' onSubmit={handleSubmit}>
+                    <div className="preview-card">
+                        <div className="preview-banner">
+                            <img src={"/images/defaultBanner.svg"} alt="banner" className="preview-banner" draggable="false"/>
+                            </div>
+                        <div className="preview-profile-picture"><img src={"/images/user.svg"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
+                        <input className="edit-upload-profile" type="file" name="profilePicture"
+                        onChange={(e) => handleChange(e)}/>
 
-                <label className="c" htmlFor="profileBanner">Banner Picture</label>
-                <input className="c" type="file" name="profileBanner"
-                onChange={(e) => handleChange(e)}/>
-                
-                <label className="c" htmlFor="firstName">First Name</label>
-                <input className="c" type="text" value={values.Fname} name="Fname"
-                onChange={(e) => handleChange(e)}/>
+                        <input className="edit-upload-banner" type="file" name="profileBanner"
+                        onChange={(e) => handleChange(e)}/>
+                    </div>
+                </form>
+            </div>
+            <div className="edit-container-right">
+                <form className='form c' onSubmit={handleSubmit}>
+                    <div className="double-input-row">
+                        <label className="edit-label" htmlFor="firstName" draggable="false">First Name</label>
+                        <label className="edit-label" htmlFor="lastName" draggable="false">Last Name</label>
 
-                <label className="c" htmlFor="lastName">Last Name</label>
-                <input className="c" type="text" value={values.Lname} name="Lname"
-                onChange={(e) => handleChange(e)}/>
+                        <input className="edit-input" type="text" value={values.Fname} name="Fname"
+                        onChange={(e) => handleChange(e)}/>
+                        <input className="edit-input" type="text" value={values.Lname} name="Lname"
+                        onChange={(e) => handleChange(e)}/>
+                    </div>
 
-                <label className="c" htmlFor="email">Email</label>
-                <input className="c" type="email" value={values.Email} name="Email"
-                onChange={(e) => handleChange(e)}/>
+                    <label className="edit-label" htmlFor="email" draggable="false">Email</label>
+                    <input className="edit-input" type="email" value={values.Email} name="Email"
+                    onChange={(e) => handleChange(e)}/>
 
-                <label className="c" htmlFor="location">Location</label>
-                <input className="c" type="text" value={values.location} name="location"
-                onChange={(e) => handleChange(e)}/>
+                    <label className="edit-label" htmlFor="location" draggable="false">University</label>
+                    <input className="edit-input" type="text" value={values.location} name="location"
+                    onChange={(e) => handleChange(e)}/>
 
-                <label className="c" htmlFor="year">Year</label>
-                <input className="c" type="text" value={values.year} name="year"
-                onChange={(e) => handleChange(e)}/>
+                    <label className="edit-label" htmlFor="year" draggable="false">Year</label>
+                    <input className="edit-input" type="text" value={values.year} name="year"
+                    onChange={(e) => handleChange(e)}/>
 
-                <label className="c" htmlFor="aboutMe">About Me</label>
-                <textarea className="c" name="aboutMe" id="aboutMe" cols='30' rows="" value={values.aboutMe}
-                onChange={(e) => handleChange(e)}></textarea>
-                
-                <button type='submit' className='submitButton c'>Update </button>
-                {formSubmitted && <span className="formSubmitted c">Sucessfully Updated!</span>}
-            </form>
+                    <label className="edit-label" htmlFor="aboutMe" draggable="false">About Me</label>
+                    <textarea className="edit-resize" name="aboutMe" id="aboutMe" cols="30" rows="" value={values.aboutMe}
+                    onChange={(e) => handleChange(e)}></textarea>
+                    
+                    <button type='submit' className='edit-submit' draggable="false">Update</button>
+                    {formSubmitted && <span className="form-submitted" draggable="false">Sucessfully Updated!</span>}
+                </form>
+            </div>
         </div>
     )
 }

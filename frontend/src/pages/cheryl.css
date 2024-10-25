@@ -290,14 +290,8 @@ textarea.c {
     padding-left: 15px;
 }
 
-.formSubmitted.c {
-    padding: 6px 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-    color: black;
-    width: auto;
-    height: auto;
-    font-size: 15px;
+.form-submitted.c {
+    padding-top: 10px;
 }
 
 /*CARD STYLING */
@@ -495,11 +489,10 @@ textarea.c {
 
 /* questionaire page*/
 .qbody.c {
-    overflow: hidden;
     background: #6266FA;
-    height: 100vh;
-
+    min-height:100vh
 }
+
 
 
 .QuestionHeader.c {
@@ -507,7 +500,7 @@ textarea.c {
     font-weight: bold;
     text-align: center;
     color: white;
-    padding-top: 190px;
+    padding-top: 20%;
 }
 
 .QuestionSubheader.c {
@@ -516,7 +509,7 @@ textarea.c {
     color: white;
     padding-left: 15%;
     padding-right: 15%;
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 .questionButton.c {
@@ -534,19 +527,21 @@ textarea.c {
     padding-right: 30px;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .questionContainer.c {
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .nextQuestionHeader.c {
-    padding-top: 60px;
+    padding-top: 80px;
+    font-size: 3.5vw;
 }
 
 .questionaireCard.c {
     width: 420px;
-    margin-top: 30px;
+    margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -629,6 +624,7 @@ textarea.c {
     color:#291B71
 }
 
+
 .tabTitle.c {
     font-family: 'Work Sans';
     font-weight: 600;
@@ -637,6 +633,38 @@ textarea.c {
     text-align: center;
     margin-top: 20px;
     background-color: transparent;
+}
+
+.addSkillButton.c {
+    height: 35px;
+    color: white;
+    background: #6266FA;
+    border-radius: 8px;
+    border: none;
+    font-size: 12pt;
+    font-weight: 500;
+    cursor: pointer;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.profileContainer.c {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 20px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-width: 1px;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    border-color: #E2E2E2;
+    transition: height 0.65s ease, width 0.3s ease; 
 }
 
 :root {

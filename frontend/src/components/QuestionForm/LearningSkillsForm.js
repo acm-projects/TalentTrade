@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react"
 import "animate.css"
 
-const LearningSkillsForm = () => {
+const LearningSkillsForm = (email) => {
+    //tabs
     const [Tab, setTab] = useState("browse")
     const [contentHeight, setContentHeight] = useState(0);
     const contentRef = useRef(null);
@@ -10,11 +11,77 @@ const LearningSkillsForm = () => {
         setTab(tab);
     }
 
+    //animations
     useEffect(() => {
         if (contentRef.current) {
-            setContentHeight(contentRef.current.clientHeight + 80); 
+            setContentHeight(contentRef.current.clientHeight + 60); 
         }
     }, [Tab]);
+
+    //all the skills and categories for the array
+    const categoriesAndSkills = {
+        "Technical": ["Coding/Programming", "Data Analysis", "Engineering", "IT/Networking", "Software Development", "3D Printing", "Building PCs"],
+        "Communication": ["Public Speaking", "Writing", "Negotiation", "Active Listening", "Presentation"],
+        "Artistic": ["Painting/Drawing", "Photography", "Crafting", "Creative Writing", "Graphic Design"],
+        "Physical": ["Sports (e.g., basketball, soccer, tennis)", "Yoga/Pilates", "Hiking/Running", "Martial Arts", "Dance"],
+        "Musical": ["Playing Instruments (e.g., guitar, piano, drums)", "Singing/Vocal Training", "Songwriting/Composing", "Music Production", "DJing"],
+        "Outdoors": ["Gardening", "Camping/Backpacking", "Birdwatching", "Fishing", "Foraging"],
+        "Culinary": ["Cooking/Baking", "Mixology", "Food Preservation (e.g., canning, fermenting)", "Cake Decorating", "Grilling/BBQ"],
+        "Craftsmanship": ["Woodworking", "Sewing/Knitting", "Home Improvement/Repairs", "Pottery/Ceramics", "Metalworking"],
+        "Language and Cultural": ["Learning New Languages", "Cultural Exploration/Traveling", "Language Exchange", "Translating/Subtitling", "Calligraphy"],
+        "Mindfulness": ["Meditation", "Journaling", "Mindfulness Practices", "Puzzles and Brain Teasers", "Tai Chi"]
+    };
+
+    //code to handle dropdown menu changes
+    const [currentCategory, setCurrentCategory] = useState('');
+    const [currentSkill, setCurrentSkill] = useState('');
+    const [description, setDescription] = useState(''); 
+
+    const handleCategoryChange = (event) => {
+        setCurrentCategory(event.target.value)
+        setCurrentSkill('')
+    }
+
+    const handleSkillChange = (event) => {
+        setCurrentSkill(event.target.value)
+    }
+
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value)
+    }
+
+    //handle submit
+    const [skills, setSkills] = useState([])
+
+    const handleSubmit =  async () => {
+        const newSkill = {
+            Name: currentSkill,
+            Description: description
+        };
+
+        const updatedSkills = [...skills, newSkill];
+        console.log(updatedSkills)
+
+        const User = {
+            User: {
+                Skills: {
+                    learning_skills: updatedSkills                    
+                }
+            }
+        }
+
+        console.log(User)
+
+        const response = await fetch('http://localhost:4000/api/users/' + email, {
+            method: 'PATCH',
+            body: JSON.stringify(User),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json = await response.json()
+    }
 
     return(
         <div className="questionaireCard c" style={{ height: contentHeight }}>
@@ -25,32 +92,44 @@ const LearningSkillsForm = () => {
                     </button>
                 </div>
                 <div className={`tab c right ${Tab === "custom" ? 'active' : ''}`}>
-                    <button className={Tab=="custom" ? 'active' : ''} onClick={()=>handleTab("custom")}>
+                    <button className={Tab==="custom" ? 'active' : ''} onClick={()=>handleTab("custom")}>
                         <p className="tabTitle c">Add Custom skill</p>
                     </button>
-                </div>      
+                </div>   
             </div>
+
             <div className="tabContent c " ref={contentRef}>
             {Tab === 'browse' && (
                     <div className="animate__animated animate__fadeIn animate__delay-2s c">
                         <div className="dropdownTitle c">
                             <p className="dropdownText c">By Category</p>
-                            <select className="dropdown c">
-                                <option value="rating c">Highest Rating</option>
-                                <option value="alphabetical c">Alphabetical</option>
+                            <select className="dropdown c" value={currentCategory} onChange={handleCategoryChange}>
+                                <option value="" disabled className="dropdownValue c">Select Category</option>
+                                    {Object.keys(categoriesAndSkills).map((category, index) => (
+                                    <option key={index} value={category}>
+                                    {category}
+                                    </option>
+                                     ))}
                             </select>
                         </div>
                         <div className="dropdownTitle c">
                             <p className="dropdownText c" >By Name</p>
-                            <select className="dropdown c">
-                                <option value="rating c">Highest Rating</option>
-                                <option value="alphabetical c">Alphabetical</option>
+                            <select value={currentSkill} onChange={handleSkillChange} disabled={!currentCategory} className="dropdown dropdownValue c" >
+                                <option className="c" value="" disabled>Select skill</option>
+                                {currentCategory && categoriesAndSkills[currentCategory].map((skill, index) => (
+                                    <option key={index} value={skill}>
+                                    {skill}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className="dropdownTitle c">
-                            <label className="c dropdownText" htmlFor="Name">Skill Description</label>
+                            <label className="c dropdownText" htmlFor="Description">Skill Description</label>
                             <input className="c dropdown" type="text" placeholder='enter description' name="Description" required
-                            />
+                            onChange={(e) => handleDescriptionChange(e)}/>
+                        </div>
+                        <div className="container c">
+                            <button className="addSkillButton hoverEnlarge2 c" onClick={handleSubmit}>Add Skill</button>   
                         </div>
                     </div>
                 )}
@@ -65,6 +144,9 @@ const LearningSkillsForm = () => {
                             <label className="c dropdownText" htmlFor="Name">Skill Description</label>
                             <input className="c dropdown" type="text" placeholder='enter description' name="Description" required
                             />
+                        </div>
+                        <div className="container c">
+                            <button className="addSkillButton c hoverEnlarge2">Add Skill</button>   
                         </div>
                     </div>
                 )}

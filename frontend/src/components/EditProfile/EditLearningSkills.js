@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState} from 'react';
 //import { SkillContext } from "../../context/SkillContext";
 
 const EditLearningSkills = ({skills : initialSkills, email}) => {
