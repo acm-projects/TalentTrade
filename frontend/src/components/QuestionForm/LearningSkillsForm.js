@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react"
 import "animate.css"
 
-const LearningSkillsForm = (email) => {
+const LearningSkillsForm = ({ email, skillType }) => {
+
+    console.log(email)
+    console.log(skillType)
+
     //tabs
     const [Tab, setTab] = useState("browse")
     const [contentHeight, setContentHeight] = useState(0);
@@ -14,7 +18,7 @@ const LearningSkillsForm = (email) => {
     //animations
     useEffect(() => {
         if (contentRef.current) {
-            setContentHeight(contentRef.current.clientHeight + 60); 
+            setContentHeight(contentRef.current.clientHeight + 75); 
         }
     }, [Tab]);
 
@@ -51,7 +55,7 @@ const LearningSkillsForm = (email) => {
     }
 
     //handle submit
-    const [skills, setSkills] = useState([])
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleSubmit =  async () => {
         const newSkill = {
@@ -59,20 +63,17 @@ const LearningSkillsForm = (email) => {
             Description: description
         };
 
-        const updatedSkills = [...skills, newSkill];
-        console.log(updatedSkills)
-
         const User = {
             User: {
                 Skills: {
-                    learning_skills: updatedSkills                    
+                    [skillType]: newSkill            
                 }
             }
         }
 
         console.log(User)
 
-        const response = await fetch('http://localhost:4000/api/users/' + email, {
+        const response = await fetch('http://localhost:4000/api/users/add/' + email, {
             method: 'PATCH',
             body: JSON.stringify(User),
             headers: {
@@ -81,6 +82,23 @@ const LearningSkillsForm = (email) => {
         })
 
         const json = await response.json()
+
+        if (response.ok){
+            //sucess message
+            setFormSubmitted(true)
+            setTimeout(() => {
+               setFormSubmitted(false)
+            }, 800)
+
+            //console.log("new data added, json")
+            console.log("sucessful")
+            console.log(json)
+
+
+            setCurrentCategory("")
+            setCurrentSkill("")
+            setDescription("")
+        }
     }
 
     return(
@@ -125,11 +143,18 @@ const LearningSkillsForm = (email) => {
                         </div>
                         <div className="dropdownTitle c">
                             <label className="c dropdownText" htmlFor="Description">Skill Description</label>
-                            <input className="c dropdown" type="text" placeholder='enter description' name="Description" required
+                            <input className="c dropdown" type="text" value={description} placeholder='enter description' name="Description" required
                             onChange={(e) => handleDescriptionChange(e)}/>
                         </div>
-                        <div className="container c">
-                            <button className="addSkillButton hoverEnlarge2 c" onClick={handleSubmit}>Add Skill</button>   
+                        <div className="container noPaddingBottom c">
+                            <button className="addSkillButton hoverEnlarge2 c" 
+                            onClick={handleSubmit} 
+                            disabled={!currentCategory || !currentSkill || !description}>
+                                Add Skill
+                            </button>  
+                        </div>
+                        <div className="container c submittedForm">
+                            {formSubmitted && <span className="form-submitted c" draggable="false">Sucessfully Updated!</span>}
                         </div>
                     </div>
                 )}
@@ -137,16 +162,23 @@ const LearningSkillsForm = (email) => {
                     <div className="animate__animated animate__fadeIn animate__delay-2s c">
                         <div className="dropdownTitle c">
                         <label className="c dropdownText" htmlFor="Name">Skill Name</label>
-                        <input className="c dropdown" type="text" placeholder='enter skill' name="Name" required
+                        <input className="c dropdown" type="text" 
+                            value={currentSkill} placeholder='enter skill' name="Name" required
+                            onChange={(e) => handleSkillChange(e)}
                             />
                         </div>
                         <div className="dropdownTitle c">
                             <label className="c dropdownText" htmlFor="Name">Skill Description</label>
-                            <input className="c dropdown" type="text" placeholder='enter description' name="Description" required
-                            />
+                            <input className="c dropdown" type="text" 
+                            value={description} placeholder='enter description' name="Description" required
+                            onChange={(e) => handleDescriptionChange(e)}/>
                         </div>
                         <div className="container c">
-                            <button className="addSkillButton c hoverEnlarge2">Add Skill</button>   
+                            <button className="addSkillButton hoverEnlarge2 c" 
+                            onClick={handleSubmit} 
+                            disabled={!currentSkill || !description}>
+                                Add Skill
+                            </button>  
                         </div>
                     </div>
                 )}

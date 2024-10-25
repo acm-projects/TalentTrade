@@ -174,6 +174,38 @@ router.patch('/:email',async (req,res)=>{
   res.status(200).json(Userdata)
 
 })
+
+//add a single skill
+router.patch('/add/:email',async (req,res)=>{
+  const { email } = req.params;
+  const { User } = req.body;
+
+  const updateFields = {};
+
+  if (User?.Skills?.learning_skills) {
+      updateFields["User.Skills.learning_skills"] = User.Skills.learning_skills;
+  }
+
+  if (User?.Skills?.teaching_skills) {
+      updateFields["User.Skills.teaching_skills"] = User.Skills.teaching_skills;
+  }
+
+  console.log(updateFields)
+
+  const Userdata = await UserProfile.findOneAndUpdate(
+      { "User.Personal_info.Email": email },
+      { $addToSet: updateFields },
+      { new: true }
+  );
+
+  if (!Userdata) {
+      return res.status(404).json({ error: 'No such user' });
+  }
+  res.status(200).json(Userdata);
+
+})
+
+
 module.exports=router
 
 

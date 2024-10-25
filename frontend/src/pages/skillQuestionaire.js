@@ -26,6 +26,7 @@ const Questionaire = () => {
         });
         return () => unsubscribe();
     }, [auth]);
+
     
 
     return(
@@ -49,7 +50,7 @@ const Questionaire = () => {
                             <p className='QuestionSubheader c'>What areas are you interested in?</p>
                         </div>
                         <div className=' container c animate__animated animate__fadeIn'>
-                            <LearningSkillsForm email={email.email}/>
+                            <LearningSkillsForm email={email} skillType="learning_skills"/>
                         </div>
                         <div className='container c '>
                             <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>
@@ -64,7 +65,7 @@ const Questionaire = () => {
                             <p className='QuestionSubheader c'>What areas do you feel comfortable in?</p>
                         </div>
                         <div className=' container c animate__animated animate__fadeIn'>
-                            <LearningSkillsForm/>
+                            <LearningSkillsForm email={email} skillType="teaching_skills"/>
                         </div>
                         <div className='container c '>
                             <button onClick={handleBack} className='questionButton c hoverEnlarge2'>Back</button>

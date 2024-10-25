@@ -2,7 +2,6 @@ import { useState } from "react"
 
 const SetProfile = (email) => {
 
-
     const [values, setValues] = useState({
         Fname: "",
         Lname: "",
