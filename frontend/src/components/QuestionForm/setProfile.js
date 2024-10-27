@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {  useState, useRef, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 
 const SetProfile = (email) => {
@@ -50,7 +50,7 @@ const SetProfile = (email) => {
     }
 
     return(
-        <div className="profileContainer c">
+        <div className="profileContainer c" >
                 <form className='form c' onSubmit={handleSubmit}>
                     <div className="double-input-row">
                         <label className="setProfileTitle c" htmlFor="firstName" draggable="false">First Name</label>
