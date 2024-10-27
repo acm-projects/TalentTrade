@@ -23,7 +23,7 @@ const ChatSchema = new mongoose.Schema(
       meetingUrl:{
         type:String
       },
-      MeetingTopic:{
+      meetingTopic:{
         type:String
       }
     },

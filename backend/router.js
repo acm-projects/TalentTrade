@@ -1,6 +1,7 @@
 const axios=require('axios')
 const express=require('express')
 const UserProfile=require('./schema')
+const Userchats=require('./chatSchema')
 const mongoose=require('mongoose')
 require ('dotenv').config()
 
@@ -204,6 +205,7 @@ const getAccessToken = async () => {
 //create meeting by access token, post request to zoom url
 router.post('/createMeeting', async (req, res) => {
   try {
+    const {chatID}=req.body
     const accessToken = await getAccessToken();
     
     const userId = "shehaan.sunay@gmail.com"     //probably get this from frontend (auth.currentuser.email)
@@ -227,11 +229,21 @@ router.post('/createMeeting', async (req, res) => {
         'Content-Type': 'application/json'
       }
     });
+    
 
+
+    const chatData= await Userchats.findOneAndUpdate(
+      {_id:chatID},
+      {$push:{meetings:{
+        meetingID:response.data.id.toString(),
+        meetingUrl:response.data.join_url,
+        meetingTopic:meetingData.topic
+      }}},
+      {new:true}
+    )
+    //console.log(chatData)
     res.json({
-      meetingUrl: response.data.join_url,
-      meetingId: response.data.id,
-      password: response.data.password
+      chatdata:chatData
     });
   } catch (error) {
     console.error('Error creating meeting:', error.response?.data || error.message);
@@ -242,10 +254,30 @@ router.post('/createMeeting', async (req, res) => {
   }
 });
 
+router.get('/get/meetings',async(req,res)=>{
+  const {chatID}=req.body
+
+  try{
+    const currentchat= await Userchats.findOne({_id:chatID})
+
+    if(!currentchat){
+      console.log("Error, no such chat")
+    }
+    res.json(currentchat.meetings)
+  }
+  catch(error){
+    console.error(error.response?.data || error.message)
+    res.status(500).json({
+      error: 'Failed to fetch meeting', 
+      details: error.response?.data || error.message 
+    })
+  }
+})
+
 //deleting a meeting with meeting id, delete request to zoom url
-router.delete('/delete/Meeting/:meetingId',async (req,res)=>{
+router.delete('/delete/Meeting',async (req,res)=>{
   const accessToken= await getAccessToken();
-  const meetingID=req.params.meetingId   //get it from frontend
+  const {chatID,meetingID}=req.body   //get it from frontend
   const deletemeetingurl= `https://api.zoom.us/v2/meetings/${meetingID}`;
   
   try {
@@ -255,12 +287,19 @@ router.delete('/delete/Meeting/:meetingId',async (req,res)=>{
         'Content-Type': 'application/json'
       }
     })
+    const chatData= await Userchats.findOneAndUpdate(
+      {_id:chatID},
+      {$pull:{meetings:{meetingID:meetingID}}},
+      {new:true})
     res.json({
-      success:true,
-      message:"Meeting deleted successfully!"
+      chatData
     });
   } catch (error) {
-    console.error(error);
+    console.error(error.response?.data || error.message);
+    res.status(500).json({
+      error:"failed to delete meeting",
+      details:error.response?.data || error.message
+    })
   }
 })
 
