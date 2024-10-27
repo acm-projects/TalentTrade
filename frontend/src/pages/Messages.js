@@ -1,9 +1,16 @@
+import React, { useState } from 'react';
 import './Messages.css';
 import NavBarPost from '../components/NavBarPost/NavBar'
 import Contact from '../components/MessageBoxes/Contact'
 import Chat from '../components/MessageBoxes/Chat'
+import MeetingForm from '../components/MeetingForm/MeetingForm'
 
 const Messages = () => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const openPopup = () => setIsPopupOpen(true);
+    const closePopup = () => setIsPopupOpen(false);
+
     return (
         <div>
             <NavBarPost />
@@ -21,6 +28,10 @@ const Messages = () => {
                     <div className="messages-header">
                         <img src={"/images/user.svg"} class="profile-picture"/>
                         Steve Jones
+
+                        <button onClick={openPopup} className='nav-button-solid'>Create Meeting</button>
+
+                        {isPopupOpen && <MeetingForm onClose={closePopup} />}
                     </div>
                     <Chat />
                 </div>
