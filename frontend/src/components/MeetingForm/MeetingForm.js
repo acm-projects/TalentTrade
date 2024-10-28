@@ -4,7 +4,6 @@ import "./MeetingForm.css"
 const MeetingForm = ({ onClose }) => {
     const [meetingDetails, setMeetingDetails] = useState({
         title: '',
-        participant: '',
         startTime: '',
         endTime: ''
         // chatID: ''   - implement later
@@ -33,14 +32,6 @@ const MeetingForm = ({ onClose }) => {
                     value={meetingDetails.title}
                     onChange={handleChange}
                     placeholder='Title'
-                    required
-                    />
-                    <input className="edit-input" 
-                    type="text" 
-                    name="participant" 
-                    value={meetingDetails.participant}
-                    onChange={handleChange}
-                    placeholder='Other participant'
                     required
                     />
                     <input className="edit-input" 
