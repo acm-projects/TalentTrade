@@ -26,10 +26,11 @@ const Messages = () => {
                 </div>
                 <div className="messages-container">
                     <div className="messages-header">
-                        <img src={"/images/user.svg"} class="profile-picture"/>
-                        Steve Jones
-
-                        <button onClick={openPopup} className='nav-button-solid'>Create Meeting</button>
+                        <div className="messages-header-left">
+                            <img src={"/images/user.svg"} class="profile-picture"/>
+                            Steve Jones
+                        </div>
+                        <button onClick={openPopup} className="meeting-button"><img src={"/images/meeting.svg"} alt="meeting" className="meeting-button" draggable="false"/></button>
 
                         {isPopupOpen && <MeetingForm onClose={closePopup} />}
                     </div>

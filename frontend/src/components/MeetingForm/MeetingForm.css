@@ -8,8 +8,22 @@
     width: 100vw;
     height: 100vh;
     background-color: #00000033;
-    backdrop-filter: blur(1.5px);
-    /* z-index: 1000; */
+    backdrop-filter: blur(1px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.popup-enter {
+    opacity: 1;
+    visibility: visible;
+    animation: fadeInAnimation ease 0.2s;
+}
+
+.popup-exit {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .popup-window {
@@ -26,6 +40,7 @@
     border-radius: 15px;
     box-shadow: 0px 3px 3px #00000033;
     padding: 2%;
+    animation: popInAnimation ease 0.3s;
 }
 
 .popup-header {
@@ -34,6 +49,7 @@
     font-size: 30pt;
     padding-bottom: 5%;
     text-align: center;
+    animation: fadeWaitAnimation ease 0.3s;
 }
 
 .popup-submit-solid {
@@ -54,6 +70,7 @@
     cursor: pointer;
     margin-bottom: 20px;
     transition: all .15s ease-in-out;
+    animation: fadeWaitAnimation ease 0.5s;
 }
 
 .popup-submit-solid:hover {
@@ -78,10 +95,25 @@
     font-weight: 600;
     cursor: pointer;
     transition: all .15s ease-in-out;
+    animation: fadeWaitAnimation ease 0.5s;
 }
 
 .popup-submit-hollow:hover {
     background: #DCDFFF;
     border-color: #DCDFFF;
     color: #2C31ED;
+}
+
+@keyframes popInAnimation {
+    0% {
+        opacity: 0%;
+        translate: 0 40px;
+    }
+    50% {
+        opacity: 100%;
+        translate: 0 -20px;
+    }
+    100% {
+        translate: 0 0px;
+    }
 }

@@ -108,6 +108,7 @@
     font-family: "Work Sans";
     font-size: 12pt;
     transition: all ease 0.15s;
+    animation: fadeWaitAnimation ease 0.3s;
 }
 
 .edit-input:hover {

@@ -17,12 +17,18 @@ h3 {
     font-weight: 600;
     text-align: left;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 20px;
     border-bottom: #E2E2E2;
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
+.messages-header-left {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
 
 .contacts-container {
     border-style: solid;
@@ -85,4 +91,32 @@ h3 {
 .profile-picture-l {
     width: 100px;
     height: 100px;
+}
+
+.meeting-button {
+    max-width: 35px;
+    max-height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.meeting-button img {
+    max-width: 35px;
+    justify-content: center;
+    align-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    transition: all ease 0.15s;
+    background-color: #000000;
+    object-fit: contain;
+}
+
+.meeting-button img:hover {
+    background-color: #2C31ED;
 }

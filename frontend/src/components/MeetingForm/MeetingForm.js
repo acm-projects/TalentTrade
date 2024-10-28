@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./MeetingForm.css"
 
 const MeetingForm = ({ onClose }) => {
@@ -8,6 +8,14 @@ const MeetingForm = ({ onClose }) => {
         endTime: ''
         // chatID: ''   - implement later
     });
+
+    const [isVisible, setIsVisible] = useState(true);
+    const popupRef = useRef(null);
+    
+    const closeWithAnimation = () => {
+        setIsVisible(false);
+        setTimeout(onClose, 300);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,9 +29,23 @@ const MeetingForm = ({ onClose }) => {
         onClose();
     };
 
+    const handleOutsideClick = (e) => {
+        if (popupRef.current && !popupRef.current.contains(e.target)) {
+          closeWithAnimation(); // Close popup if clicked outside
+        }
+      };
+    
+    useEffect(() => {
+        document.addEventListener('mousedown', handleOutsideClick); // Listen for clicks
+    
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick); // Cleanup on unmount
+        };
+      }, []);
+
     return (
-        <div className="popup-full">
-            <div className="popup-window">
+        <div className={`popup-full ${isVisible ? 'popup-enter' : 'popup-exit'}`}>
+            <div className="popup-window" ref={popupRef}>
                 <div className="popup-header">Schedule a meeting</div>
                 <form onSubmit={handleSubmit}>
                     <input className="edit-input" 
@@ -50,7 +72,7 @@ const MeetingForm = ({ onClose }) => {
                     />
                     
                     <button type="submit" className="popup-submit-solid">Create meeting</button>
-                    <button type="button" className="popup-submit-hollow" onClick={onClose}>Cancel</button>
+                    <button type="button" className="popup-submit-hollow" onClick={closeWithAnimation}>Cancel</button>
                 </form>
             </div>
         </div>
