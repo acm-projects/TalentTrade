@@ -47,7 +47,7 @@ function SignupForm() {
                     }
                 };
 
-                fetch('http://localhost:s/api/users', {
+                fetch('http://localhost:4000/api/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
