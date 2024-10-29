@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import NavBar from '../components/NavBarPost/NavBar';
+import NavBar from '../components/NavBarPost/NavBar'
 import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
 import './cheryl.css'
@@ -43,7 +43,7 @@ const OtherUser = () => {
     const user = profile.User.Personal_info
 
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
             <div>
@@ -59,7 +59,7 @@ const OtherUser = () => {
                         </div>
                     </div>
                     <div className='topright c'>
-                        <Link to="/profile/edit" className="edit c">
+                        <Link to="/messages" className="edit c">
                             Message
                         </Link>
                     </div>

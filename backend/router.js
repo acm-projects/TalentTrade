@@ -1,9 +1,22 @@
 const axios=require('axios')
 const express=require('express')
 const UserProfile=require('./schema')
+const Userchats=require('./chatSchema')
 const mongoose=require('mongoose')
+require ('dotenv').config()
 
 const router=express.Router()
+
+//get all users
+router.get('/', async (req, res) => {
+  try {
+    const UsersData = await UserProfile.find({}).sort({createdAt: -1}); 
+    res.status(200).json(UsersData);
+  } catch (error) {
+    console.error('Error fetching users:', error); 
+    res.status(500).json({ message: 'Error fetching users', error: error }); 
+  }
+})
 
 //getting single user data by email
 router.get('/:email',async (req,res)=>{
@@ -163,6 +176,137 @@ router.patch('/:email',async (req,res)=>{
   res.status(200).json(Userdata)
 
 })
+//zoom routes begin yay
+
+//getting access token using app credentials for any api request to zoom
+const getAccessToken = async () => {
+  const clientId = process.env.ClientID;
+  const clientSecret = process.env.ClientSecret;
+  const base64Credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+  console.log('hello')
+  try {
+    const response = await axios.post('https://zoom.us/oauth/token', 
+      `grant_type=account_credentials&account_id=${process.env.AccountID}`,
+      {
+        headers: {
+          'Authorization': `Basic ${base64Credentials}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+    );
+    console.log(response.data.accessToken)
+    return response.data.access_token;
+  } catch (error) {
+    console.error('Error fetching access token:', error.response?.data || error.message);
+    throw new Error('Failed to get access token');
+  }
+};
+
+//create meeting by access token, post request to zoom url
+router.post('/createMeeting', async (req, res) => {
+  try {
+    const {chatID}=req.body
+    const accessToken = await getAccessToken();
+    
+    const userId = "shehaan.sunay@gmail.com"     //probably get this from frontend (auth.currentuser.email)
+    const createMeetingUrl = `https://api.zoom.us/v2/users/${userId}/meetings`;
+    
+    const meetingData = {     //ask this information from user, frontend sends this also
+      topic: "Testing Zoom Meeting API",
+      type: 1,
+      settings: {
+        host_video: true,
+        participant_video: true,
+        join_before_host: true,
+        mute_upon_entry: false,
+        auto_recording: "none"
+      }
+    };
+
+    const response = await axios.post(createMeetingUrl, meetingData, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+
+
+    const chatData= await Userchats.findOneAndUpdate(
+      {_id:chatID},
+      {$push:{meetings:{
+        meetingID:response.data.id.toString(),
+        meetingUrl:response.data.join_url,
+        meetingTopic:meetingData.topic
+      }}},
+      {new:true}
+    )
+    //console.log(chatData)
+    res.json({
+      chatdata:chatData
+    });
+  } catch (error) {
+    console.error('Error creating meeting:', error.response?.data || error.message);
+    res.status(500).json({ 
+      error: 'Failed to create meeting', 
+      details: error.response?.data || error.message 
+    });
+  }
+});
+
+router.get('/get/meetings',async(req,res)=>{
+  const {chatID}=req.body
+
+  try{
+    const currentchat= await Userchats.findOne({_id:chatID})
+
+    if(!currentchat){
+      console.log("Error, no such chat")
+    }
+    res.json(currentchat.meetings)
+  }
+  catch(error){
+    console.error(error.response?.data || error.message)
+    res.status(500).json({
+      error: 'Failed to fetch meeting', 
+      details: error.response?.data || error.message 
+    })
+  }
+})
+
+//deleting a meeting with meeting id, delete request to zoom url
+router.delete('/delete/Meeting',async (req,res)=>{
+  const accessToken= await getAccessToken();
+  const {chatID,meetingID}=req.body   //get it from frontend
+  const deletemeetingurl= `https://api.zoom.us/v2/meetings/${meetingID}`;
+  
+  try {
+    const response = await axios.delete(deletemeetingurl,{
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    const chatData= await Userchats.findOneAndUpdate(
+      {_id:chatID},
+      {$pull:{meetings:{meetingID:meetingID}}},
+      {new:true})
+    res.json({
+      chatData
+    });
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    res.status(500).json({
+      error:"failed to delete meeting",
+      details:error.response?.data || error.message
+    })
+  }
+})
+
+//patch later, first get create and delete done
+
+
+
 module.exports=router
 
 

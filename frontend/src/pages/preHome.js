@@ -7,7 +7,7 @@ import 'animate.css'
 
 const Home = () => {
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
                 <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
