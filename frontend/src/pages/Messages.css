@@ -24,7 +24,7 @@ h3 {
     border-bottom-style: solid;
 }
 
-.messages-header-left {
+.messages-header-section {
     display: flex;
     width: fit-content;
     align-items: center;
@@ -93,7 +93,7 @@ h3 {
     height: 100px;
 }
 
-.meeting-button {
+.messages-header-button {
     max-width: 35px;
     max-height: 35px;
     display: inline-flex;
@@ -102,10 +102,11 @@ h3 {
     background: none;
     border: none;
     padding: 0;
+    margin: 10px;
     cursor: pointer;
 }
 
-.meeting-button img {
+.messages-header-button img {
     max-width: 35px;
     justify-content: center;
     align-content: center;
@@ -117,6 +118,6 @@ h3 {
     object-fit: contain;
 }
 
-.meeting-button img:hover {
+.messages-header-button img:hover {
     background-color: #2C31ED;
 }
