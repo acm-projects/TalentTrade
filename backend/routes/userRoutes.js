@@ -24,7 +24,6 @@ router.get('/current', firebaseAuthMiddleware, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Return essential user data, including username and MongoDB ID
     res.json({
       _id: user._id,
       username: user.User?.Personal_info?.Username || 'Unknown User',
