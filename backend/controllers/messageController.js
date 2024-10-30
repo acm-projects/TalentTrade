@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Message = require("../models/MessageSchema");
 const User = require("../models/UserSchema");
-const Chat = require("../models/ChatSchema");  // Assuming Chat is defined for latestMessage
+const Chat = require("../models/ChatSchema");
 const { all } = require("../routes/chatRoutes");
 
 const sendMessage = asyncHandler(async (req, res) => {
