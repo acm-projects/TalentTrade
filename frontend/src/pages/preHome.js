@@ -4,6 +4,8 @@ import NavBar from '../components/NavBarPre/NavBar'
 import './Home.css'
 import './cheryl.css'
 import 'animate.css'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     return (

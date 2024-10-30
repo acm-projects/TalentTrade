@@ -17,17 +17,24 @@ function SigninForm() {
     const handlepassword = (event) => {
         setpasswordinput(event.target.value);
     };
+
+    const handleAuth = async (userCredential) => {
+        const user = userCredential.user;
+        const token = await user.getIdToken();
+        const userInfo = { uid: user.uid, email: user.email };
+        localStorage.setItem('firebaseToken', token);
+        localStorage.setItem('loggedInUserId', user.uid);
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));  // set userInfo here
+        console.log("Bearer Token:", token);
+        console.log("Successfully logged in");
+        navigate('/home');
+    };
+    
     const handlebuttonclick = () => {
-        const app = initializeApp(firebaseConfig);
         const auth = getAuth();
 
         signInWithEmailAndPassword(auth, emailinput, passwordinput)
-            .then((userCredential) => {
-                console.log("Successfully logged in");
-                const user = userCredential.user;
-                localStorage.setItem('loggedInUserId', user.uid);
-                navigate('/home');
-            })
+            .then(handleAuth)
             .catch((error) => {
                 const errorCode = error.code;
                 if (errorCode === "auth/invalid-credential") {
@@ -39,17 +46,11 @@ function SigninForm() {
     };
 
     const handleGoogleSignIn = () => {
-        const app = initializeApp(firebaseConfig);
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
 
         signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                console.log("Google Sign-In successful:", user);
-                localStorage.setItem('loggedInUserId', user.uid);
-                navigate('/home');
-            })
+            .then(handleAuth)
             .catch((error) => {
                 console.error("Error with Google Sign-In:", error.message);
             });

@@ -1,27 +1,22 @@
-//import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/preHome'
-import PostHome from "./pages/Home"
-import Profile from './pages/profile'
-import EditProfile from './pages/editProfile'
-//import logo from './logo.svg'
-import './App.css'
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
 
 // pages & components
-import Signin from './pages/Signin'
-import Messages from './pages/Messages'
-import OtherUser from './pages/OtherUser'
-import Questionaire from './pages/skillQuestionaire'
-
-// pages & components
+import Questionaire from './pages/skillQuestionaire';
 import Browse from './pages/Browse'
 import FAQ from './pages/FAQ'
+import Home from './pages/preHome';
+import PostHome from "./pages/Home";
+import Profile from './pages/profile';
+import EditProfile from './pages/editProfile';
+import Signin from './pages/Signin';
+import OtherUser from './pages/OtherUser'
+import Messages from './pages/Messages';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -37,7 +32,6 @@ function App() {
             <Route path="/questionaire" element={<Questionaire />} />
           </Routes>
         </div>
-      </BrowserRouter>
     </div>
   );
 }
