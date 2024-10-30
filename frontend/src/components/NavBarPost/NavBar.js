@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../NavBarPre/NavBar.css'
+import SearchBar from '../searchBar/SearchBar'
 
 
 function NavBarPost() {
@@ -12,6 +13,7 @@ function NavBarPost() {
                         <img src={"/images/logo.svg"} alt="logo" className="logo" draggable="false"/>
                     </Link>
                 </div>
+                <SearchBar/>
                 <div className='navbar-right'>
                     <Link to="/browse" className="nav-string">
                         Browse

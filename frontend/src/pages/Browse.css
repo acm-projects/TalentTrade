@@ -8,7 +8,7 @@
 
 .filter {
     display: block;
-    margin-left: 12%;
+    margin-left: 18%;
     width: 250px;
     height: 60px;
     font-family: 'Work Sans';
@@ -41,4 +41,47 @@
 
 .filter-dropdown:focus {
     border-color: #2C31ED;
+}
+
+/* search bar css */
+
+.search-bar-container.c {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content:right;
+    width: 40%;
+    padding-top:10px;
+}
+
+.search-input.c {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 2px solid #DCDFFF;
+    height: 100%;
+}
+
+.search-items.c {
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    right: 0;
+    background-color: white; 
+    border: 1px solid #DCDFFF;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+    z-index: 1000; 
+    max-height: 250px; 
+    overflow-y: auto; 
+}
+
+.search-item.c {
+    padding: 8px;
+    cursor: pointer; 
+}
+
+.search-item:hover.c {
+    background-color: #f0f0f0; 
 }
