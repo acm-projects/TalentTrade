@@ -3,6 +3,8 @@ import "./Messages.css";
 import NavBarPost from "../components/NavBarPost/PostNavBar";
 import Contact from "../components/MessageBoxes/Contact";
 import Chat from "../components/MessageBoxes/Chat";
+import MeetingForm from '../components/MessagePopups/MeetingForm'
+import MeetingDropdown from '../components/MessagePopups/MeetingDropdown';
 import { FaSearch } from 'react-icons/fa';
 import { ChatState } from "../context/ChatProvider";
 import { getAuth } from "firebase/auth";
@@ -23,6 +25,25 @@ const Messages = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
     const typingTimeoutRef = useRef(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const openPopup = () => setIsPopupOpen(true);
+    const closePopup = () => setIsPopupOpen(false);
+
+    const openDropdown = () => setIsDropdownOpen(true);
+    const closeDropdown = () => setIsDropdownOpen(false);
+
+    const meetings = [
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    ];
 
     const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
     const auth = getAuth();
@@ -288,8 +309,20 @@ const Messages = () => {
             </div>
             <div className="messages-container d">
                 <div className="messages-header d">
-                    <img src="/images/user.png" className="profile-picture d" alt="User" />
-                    {getChatPartnerName()}
+                    <div className="messages-header-section">
+                        <img src="/images/user.png" className="profile-picture d" alt="User" />
+                        {getChatPartnerName()}
+                    </div>
+                    <button onClick={openDropdown} className="messages-header-button">
+                            <img src={"/images/meeting.svg"} alt="meeting" className="messages-header-button" draggable="false"/></button>
+                        {isPopupOpen && <MeetingForm onClose={closePopup} />}
+                        {isDropdownOpen && (
+                            <MeetingDropdown
+                                meetings={meetings}
+                                onClose={closeDropdown}
+                                onCreateMeeting={openPopup}
+                            />
+                        )}
                     {isTyping && <span className="typing-indicator d">Typing...</span>}
                 </div>
                 <Chat 
