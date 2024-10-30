@@ -21,6 +21,24 @@ const ChatSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserProfile"
     }],
+    meetings:[{
+      meetingID:{
+        type:String
+      },
+      meetingUrl:{
+        type:String
+      },
+      meetingTopic:{
+        type:String
+      },
+      meetingStartTime:{
+        type:String
+      },
+      meetingEndTime:{
+        type:String
+      }
+    },
+  ],
   },
   { timestamps: true }
 );

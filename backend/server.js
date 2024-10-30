@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
+const router = require('./router');
 const chatRoutes = require('./routes/chatRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const cors = require('cors');
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.json({ "From the backend side": "Welcome to TalentTrade!" });
 });
 
-app.use('/api/users', userRoutes);
+app.use('/api/users', router);
 app.use('/api/chats', chatRoutes);
 app.use('/api/messages', messageRoutes);
 

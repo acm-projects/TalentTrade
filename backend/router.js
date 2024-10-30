@@ -1,8 +1,10 @@
 const axios=require('axios')
 const express=require('express')
-const UserProfile=require('./schema')
-const Userchats=require('./chatSchema')
+const UserProfile=require('./models/UserSchema')
+const Userchats=require('./models/ChatSchema')
 const mongoose=require('mongoose')
+const {allUsers } = require('./controllers/userController')
+const { firebaseAuthMiddleware } = require('./middleware/authMiddleware')
 require ('dotenv').config()
 
 const router=express.Router()
@@ -12,16 +14,32 @@ const multer = require("multer")
 const path = require("path")
 const fs = require("fs")
 
-//get all users
-router.get('/', async (req, res) => {
+router.route("/").get(firebaseAuthMiddleware, async (req, res, next) => {
   try {
-    const UsersData = await UserProfile.find({}).sort({createdAt: -1}); 
-    res.status(200).json(UsersData);
+    allUsers(req, res);
   } catch (error) {
-    console.error('Error fetching users:', error); 
-    res.status(500).json({ message: 'Error fetching users', error: error }); 
+    next(error);
   }
-})
+});
+
+router.get('/current', firebaseAuthMiddleware, async (req, res) => {
+  try {
+    const user = await UserProfile.findById(req.user._id); 
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({
+      _id: user._id,
+      username: user.User?.Personal_info?.Username || 'Unknown User',
+      email: user.User?.Personal_info?.Email,
+    });
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 //getting single user data by email
 router.get('/:email',async (req,res)=>{
