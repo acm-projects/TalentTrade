@@ -27,6 +27,7 @@
 
 .navbar-left {
     display: flex;
+    padding-right: 30px;
 }
 
 .navbar-right {

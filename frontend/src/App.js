@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Signin from './pages/Signin'
 import Messages from './pages/Messages'
 import OtherUser from './pages/OtherUser'
+import Questionaire from './pages/skillQuestionaire'
 
 // pages & components
 import Browse from './pages/Browse'
@@ -33,6 +34,7 @@ function App() {
             <Route path="/messages" element={<Messages />} />
             <Route path="/browse" element={<Browse />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/questionaire" element={<Questionaire />} />
           </Routes>
         </div>
       </BrowserRouter>
