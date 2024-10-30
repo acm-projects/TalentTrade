@@ -42,7 +42,7 @@ function Chat({ socket, socketConnected }) {
                 }
 
                 const messageData = await response.json();
-                console.log(`Message sent successfully:`, messageData);
+                console.log("Message sent successfully:", messageData);
                 socket?.emit('new message', messageData);
                 setMessages(prevMessages => [...prevMessages, messageData]);
             } catch (error) {
@@ -62,10 +62,10 @@ function Chat({ socket, socketConnected }) {
             socket?.emit('typing', selectedChat._id);
         }
         let lastTypingTime = new Date().getTime();
-        var timerLength = 3000;
+        const timerLength = 3000;
         setTimeout(() => {
-            var timeNow = new Date().getTime();
-            var timeDiff = timeNow - lastTypingTime;
+            const timeNow = new Date().getTime();
+            const timeDiff = timeNow - lastTypingTime;
             if (timeDiff >= timerLength && typing) {
                 console.log(`Emitting 'stop typing' event for chat: ${selectedChat._id}`);
                 socket?.emit('stop typing', selectedChat._id);
@@ -106,14 +106,11 @@ function Chat({ socket, socketConnected }) {
     useEffect(() => {
         if (socket) {
             socket.on('message received', (newMessageReceived) => {
-                console.log(`New message received:`, newMessageReceived);
-                if (
-                    !selectedChat ||
-                    selectedChat._id !== newMessageReceived.chat._id
-                ) {
-                } else {
-                    setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+                console.log("New message received:", newMessageReceived);
+                if (!selectedChat || selectedChat._id !== newMessageReceived.chat._id) {
+                    return;
                 }
+                setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
             });
 
             socket.on('typing', () => {
@@ -165,37 +162,9 @@ function Chat({ socket, socketConnected }) {
         scrollToBottom();
     }, [messages, scrollToBottom]);
 
-    useEffect(() => {
-        if (socket) {
-            socket.on('message received', (newMessageReceived) => {
-                if (
-                    !selectedChat ||
-                    selectedChat._id !== newMessageReceived.chat._id
-                ) {
-                } else {
-                    setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
-                }
-            });
-
-            socket.on('typing', () => setIsTyping(true));
-            socket.on('stop typing', () => setIsTyping(false));
-
-            return () => {
-                socket.off('message received');
-                socket.off('typing');
-                socket.off('stop typing');
-            };
-        }
-    }, [socket, selectedChat]);
-
     const isCurrentUserMessage = useCallback((message) => {
-        if (!message.sender || !currentUserMongoId) return false;
-        return message.sender._id === currentUserMongoId;
+        return message.sender?._id === currentUserMongoId;
     }, [currentUserMongoId]);
-
-    if (loading) {
-        return <div>Loading messages...</div>;
-    }
 
     return (
         <div className="chat-container">
@@ -212,7 +181,7 @@ function Chat({ socket, socketConnected }) {
                 </div>
             </div>
             <div className="chat-box">
-                {isTyping ? <div>Typing...</div> : <></>}
+                {isTyping && <div>Typing...</div>}
                 <input
                     onKeyDown={sendMessage}
                     type="text"

@@ -124,3 +124,10 @@
     color: #888;
     margin-bottom: 2px;
 }
+
+.timestamp {
+    font-size: 0.8rem;
+    color: gray;
+    margin-bottom: 4px;
+    text-align: right;
+}
