@@ -23,7 +23,6 @@ app.use(cors({
 }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
 //get request for browser
 app.get('/',(req,res)=>{
   res.json({"From the backend side":"Welcome to TalentTrade!"})

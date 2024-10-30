@@ -7,7 +7,7 @@ import 'animate.css'
 
 const PostHome = () => {
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
                 <div className='home-header'>

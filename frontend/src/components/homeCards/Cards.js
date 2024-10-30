@@ -4,7 +4,7 @@ import 'animate.css'
 function Cards() {
     return(
         <div>
-                <div className="container mediumBackground c">
+                <div className="container mediumBackground c bottomPadding20">
                     <div className="box hoverEnlarge c animate__fadeIn animate__animated">
                         <img src="images/user.svg" alt="Image 1" className="box__img c" />
                         <h3 className="box__text c">Math</h3>

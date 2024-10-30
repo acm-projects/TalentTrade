@@ -28,7 +28,7 @@ const Messages = () => {
     ];
 
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'> 
             <NavBarPost />
                 <div className="contacts-container">
                     <div className="self-contact">

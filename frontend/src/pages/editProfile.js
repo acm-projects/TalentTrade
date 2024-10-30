@@ -59,7 +59,7 @@ const EditProfile = () => {
 
     
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div className="edit-background">
                 <div className='body-card'>

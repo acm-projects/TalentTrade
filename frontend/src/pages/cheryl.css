@@ -22,7 +22,7 @@ h1.c {
     font-size: 50px;
     color: var(--medium2);
     text-align: center;
-    padding-top: 40px;
+    padding-top: 75px;
     line-height: 1.25;
 }
 
@@ -48,6 +48,7 @@ h4.c {
 
 .mediumBackground.c {
     background-color: var(--medium);
+    padding-bottom: 300px;
 }
 
 .darkBackground.c {
@@ -57,6 +58,16 @@ h4.c {
 
 .white.c {
     color: #FFFFFF;
+}
+
+.loading.c {
+    font-size: 50px;
+    color: var(--medium);
+    text-align: center;
+    padding-top: 75px;
+    line-height: 1.25;
+    stroke-width: 4px;
+    font-weight: bolder;
 }
 
 .white.a {
@@ -446,6 +457,9 @@ textarea.c {
     padding: 10px 10px 10px 10px;
 }
 
+.bottomPadding20.c {
+    padding-bottom: 40px;
+}
 
 .top.c {
     display: flex;
@@ -489,7 +503,7 @@ textarea.c {
 
 .hoverEnlarge:hover {
     
-    transform: scale(1.05);
+    transform: scale(1.02);
     
 }
 
@@ -502,6 +516,10 @@ textarea.c {
     
     transform: scale(1.25);
     
+}
+
+.fade.c {
+    animation-duration: 0.45s;
 }
 
 @media only screen and (min-width: 600px) {
