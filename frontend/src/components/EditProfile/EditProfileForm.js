@@ -1,6 +1,5 @@
 
 import { useState } from "react"
-import "../QuestionForm/editProfile.css"
 
 const EditProfileForm = ( {user} ) => {
 
@@ -110,23 +109,27 @@ const EditProfileForm = ( {user} ) => {
                         <div className="preview-profile-picture"><img src={profilePictureUrl} alt="profile" className="preview-profile-picture" draggable="false"/></div>
                         <input className="edit-upload-profile" type="file" name="profilePicture"
                         onChange={(e) => handleChange(e)}/>
+
+                        <input className="edit-upload-banner" type="file" name="profileBanner"
+                        onChange={(e) => handleChange(e)}/>
+                    </div>
+                </form>
+            </div>
+            <div className="edit-container-right">
+                <form className='form c' onSubmit={handleSubmit}>
+                    <div className="double-input-row">
+                        <label className="edit-label" htmlFor="firstName" draggable="false">First Name</label>
+                        <label className="edit-label" htmlFor="lastName" draggable="false">Last Name</label>
+
+                        <input className="edit-input" type="text" value={values.Fname} name="Fname"
+                        onChange={(e) => handleChange(e)}/>
+                        <input className="edit-input" type="text" value={values.Lname} name="Lname"
+                        onChange={(e) => handleChange(e)}/>
                     </div>
 
-                <label className="c" htmlFor="profileBanner">Banner Picture</label>
-                <input className="c" type="file" name="profileBanner"
-                onChange={(e) => handleChange(e)}/>
-                
-                <label className="c" htmlFor="firstName">First Name</label>
-                <input className="c" type="text" value={values.Fname} name="Fname"
-                onChange={(e) => handleChange(e)}/>
-
-                <label className="c" htmlFor="lastName">Last Name</label>
-                <input className="c" type="text" value={values.Lname} name="Lname"
-                onChange={(e) => handleChange(e)}/>
-
-                <label className="c" htmlFor="email">Email</label>
-                <input className="c" type="email" value={values.Email} name="Email"
-                onChange={(e) => handleChange(e)}/>
+                    <label className="edit-label" htmlFor="email" draggable="false">Email</label>
+                    <input className="edit-input" type="email" value={values.Email} name="Email"
+                    onChange={(e) => handleChange(e)}/>
 
                     <label className="edit-label" htmlFor="location" draggable="false">University</label>
                     <input className="edit-input" type="text" value={values.location} name="location"
