@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --light: rgba(21, 0, 128, 0.3);
+    --light: #DCDFFF;
 }
 
 .navbar {
@@ -13,7 +13,9 @@
     top: 0;
     padding: 15px;
     padding-top: 20px;
-    border-bottom: 6px solid var(--light);
+    border-width: 0px;
+    box-shadow: 0px 6px #1500804D;
+    border-style: solid;
     background: #FFFFFF;
     z-index: 100;
     -webkit-user-drag: none;
@@ -25,6 +27,7 @@
 
 .navbar-left {
     display: flex;
+    padding-right: 30px;
 }
 
 .navbar-right {
@@ -57,7 +60,7 @@
 }
 
 .nav-string:hover {
-    color: #2C31ED;
+    color: #2C31ED; 
 }
 
 .nav-button-hollow {
@@ -125,6 +128,7 @@
 
 .navbar-icon-m:hover {
     background-color: #2C31ED;
+    cursor: pointer;
 }
 
 .navbar-icon-l {
@@ -137,4 +141,6 @@
 
 .navbar-icon-l:hover {
     filter: brightness(0.9);
+    cursor: pointer;
 }
+

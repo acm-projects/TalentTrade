@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import SigninForm from '../components/Form/SigninForm';
 import NavBarPre from '../components/NavBarPre/NavBar';
 import SignupForm from '../components/Form/SignupForm';
+import "animate.css"
 
 const Signin = () => {
     const location = useLocation();
@@ -13,9 +14,9 @@ const Signin = () => {
         const signingInState = location.state?.isSigningIn ?? true;
         setIsSigningIn(signingInState);
     }, [location.state]);
-    console.log("C1");
+
     return (
-                <div>
+                <div className='animate__fadeIn animate__animated fade c'>
                     <div className="background">
                         <img src={"/images/signinBG.svg"} className="background-img" alt="background" />
                     </div>

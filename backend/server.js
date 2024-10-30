@@ -5,6 +5,14 @@ const userRoutes = require('./routes/userRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const cors = require('cors');
+
+//file upload
+const multer = require("multer")
+const path = require("path")
+const fs = require("fs")
+
+
+
 const admin = require('./config/firebaseAdmin');
 const socketio = require('socket.io');
 

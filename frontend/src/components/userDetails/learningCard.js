@@ -1,6 +1,6 @@
 import {useSkillContext} from "../../hooks/useSkillContext"
 
-const LearningCard = ({ learning_skill, userID }) => {
+const LearningCard = ({ learning_skill, userID, self}) => {
     const { dispatch } = useSkillContext()
     const handleClick = async () => {
         const skill = {
@@ -28,7 +28,7 @@ const LearningCard = ({ learning_skill, userID }) => {
         <div className='teachingCard border center c' key={learning_skill._id}>
             <p className='profileTextHeader c textCenter topPadding'>{learning_skill.Name}</p> 
             {learning_skill.Description && <span className="pc padding10 c">{learning_skill.Description}</span>}
-            <div className="bottomright c"><span className="material-symbols-outlined c" onClick={handleClick}>delete</span></div>
+            {self=='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
         </div>
     )
 }

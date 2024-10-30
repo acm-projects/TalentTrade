@@ -238,17 +238,17 @@ const Messages = () => {
     }, [currentUserInfo, initialLoading]);
 
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'> 
             <NavBarPost />
-            <div className="contacts-container">
-                <div className="self-contact">
-                    <img src="/images/user.png" className="profile-picture" alt="Profile" />
+            <div className="contacts-container d">
+                <div className="self-contact d">
+                    <img src="/images/user.png" className="profile-picture d" alt="Profile" />
                     <h3>{getCurrentUserName()}</h3>
                 </div>
-                <div className="other-contact-containers">
+                <div className="other-contact-containers d">
                     <h3>Messages</h3>
-                    <div className="search-bar">
-                        <FaSearch className="search-icon" />
+                    <div className="search-bar d">
+                        <FaSearch className="search-icon d" />
                         <input
                             type="text"
                             value={search}
@@ -257,10 +257,10 @@ const Messages = () => {
                             placeholder="Search by username or email"
                         />
                         {!searchLoading && showDropdown && (
-                            <div className="search-results-dropdown">
+                            <div className="search-results-dropdown d">
                                 {searchResults.map((user) => (
                                     <div 
-                                        className="searched-user" 
+                                        className="searched-user d" 
                                         key={user._id} 
                                         onClick={() => accessChat(user._id)}
                                     >
@@ -286,11 +286,11 @@ const Messages = () => {
                     ))}
                 </div>
             </div>
-            <div className="messages-container">
-                <div className="messages-header">
-                    <img src="/images/user.png" className="profile-picture" alt="User" />
+            <div className="messages-container d">
+                <div className="messages-header d">
+                    <img src="/images/user.png" className="profile-picture d" alt="User" />
                     {getChatPartnerName()}
-                    {isTyping && <span className="typing-indicator">Typing...</span>}
+                    {isTyping && <span className="typing-indicator d">Typing...</span>}
                 </div>
                 <Chat 
                     socket={socket} 

@@ -3,13 +3,23 @@ import { Link } from 'react-router-dom'
 
 const ProfileDetails = ({ user }) => {
     //console.log(user)
+    const profileBannerUrl = user.profileBanner
+        ? `http://localhost:4000${user.profileBanner}` 
+        : '/images/defaultBanner.svg'
+    const profilePictureUrl = user.profilePicture   
+        ? `http://localhost:4000${user.profilePicture}` 
+        : '/images/user.svg'
     return (
         <div>
             <div className='border c'>
-                <img src={"/images/background.png"} className='bannerPicture c'/>
+            <img 
+                src={profileBannerUrl}
+                    className='bannerPicture c'
+                    alt="Profile Banner"
+                    />
                 <div className='top c'> 
                     <div className='topleft c'>
-                        <img src={"/images/user.png"} className='pfp c'/>
+                        <img src={profilePictureUrl} className='profile-picture-l'/>
                         <div className='profileText c'>
                             <p className='profileTextHeader c'>{user.Fname} {user.Lname}</p>
                             <p className='pc'>{user.location}</p>

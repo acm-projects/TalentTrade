@@ -1,37 +1,32 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Cards from '../components/homeCards/Cards';
-import NavBar from '../components/NavBarPost/PostNavBar';
-import './cheryl.css';
+//import { useEffect } from 'react'
+import Cards from '../components/homeCards/Cards'
+import NavBar from '../components/NavBarPost/NavBar'
+import './Home.css'
+import './cheryl.css'
+import 'animate.css'
 
 const PostHome = () => {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('userInfo'));
-        if (!user) {
-            navigate('/');
-        }
-    }, [navigate]);
-
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
-                <h1 className='c'>Learn by teaching,<br/>
-                Teach by learning.
-                </h1>
+                <div className='home-header'>
+                    <h1 className='c animate__animated animate__fadeInDown'>Learn by teaching,<br/>
+                    teach by learning.
+                    </h1>
+                </div>
             </div>
-            <div className='topBackground c'></div>
+            <div className='top-background'></div>
             <div>
                 <Cards/>
             </div>
-            <div className='darkBackground c'>
+            <div className='darkBackground'>
                 <p className='white h2c c'>Welcome to TalentTrade!</p>
-                <h4 className='white c'>Connect, Teach, and Learn</h4>
+                <p className='caps-subtitle'>CONNECT, TEACH, and LEARN</p>
             </div>
+           
         </div>
-    );
-};
+    )
+}
 
-export default PostHome;
+export default PostHome

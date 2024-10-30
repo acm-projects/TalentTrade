@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import NavBar from '../components/NavBarPost/PostNavBar';
+import NavBar from '../components/NavBarPost/NavBar'
 import ProfileDetails from "../components/userDetails/profileDetails"
 import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
@@ -51,14 +51,14 @@ const Profile = () => {
     }, [email])  
 
     if (!profile) {
-        return <p>Loading profile...</p>;
+        return <p className='loading c animate__fadeIn animate__animated'>Loading profile...</p>;
     }
 
     //handle clicking delete button
 
 
     return (
-        <div>
+        <div className='animate__fadeIn animate__animated fade c'>
             <NavBar/>
             <div>
                 <ProfileDetails user = {profile.User.Personal_info}/>
@@ -69,7 +69,7 @@ const Profile = () => {
 
                 {profile.User?.Skills?.teaching_skills?.length > 0 ? (
                     profile.User.Skills.teaching_skills.map((skill) => (
-                        <TeachingCard key={skill._id} teaching_skill={skill} userID={profile._id} />
+                        <TeachingCard key={skill._id} teaching_skill={skill} userID={profile._id} self='true'/>
                     ))
                 ) : (
                     <p>No teaching skills available</p>
@@ -84,7 +84,7 @@ const Profile = () => {
 
                     {profile.User.Skills?.learning_skills?.length > 0 ? (
                         profile.User.Skills.learning_skills.map((skill) => (
-                            <LearningCard key={skill._id} learning_skill={skill} userID={profile._id} />
+                            <LearningCard key={skill._id} learning_skill={skill} userID={profile._id} self='true' />
                         ))
                     ) : (
                         <p>No learning skills available</p>
