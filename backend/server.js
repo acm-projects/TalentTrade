@@ -6,6 +6,14 @@ const mongoose=require('mongoose')
 const userRoutes=require('./router')
 const cors = require('cors');
 
+//file upload
+const multer = require("multer")
+const path = require("path")
+const fs = require("fs")
+
+
+
+
 // middleware
 app.use(express.json())
 app.use(cors({
@@ -34,8 +42,8 @@ const connectToMongoose = async () => {
   }
 }
 
+
+
 connectToMongoose()
 
-//listening to request
-
-//testing 2
+// storage for multer

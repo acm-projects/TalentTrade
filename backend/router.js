@@ -4,6 +4,12 @@ const mongoose=require('mongoose')
 
 const router=express.Router()
 
+//file upload
+const multer = require("multer")
+const path = require("path")
+const fs = require("fs")
+
+
 //getting single user data by email
 router.get('/:email',async (req,res)=>{
   const {email}=req.params
@@ -123,6 +129,63 @@ router.patch('/:email',async (req,res)=>{
   res.status(200).json(Userdata)
 
 })
+
+
+//FILE UPLOAD STUFF
+//create uploads directory if doesnt exist
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+
+//file upload
+router.patch('/uploadProfilePicture/:email', upload.single('file'), async (req, res) => {
+  const { filename } = req.file;
+  const { email }=req.params
+
+  const updateFields = {}
+  updateFields["User.Personal_info.profilePicture"] = `/uploads/${filename}`
+  const Userdata = await UserProfile.findOneAndUpdate(
+    { "User.Personal_info.Email": email },
+    { $set: updateFields }, 
+    { new: true } 
+  )
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
+})
+
+router.patch('/uploadProfileBanner/:email', upload.single('file'), async (req, res) => {
+  const { filename } = req.file;
+  const { email }=req.params
+
+  const updateFields = {}
+  updateFields["User.Personal_info.profileBanner"] = `/uploads/${filename}`
+  const Userdata = await UserProfile.findOneAndUpdate(
+    { "User.Personal_info.Email": email },
+    { $set: updateFields }, 
+    { new: true } 
+  )
+
+  if(!Userdata){
+    return res.status(404).json({error: 'No such user'})
+  }
+  res.status(200).json(Userdata)
+})
+
 module.exports=router
 
 
