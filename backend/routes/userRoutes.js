@@ -18,7 +18,18 @@ router.route("/").get(firebaseAuthMiddleware, async (req, res, next) => {
 
 router.get('/current', firebaseAuthMiddleware, async (req, res) => {
   try {
-    res.json({ _id: req.user._id });
+    const user = await UserProfile.findById(req.user._id); 
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return essential user data, including username and MongoDB ID
+    res.json({
+      _id: user._id,
+      username: user.User?.Personal_info?.Username || 'Unknown User',
+      email: user.User?.Personal_info?.Email,
+    });
   } catch (error) {
     console.error('Error fetching current user:', error);
     res.status(500).json({ error: 'Internal server error' });

@@ -79,4 +79,31 @@ const fetchChats = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { accessChat, fetchChats};
+const markChatAsRead = async (req, res) => {
+  try {
+      const { chatId } = req.params;
+      
+      const chat = await Chat.findOneAndUpdate(
+          { _id: chatId },
+          {
+              $addToSet: { 
+                  readBy: req.user._id 
+              }
+          },
+          { new: true }
+      )
+      .populate("users", "-password")
+      .populate("latestMessage");
+
+      if (!chat) {
+          return res.status(404).json({ message: "Chat not found" });
+      }
+
+      res.json(chat);
+  } catch (error) {
+      res.status(500).json({ message: "Error marking chat as read", error: error.message });
+  }
+};
+
+
+module.exports = { accessChat, fetchChats, markChatAsRead};
