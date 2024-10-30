@@ -21,6 +21,7 @@ app.use(cors({
   methods: ['GET','PATCH','POST', 'DELETE'], // allowed methods
   credentials: true // allowing cookies, etc
 }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 //get request for browser

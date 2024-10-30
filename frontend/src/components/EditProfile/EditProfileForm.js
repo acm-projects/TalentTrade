@@ -1,3 +1,4 @@
+
 import { useState } from "react"
 
 const EditProfileForm = ( {user} ) => {
@@ -8,20 +9,60 @@ const EditProfileForm = ( {user} ) => {
         Email: user.Email,
         year: user.year,
         location: user.location,
-        aboutMe: user.aboutMe,
-        profilePicture: user.profilePicture,
-        profileBanner: user.profileBanner,
+        aboutMe: user.aboutMe
     })
 
+
+
+    //profile pictures
+    const [profilePictureFile, setProfilePictureFile] = useState(null);
+    const [profileBannerFile, setProfileBannerFile] = useState(null);
+    const [profilePictureUrl, setProfilePictureUrl] = useState(user.profilePicture ? `http://localhost:4000${user.profilePicture}` : '/images/user.svg');
+    const [profileBannerUrl, setProfileBannerUrl] = useState(user.profileBanner ? `http://localhost:4000${user.profileBanner}` : '/images/defaultBanner.svg');
+
+  
     const [formSubmitted, setFormSubmitted] = useState(false)
 
     const handleChange = (e) => {
-        setValues({...values, [e.target.name]:e.target.value})
+        const { name, value, type} = e.target;
+
+        if (type === "file") {
+            const file = e.target.files[0];
+            // Check if the input is for profile picture or banner
+            if (name === "profilePicture") {
+                setProfilePictureFile(file); 
+                setProfilePictureUrl(URL.createObjectURL(file));
+            } else if (name === "profileBanner") {
+                setProfileBannerFile(file); 
+                setProfileBannerUrl(URL.createObjectURL(file));
+            }
+        } else {
+            setValues({ ...values, [name]: value });
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        //console.log(values)
+        //console.log(values
+
+        if (profilePictureFile) {
+            const pictureFormData = new FormData();
+            pictureFormData.append("file", profilePictureFile);
+            await fetch(`http://localhost:4000/api/users/uploadProfilePicture/${user.Email}`, {
+                method: 'PATCH',
+                body: pictureFormData,
+            });
+        }
+
+        if (profileBannerFile) {
+            const bannerFormData = new FormData();
+            bannerFormData.append("file", profileBannerFile);
+
+            await fetch(`http://localhost:4000/api/users/uploadProfileBanner/${user.Email}`, {
+                method: 'PATCH',
+                body: bannerFormData,
+            });
+        }
 
         const User = {
                 User: {
@@ -63,9 +104,9 @@ const EditProfileForm = ( {user} ) => {
                 <form className='form c' onSubmit={handleSubmit}>
                     <div className="preview-card">
                         <div className="preview-banner">
-                            <img src={"/images/defaultBanner.svg"} alt="banner" className="preview-banner" draggable="false"/>
+                            <img src={profileBannerUrl} alt="banner" className="preview-banner" draggable="false"/>
                             </div>
-                        <div className="preview-profile-picture"><img src={"/images/user.svg"} alt="profile" className="preview-profile-picture" draggable="false"/></div>
+                        <div className="preview-profile-picture"><img src={profilePictureUrl} alt="profile" className="preview-profile-picture" draggable="false"/></div>
                         <input className="edit-upload-profile" type="file" name="profilePicture"
                         onChange={(e) => handleChange(e)}/>
 
