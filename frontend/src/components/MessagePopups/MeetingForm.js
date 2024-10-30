@@ -25,7 +25,7 @@ const MeetingForm = ({ onClose }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Meeting created:', meetingDetails);
-        const response = await fetch('http://localhost:4000/api/users/createMeeting' {
+        const response = async() => await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
             body: {"chatID":"670408b7cb6fbb2da15fa75"},
             headers: {

@@ -31,10 +31,7 @@ function Profile( userData ) {
     return (
         <Link to={`/${username}`} >                
             <div className="profile hoverEnlarge animate__fadeIn animate__animated fade c">
-                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
-        <div className="profile-grid">
-            <div className="profile">
-                <div className="banner"><img src={"/images/user.svg"} alt="banner" className="banner" draggable="false"/></div>
+                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">{userData.userData.User.Personal_info.Fname} {userData.userData.User.Personal_info.Lname}</div>
