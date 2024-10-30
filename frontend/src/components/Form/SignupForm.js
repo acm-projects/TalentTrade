@@ -62,7 +62,7 @@ function SignupForm() {
                 })
                 .then((data) => {
                     console.log("User created successfully in MongoDB:", data);
-                    navigate('/');
+                    navigate('/questionaire');
                 })
                 .catch((error) => {
                     console.error("Error during user creation in MongoDB:", error.message);

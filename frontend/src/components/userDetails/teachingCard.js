@@ -31,14 +31,16 @@ const TeachingCard = ({ teaching_skill, userID, self }) => {
         <div className='teachingCard border teachingCardText c'>
             <div className='top c'>
                 <div className='topleft c'><p className="profileTextHeader c">{teaching_skill.Name}</p></div>
-                <div className='topright c'> <p className='pc'>{teaching_skill.Rating_score}</p></div>
+                <div className='topright c'> <p className='pc'>{teaching_skill.Rating_score !== undefined ? teaching_skill.Rating_score : "N/A"}</p></div>
             </div>
             <div className='descriptionText c'> 
                 <p className="pc">{teaching_skill.Description}</p>
             </div>
             <div className='bottom c'>
-                <div><p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught}</p></div>
-            {self=='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
+            <div>
+                <p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught !== undefined ? teaching_skill.Hours_taught : 0}</p>
+            </div>
+            {self==='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
         </div>  
     </div>
     )
