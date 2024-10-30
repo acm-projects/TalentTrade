@@ -3,8 +3,8 @@ import "./Messages.css";
 import NavBarPost from "../components/NavBarPost/PostNavBar";
 import Contact from "../components/MessageBoxes/Contact";
 import Chat from "../components/MessageBoxes/Chat";
-import MeetingForm from '../components/MessagePopups/MeetingForm'
-import MeetingDropdown from '../components/MessagePopups/MeetingDropdown';
+// import MeetingForm from '../components/MessagePopups/MeetingForm'
+// import MeetingDropdown from '../components/MessagePopups/MeetingDropdown';
 import { FaSearch } from 'react-icons/fa';
 import { ChatState } from "../context/ChatProvider";
 import { getAuth } from "firebase/auth";
@@ -308,7 +308,7 @@ const Messages = () => {
                 </div>
             </div>
             <div className="messages-container d">
-                <div className="messages-header d">
+                {/* <div className="messages-header d">
                     <div className="messages-header-section">
                         <img src="/images/user.png" className="profile-picture d" alt="User" />
                         {getChatPartnerName()}
@@ -324,7 +324,7 @@ const Messages = () => {
                             />
                         )}
                     {isTyping && <span className="typing-indicator d">Typing...</span>}
-                </div>
+                </div> */}
                 <Chat 
                     socket={socket} 
                     isTyping={isTyping} 

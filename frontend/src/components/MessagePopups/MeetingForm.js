@@ -27,7 +27,10 @@ const MeetingForm = ({ onClose }) => {
         console.log('Meeting created:', meetingDetails);
         const response = async() => await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
-            body: {"chatID":"670408b7cb6fbb2da15fa75"},
+            body: {"chatID":"670408b7cb6fbb2da15fa75",
+                    "meetingTopic":meetingDetails.title,
+                    "meetingStartTime":meetingDetails.startTime,
+                    "meetingEndTime":meetingDetails.endTime},
             headers: {
                 'Content-Type': 'application/json'
             }

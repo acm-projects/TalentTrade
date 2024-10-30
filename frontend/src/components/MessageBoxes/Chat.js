@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './Chat.css';
+import MeetingForm from '../MessagePopups/MeetingForm'
+import MeetingDropdown from '../MessagePopups/MeetingDropdown';
 import { ChatState } from '../../context/ChatProvider';
 import { getAuth } from 'firebase/auth';
 
@@ -7,17 +9,31 @@ function Chat({ socket, socketConnected }) {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [newMessage, setNewMessage] = useState('');
+    const [chatPartner, setChatPartner] = useState(null);
     const [currentUserMongoId, setCurrentUserMongoId] = useState(null);
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
     const messageWindowRef = useRef(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const { selectedChat } = ChatState();
+
+    const openPopup = () => setIsPopupOpen(true);
+    const closePopup = () => setIsPopupOpen(false);
+
+    const openDropdown = () => setIsDropdownOpen(true);
+    const closeDropdown = () => setIsDropdownOpen(false);
 
     const scrollToBottom = useCallback(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, []);
+
+    const getChatPartnerName = useCallback(() => 
+        chatPartner?.User?.Personal_info?.Username || 
+        chatPartner?.User?.Personal_info?.Email
+    [chatPartner]);
 
     const sendMessage = useCallback(async (event) => {
         if (event.key === 'Enter' && newMessage) {
@@ -154,6 +170,12 @@ function Chat({ socket, socketConnected }) {
     }, []);
 
     useEffect(() => {
+        if (selectedChat && currentUserMongoId) {
+            setChatPartner(selectedChat.users.find(u => u._id !== currentUserMongoId));
+        }
+    }, [selectedChat, currentUserMongoId]);
+
+    useEffect(() => {
         fetchCurrentUserMongoId();
         fetchMessages();
     }, [selectedChat, fetchCurrentUserMongoId, fetchMessages]);
@@ -166,8 +188,36 @@ function Chat({ socket, socketConnected }) {
         return message.sender?._id === currentUserMongoId;
     }, [currentUserMongoId]);
 
+    const meetings = [
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    ];
+
     return (
         <div className="chat-container">
+            <div className="messages-header d">
+                    <div className="messages-header-section">
+                        <img src="/images/user.svg" className="profile-picture d" alt="User" />
+                        {getChatPartnerName()}
+                    </div>
+                    <button onClick={openDropdown} className="messages-header-button">
+                            <img src={"/images/meeting.svg"} alt="meeting" className="messages-header-button" draggable="false"/></button>
+                        {isPopupOpen && <MeetingForm onClose={closePopup} />}
+                        {isDropdownOpen && (
+                            <MeetingDropdown
+                                meetings={meetings}
+                                onClose={closeDropdown}
+                                onCreateMeeting={openPopup}
+                            />
+                        )}
+                    {isTyping && <span className="typing-indicator d">Typing...</span>}
+                </div>
             <div className="message-window" ref={messageWindowRef}>
                 <div className="visible-messages">
                     {messages.map((message, index) => (
