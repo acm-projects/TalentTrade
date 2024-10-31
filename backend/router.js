@@ -345,7 +345,7 @@ router.post('/createMeeting', async (req, res) => {
 
 
     const chatData= await Userchats.findOneAndUpdate(
-      {_id:chatID},
+      {_id:new ObjectId(chatID)},
       {$push:{meetings:{
         meetingID:response.data.id.toString(),
         meetingUrl:response.data.join_url,

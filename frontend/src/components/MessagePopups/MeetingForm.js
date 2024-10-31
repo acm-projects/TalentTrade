@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./MeetingForm.css"
 
-const MeetingForm = ({ onClose }) => {
+const MeetingForm = ({ onClose, chatID}) => {
     const [meetingDetails, setMeetingDetails] = useState({
         title: '',
         startTime: '',
@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
         const response = await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
             body: JSON.stringify({
-                chatID: "670408b7cb6fbb2da15fa75",
+                chatID: chatID,  //i need chatID from thr specific chat
                 meetingTopic: meetingDetails.title,
                 meetingStartTime: meetingDetails.startTime.toString(),
                 meetingEndTime: meetingDetails.endTime.toString()

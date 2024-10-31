@@ -208,7 +208,7 @@ function Chat({ socket, socketConnected }) {
                     </div>
                     <button onClick={openDropdown} className="messages-header-button">
                             <img src={"/images/meeting.svg"} alt="meeting" className="messages-header-button" draggable="false"/></button>
-                        {isPopupOpen && <MeetingForm onClose={closePopup} />}
+                        {isPopupOpen && <MeetingForm onClose={closePopup} chatID={selectedChat._id}/>}
                         {isDropdownOpen && (
                             <MeetingDropdown
                                 meetings={meetings}
