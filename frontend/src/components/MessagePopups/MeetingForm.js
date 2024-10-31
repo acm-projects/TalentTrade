@@ -22,22 +22,24 @@ const MeetingForm = ({ onClose }) => {
         setMeetingDetails((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Meeting created:', meetingDetails);
-        const response = async() => await fetch('http://localhost:4000/api/users/createMeeting', {
+        console.log(meetingDetails.title, meetingDetails.startTime, meetingDetails.endTime);
+        const response = await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
             body: {"chatID":"670408b7cb6fbb2da15fa75",
                     "meetingTopic":meetingDetails.title,
-                    "meetingStartTime":meetingDetails.startTime,
-                    "meetingEndTime":meetingDetails.endTime},
+                    "meetingStartTime":meetingDetails.startTime.toString(),
+                    "meetingEndTime":meetingDetails.endTime.toString()},
             headers: {
                 'Content-Type': 'application/json'
             }
         })
+        const json = await response.json
         onClose();
     };
-
+    
     const handleOutsideClick = (e) => {
         if (popupRef.current && !popupRef.current.contains(e.target)) {
           closeWithAnimation(); // Close popup if clicked outside
