@@ -9,6 +9,7 @@ const ProfileDetails = ({ user }) => {
     const profilePictureUrl = user.profilePicture   
         ? `http://localhost:4000${user.profilePicture}` 
         : '/images/user.svg'
+    console.log(user.profileBanner)
     return (
         <div>
             <div className='border c'>
@@ -19,7 +20,7 @@ const ProfileDetails = ({ user }) => {
                     />
                 <div className='top c'> 
                     <div className='topleft c'>
-                        <img src={profilePictureUrl} className='profile-picture-l'/>
+                        <img src={profilePictureUrl} className='pfp c'/>
                         <div className='profileText c'>
                             <p className='profileTextHeader c'>{user.Fname} {user.Lname}</p>
                             <p className='pc'>{user.location}</p>

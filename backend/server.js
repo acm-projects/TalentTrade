@@ -110,4 +110,6 @@ const connectToMongoose = async () => {
     }
 };
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 connectToMongoose();
