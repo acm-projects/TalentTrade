@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './MeetingDropdown.css';
 
 const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
@@ -34,6 +35,16 @@ const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
         };
     }, []);
 
+    const formatStartDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
+    const formatEndDate = (dateString) => {
+        const options = { hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleTimeString(undefined, options);
+    };
+
     return (
         <div ref={dropdownRef} className="dropdown-container">
             <div className="dropdown-header">
@@ -45,11 +56,11 @@ const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
                     <ul className="meeting-list">
                         {meetings.map((meeting, index) => (
                             <li key={index} className="meeting-item">
-                                <div className="meeting-title">{meeting.title}</div>
+                                <div className="meeting-title">{meeting.meetingTopic}</div>
                                 <div className="align-right">
-                                    <div className="join-button">Join</div>
+                                    <Link to={meeting.meetingUrl} className="join-button">Join</Link>
                                 </div>
-                                <div className="meeting-time">{meeting.startTime} - {meeting.endTime}</div>
+                                <div className="meeting-time">{formatStartDate(meeting.meetingStartTime)} - {formatEndDate(meeting.meetingEndTime)}</div>
                             </li>
                         ))}
                     </ul>
