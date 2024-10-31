@@ -214,6 +214,7 @@ function Chat({ socket, socketConnected }) {
                                 // meetings={meetings}
                                 onClose={closeDropdown}
                                 onCreateMeeting={openPopup}
+                                chatID={selectedChat._id}
                             />
                         )}
                     {isTyping && <span className="typing-indicator d">Typing...</span>}

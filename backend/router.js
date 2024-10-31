@@ -367,8 +367,8 @@ router.post('/createMeeting', async (req, res) => {
   }
 });
 
-router.get('/get/meetings',async(req,res)=>{
-  const {chatID}=req.body
+router.get('/get/meetings/:chatID',async(req,res)=>{
+  const {chatID}=req.params
 
   try{
     const currentchat= await Userchats.findById(new mongoose.Types.ObjectId(chatID))

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './MeetingDropdown.css';
 
-const MeetingDropdown = ({ onClose, onCreateMeeting }) => {
+const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
     const [meetings, setMeetings] = useState([]);
     const dropdownRef = useRef(null);
 
@@ -14,12 +14,13 @@ const MeetingDropdown = ({ onClose, onCreateMeeting }) => {
     useEffect(() => {
         const fetchMeetings = async () => {
             try {
-                const response = await fetch('http://localhost:4000/api/users/get/meetings');
+                const response = await fetch(`http://localhost:4000/api/users/get/meetings/${chatID}`,{
+                    method:'GET',
+                });
                 if (!response.ok) {
                     throw new Error('HTTP error, staus: ${response.status)');
                 }
                 const data = await response.json();
-                response.json();
                 setMeetings(data);
             } catch (error) {
                 console.error("Error fetching meetings:", error);
