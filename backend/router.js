@@ -317,14 +317,14 @@ const getAccessToken = async () => {
 //create meeting by access token, post request to zoom url
 router.post('/createMeeting', async (req, res) => {
   try {
-    const {chatID}=req.body
+    const {chatID, meetingTopic,meetingStartTime, meetingEndTime}=req.body
     const accessToken = await getAccessToken();
     
     const userId = "shehaan.sunay@gmail.com"     //probably get this from frontend (auth.currentuser.email)
     const createMeetingUrl = `https://api.zoom.us/v2/users/${userId}/meetings`;
     
     const meetingData = {     //ask this information from user, frontend sends this also
-      topic: "Testing Zoom Meeting API",
+      topic: meetingTopic,
       type: 1,
       settings: {
         host_video: true,
@@ -349,7 +349,9 @@ router.post('/createMeeting', async (req, res) => {
       {$push:{meetings:{
         meetingID:response.data.id.toString(),
         meetingUrl:response.data.join_url,
-        meetingTopic:meetingData.topic
+        meetingTopic:meetingTopic,
+        meetingStartTime:meetingStartTime,
+        meetingEndTime:meetingEndTime
       }}},
       {new:true}
     )
