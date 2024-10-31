@@ -9,6 +9,11 @@
     margin-bottom:10px;
 }
 
+.contact:hover {
+    background-color: #DCDFFF55;
+    border-radius: 8px;
+}
+
 .selected-contact {
     display: flex;
     height: 80px;
@@ -49,14 +54,19 @@
 .message-time {
     position: absolute;
     right: 20px;
-    top: 20px;
+    align-content: center;
+    justify-content: center;
     font-size: 0.75rem;
     color: #666;
     font-family: 'Work Sans', sans-serif;
 }
 
+.message-preview {
+    margin-top: 20%;
+}
+
 .message-preview.unread {
-    font-weight: bold;
+    font-weight: 600;
     color: #000;
 }
 

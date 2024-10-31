@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import "./Messages.css";
-import NavBarPost from "../components/NavBarPost/PostNavBar";
+import NavBarPost from "../components/NavBarPost/NavBar";
 import Contact from "../components/MessageBoxes/Contact";
 import Chat from "../components/MessageBoxes/Chat";
 // import MeetingForm from '../components/MessagePopups/MeetingForm'

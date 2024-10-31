@@ -16,7 +16,7 @@ const SearchBar = () => {
         "Outdoors",
         "Culinary",
         "Craftsmanship",
-        "Languagr and Cultural"
+        "Language and Cultural"
     ]
     const [searchItems, setSearchItems] = useState(items)
 

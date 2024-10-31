@@ -17,7 +17,7 @@ const PostHome = () => {
                 </div>
             </div>
             <div className='top-background'></div>
-            <div>
+            <div className="mediumBackground">
                 <Cards/>
             </div>
             <div className='darkBackground'>
