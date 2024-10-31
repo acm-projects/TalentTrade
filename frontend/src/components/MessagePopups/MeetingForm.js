@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
         const response = await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
             body: JSON.stringify({
-                chatID: chatID,  //i need chatID from thr specific chat
+                chatID: chatID.toString(),  //i need chatID from thr specific chat
                 meetingTopic: meetingDetails.title,
                 meetingStartTime: meetingDetails.startTime.toString(),
                 meetingEndTime: meetingDetails.endTime.toString()

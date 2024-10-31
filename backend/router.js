@@ -6,7 +6,6 @@ const mongoose=require('mongoose')
 const {allUsers } = require('./controllers/userController')
 const { firebaseAuthMiddleware } = require('./middleware/authMiddleware')
 require ('dotenv').config()
-
 const router=express.Router()
 
 //file upload
@@ -334,18 +333,18 @@ router.post('/createMeeting', async (req, res) => {
         auto_recording: "none"
       }
     };
-
+    console.log(chatID)
+    console.log(chatID)
     const response = await axios.post(createMeetingUrl, meetingData, {
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
       }
     });
-    
+  
 
-
-    const chatData= await Userchats.findOneAndUpdate(
-      {_id:new ObjectId(chatID)},
+    const chatData= await Userchats.findByIdAndUpdate(
+      new mongoose.Types.ObjectId(chatID),
       {$push:{meetings:{
         meetingID:response.data.id.toString(),
         meetingUrl:response.data.join_url,
@@ -372,7 +371,7 @@ router.get('/get/meetings',async(req,res)=>{
   const {chatID}=req.body
 
   try{
-    const currentchat= await Userchats.findOne({_id:chatID})
+    const currentchat= await Userchats.findById(new mongoose.Types.ObjectId(chatID))
 
     if(!currentchat){
       console.log("Error, no such chat")
