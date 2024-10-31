@@ -22,23 +22,35 @@ const MeetingForm = ({ onClose }) => {
         setMeetingDetails((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log('Meeting created:', meetingDetails);
-        console.log(meetingDetails.title, meetingDetails.startTime, meetingDetails.endTime);
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Meeting created:', meetingDetails);
+    console.log(meetingDetails.title, meetingDetails.startTime, meetingDetails.endTime);
+    
+    try {
         const response = await fetch('http://localhost:4000/api/users/createMeeting', {
             method: 'POST',
-            body: {"chatID":"670408b7cb6fbb2da15fa75",
-                    "meetingTopic":meetingDetails.title,
-                    "meetingStartTime":meetingDetails.startTime.toString(),
-                    "meetingEndTime":meetingDetails.endTime.toString()},
+            body: JSON.stringify({
+                chatID: "670408b7cb6fbb2da15fa75",
+                meetingTopic: meetingDetails.title,
+                meetingStartTime: meetingDetails.startTime.toString(),
+                meetingEndTime: meetingDetails.endTime.toString()
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-        const json = await response.json
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const json = await response.json();
         onClose();
-    };
+    } catch (error) {
+        console.error('Error creating meeting:', error);
+    }
+};
     
     const handleOutsideClick = (e) => {
         if (popupRef.current && !popupRef.current.contains(e.target)) {
