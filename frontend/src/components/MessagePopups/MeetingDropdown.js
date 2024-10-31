@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
-import MeetingForm from './MeetingForm'
+import React, { useRef, useEffect, useState } from 'react';
 import './MeetingDropdown.css';
 
-const MeetingDropdown = ({ meetings, onClose, onCreateMeeting }) => {
+const MeetingDropdown = ({ onClose, onCreateMeeting }) => {
+    const [meetings, setMeetings] = useState([]);
     const dropdownRef = useRef(null);
 
     const handleClickOutside = (e) => {
@@ -12,6 +12,21 @@ const MeetingDropdown = ({ meetings, onClose, onCreateMeeting }) => {
     };
 
     useEffect(() => {
+        const fetchMeetings = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/api/users/get/meetings');
+                if (!response.ok) {
+                    throw new Error('HTTP error, staus: ${response.status)');
+                }
+                const data = await response.json();
+                response.json();
+                setMeetings(data);
+            } catch (error) {
+                console.error("Error fetching meetings:", error);
+            }
+        };
+        fetchMeetings();
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
