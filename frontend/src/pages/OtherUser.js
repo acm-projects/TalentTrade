@@ -7,7 +7,8 @@ import './cheryl.css'
 
 
 const OtherUser = () => {
-    const { username } = useParams();
+    let { username } = useParams();
+    //username = username.substring(5)
     const [profile, setProfile] = useState(null);
     console.log(username)
 

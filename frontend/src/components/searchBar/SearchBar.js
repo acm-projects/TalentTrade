@@ -1,55 +1,32 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
-    //show search items when search bar is selected
-    const [isFocused, setIsFocused] = useState(false);
     //search terms is what the user is searching
     const [searchTerm, setSearchTerm] = useState("")
-    //search items is what should show up in the search bar as reccommended optioons for users to search for (not users itself)
-    //example items:
-    const items = [
-        "Technical Skills",
-        "Communication",
-        "Artistic",
-        "Physical",
-        "Musical",
-        "Outdoors",
-        "Culinary",
-        "Craftsmanship",
-        "Language and Cultural"
-    ]
-    const [searchItems, setSearchItems] = useState(items)
+    const navigate = useNavigate()
 
-    const handleSearch = (event) => {
+    const handleChange = (event) => {
         const term = event.target.value
         setSearchTerm(term);
+    }
 
-        //searchTerm has the thing the user is searching for
-        console.log(searchTerm)
+    const handleSearch = () => {
+        const encodedQuery = encodeURIComponent(searchTerm)
+        navigate(`/search?query=${encodedQuery}`)
+    }
 
-        //return to default categories when search is empty?
-        if (term === "") {
-            setSearchItems(items)
-        }
-        else {
-            //insert code for searching terms
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSearch(e)
         }
     }
 
     return(
         <div className="search-bar-container c">
-            <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..."
-            onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} className="search-input c"
+            <input type="text" value={searchTerm} onChange={handleChange} placeholder="Search..." className="search-input c" onKeyDown={handleKeyDown}
             />
-            {isFocused && (
-                <ul className="search-items c">
-                    {searchItems.map((item, index) => (
-                        <li key={index} className="search-item c">
-                            {item}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <button onClick={handleSearch} className="searchButton c">Search</button>
         </div>
     )
 }
