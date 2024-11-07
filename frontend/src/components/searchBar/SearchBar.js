@@ -26,7 +26,7 @@ const SearchBar = () => {
         <div className="search-bar-container c">
             <input type="text" value={searchTerm} onChange={handleChange} placeholder="Search..." className="search-input c" onKeyDown={handleKeyDown}
             />
-            <button onClick={handleSearch} className="searchButton c">Search</button>
+            <button onClick={handleSearch} className="searchButton">Search</button>
         </div>
     )
 }

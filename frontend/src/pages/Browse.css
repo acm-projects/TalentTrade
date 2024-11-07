@@ -59,11 +59,16 @@
     width: 100%;
     border: 2px solid #DCDFFF;
     height: 100%;
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 8px 0px 0px 8px;
     font-family: 'Work Sans';
-    font-weight: 400;
+    font-weight: 500;
     font-size: 12pt;
     border-right: none;
+    transition: all ease-in 0.15s;
+}
+
+.search-input.c:hover {
+    border-color: #2C31ED;
 }
 
 .search-input.c:focus {
@@ -71,17 +76,24 @@
     border-color: #2C31ED; 
 }
 
-.searchButton.c {
+.searchButton {
     padding: 8px;
     border: 2px solid #2C31ED;
     background-color: #2C31ED; 
     color: white;
     cursor: pointer;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 8px 8px 0;
     font-family: 'Work Sans';
-    font-weight: 400;
+    font-weight: 550;
     font-size: 12pt;
     border-left: none;
+    transition: all ease-in 0.15s;
+}
+
+.searchButton:hover {
+    border: 2px solid #150080;
+    border-left: none;
+    background-color: #150080;
 }
 
 .search-items.c {
