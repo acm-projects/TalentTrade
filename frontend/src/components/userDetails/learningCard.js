@@ -1,6 +1,9 @@
 import {useSkillContext} from "../../hooks/useSkillContext"
+import { useState } from "react"
 
 const LearningCard = ({ learning_skill, userID, self}) => {
+    const [isDeleted, setIsDeleted] = useState(false)
+
     const { dispatch } = useSkillContext()
     const handleClick = async () => {
         const skill = {
@@ -21,15 +24,24 @@ const LearningCard = ({ learning_skill, userID, self}) => {
     
         if (response.ok) {
           dispatch({type: 'DELETE_SKILL', payload: json})
+          setIsDeleted(true)
         }
       }
 
     return (
-        <div className='teachingCard border center c' key={learning_skill._id}>
-            <p className='profileTextHeader c textCenter topPadding'>{learning_skill.Name}</p> 
-            {learning_skill.Description && <span className="pc padding10 c">{learning_skill.Description}</span>}
-            {self=='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
+      <>
+      {!isDeleted ? (
+        <div className='teachingCard border c' key={learning_skill._id}>
+          <p className='profileTextHeader c textCenter topPadding'>{learning_skill.Name}</p>
+          {learning_skill.Description && <span className="pc center padding10 c">{learning_skill.Description}</span>}
+          {self === 'true' && (
+            <div className="bottomright c">
+              <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+            </div>
+          )}
         </div>
+      ) : null}
+      </>
     )
 }
 
