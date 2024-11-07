@@ -13,6 +13,7 @@ import EditProfile from './pages/editProfile';
 import Signin from './pages/Signin';
 import OtherUser from './pages/OtherUser'
 import Messages from './pages/Messages';
+import SearchPage from './pages/searchpage';
 
 function App() {
   return (
@@ -25,11 +26,12 @@ function App() {
             <Route path="/messages" element={<Messages />} />
             <Route path='/profile' element={<Profile/>} />
             <Route path='/profile/edit' element={<EditProfile/>} />
-            <Route path='/:username' element={<OtherUser/>} />
+            <Route path='/user/:username' element={<OtherUser/>} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/browse" element={<Browse />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/questionaire" element={<Questionaire />} />
+            <Route path="/search" element={<SearchPage/>} />
           </Routes>
         </div>
     </div>

@@ -1,7 +1,6 @@
 import './Browse.css';
 import NavBarPost from '../components/NavBarPost/NavBar'
 import Profile from '../components/ProfileCard/Profile'
-import SearchBar from '../components/searchBar/SearchBar';
 import { useState, useEffect, useMemo } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import '../components/ProfileCard/Profile.css'

@@ -5,6 +5,7 @@ const Userchats=require('./models/ChatSchema')
 const mongoose=require('mongoose')
 const {allUsers } = require('./controllers/userController')
 const { firebaseAuthMiddleware } = require('./middleware/authMiddleware')
+const OpenAI = require('openai')
 require ('dotenv').config()
 const router=express.Router()
 
@@ -86,6 +87,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//get recommendations
 router.post('/recommendations', async (req,res)=>{
   try{
     const email=req.body.email
@@ -125,6 +127,44 @@ router.post('/recommendations', async (req,res)=>{
   }
 })
 
+
+//search for a specific user
+
+router.post('/search', async (req,res)=>{
+  try{
+    const {input}=req.body
+    const openai= new OpenAI({
+      apiKey:process.env.OpenAI_KEY
+    });
+    const completion = await openai.chat.completions.create({
+          model: "gpt-4o-mini",
+          messages: [
+          { role: "system", content: "You are a helpful assistant." },
+              {
+                      role: "user",
+                      content: `I will give you 3 possibilities, assume whatever comes after colon in this prompt is the input. If the input contains something like I want to learn/teach, followed by a skill name, Extract skill names and return them as JSON with the format {learningskills: learning skill name array}, teachingskills: teaching skill name array and capitalize first letter of each skill, the second condition is that if input is only the name of skill and not a full sentence which specifies learning or teaching, add that skill to both arrays; third condition is that if the input is neither of the first 2 conditions, try to understand what the user is trying to learn or teach and put them in the specified arrays as mentioned, if you can't figure out if its learning or teaching, add to both arrays: ${input}`,
+                  },
+              ],
+          });
+    
+          // response stored with formatted response content
+          const response= completion.choices[0].message.content.match(/{[\s\S]*}/)[0];
+          console.log(response)
+          const newresponse=JSON.parse(response)
+          const selectedUsers = await UserProfile.find({
+            $or:[
+              {"User.Skills.teaching_skills.Name":{$in: newresponse.learningskills.length>0 ? newresponse.learningskills: [""]}},
+              {"User.Skills.learning_skills.Name":{$in: newresponse.teachingskills.length>0 ? newresponse.teachingskills: [""]}},
+              {"User.Skills.learning_skills.Name":{$in: newresponse.learningskills.length>0 ? newresponse.learningskills: [""]}},
+              {"User.Skills.teaching_skills.Name":{$in: newresponse.learningskills.length>0 ? newresponse.teachingskills: [""]}}
+            ]
+          })
+          res.json(selectedUsers)
+      } catch (error) {
+          console.error("Error fetching completion:", error);
+      }
+    }
+)
 
 //deleting a skill
 router.delete('/:id',async (req,res)=>{
@@ -416,7 +456,6 @@ router.delete('/delete/Meeting',async (req,res)=>{
   }
 })
 
-//patch later, first get create and delete done
 
 
 
