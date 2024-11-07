@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import MeetingForm from './MeetingForm'
+import React, { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './MeetingDropdown.css';
 
-const MeetingDropdown = ({ meetings, onClose, onCreateMeeting }) => {
+const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
+    const [meetings, setMeetings] = useState([]);
     const dropdownRef = useRef(null);
 
     const handleClickOutside = (e) => {
@@ -12,11 +13,37 @@ const MeetingDropdown = ({ meetings, onClose, onCreateMeeting }) => {
     };
 
     useEffect(() => {
+        const fetchMeetings = async () => {
+            try {
+                const response = await fetch(`http://localhost:4000/api/users/get/meetings/${chatID}`,{
+                    method:'GET',
+                });
+                if (!response.ok) {
+                    throw new Error('HTTP error, staus: ${response.status)');
+                }
+                const data = await response.json();
+                setMeetings(data);
+            } catch (error) {
+                console.error("Error fetching meetings:", error);
+            }
+        };
+        fetchMeetings();
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    const formatStartDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
+    const formatEndDate = (dateString) => {
+        const options = { hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleTimeString(undefined, options);
+    };
 
     return (
         <div ref={dropdownRef} className="dropdown-container">
@@ -29,11 +56,11 @@ const MeetingDropdown = ({ meetings, onClose, onCreateMeeting }) => {
                     <ul className="meeting-list">
                         {meetings.map((meeting, index) => (
                             <li key={index} className="meeting-item">
-                                <div className="meeting-title">{meeting.title}</div>
+                                <div className="meeting-title">{meeting.meetingTopic}</div>
                                 <div className="align-right">
-                                    <div className="join-button">Join</div>
+                                    <Link to={meeting.meetingUrl} className="join-button">Join</Link>
                                 </div>
-                                <div className="meeting-time">{meeting.startTime} - {meeting.endTime}</div>
+                                <div className="meeting-time">{formatStartDate(meeting.meetingStartTime)} - {formatEndDate(meeting.meetingEndTime)}</div>
                             </li>
                         ))}
                     </ul>

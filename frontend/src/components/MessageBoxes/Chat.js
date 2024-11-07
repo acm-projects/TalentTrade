@@ -188,16 +188,16 @@ function Chat({ socket, socketConnected }) {
         return message.sender?._id === currentUserMongoId;
     }, [currentUserMongoId]);
 
-    const meetings = [
-        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
-        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
-        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
-        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
-        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
-        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
-        { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
-        { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
-    ];
+    // const meetings = [
+    //     { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+    //     { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    //     { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+    //     { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    //     { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+    //     { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    //     { title: 'Piano Lesson', startTime: '5:00 PM', endTime: '6:30 PM' },
+    //     { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
+    // ];
 
     return (
         <div className="chat-container">
@@ -211,9 +211,10 @@ function Chat({ socket, socketConnected }) {
                         {isPopupOpen && <MeetingForm onClose={closePopup} chatID={selectedChat._id}/>}
                         {isDropdownOpen && (
                             <MeetingDropdown
-                                meetings={meetings}
+                                // meetings={meetings}
                                 onClose={closeDropdown}
                                 onCreateMeeting={openPopup}
+                                chatID={selectedChat._id}
                             />
                         )}
                     {isTyping && <span className="typing-indicator d">Typing...</span>}
