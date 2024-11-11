@@ -24,9 +24,10 @@ const SearchBar = () => {
 
     return(
         <div className="search-bar-container c">
+            <img src="/images/search.svg" className="search-icon" alt="search" />
             <input type="text" value={searchTerm} onChange={handleChange} placeholder="Search..." className="search-input c" onKeyDown={handleKeyDown}
             />
-            <button onClick={handleSearch} className="searchButton">Search</button>
+            {/* <button onClick={handleSearch} className="searchButton">Search</button> */}
         </div>
     )
 }
