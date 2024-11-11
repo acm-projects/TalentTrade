@@ -5,6 +5,10 @@ import './Profile.css'
 function Profile( userData ) {
     console.log(userData.userData.User.Skills.teaching_skills)
 
+    const profilePictureUrl = userData.userData.User.Personal_info.profilePicture   
+        ? `http://localhost:4000${userData.userData.User.Personal_info.profilePicture}` 
+        : '/images/user.svg'
+
 
     function calculateAverageRating(skills) {
         if (skills.length === 0) return 0;    
@@ -30,8 +34,8 @@ function Profile( userData ) {
 
     return (
         <Link to={`/user/${username}`} >                
-            <div className="profile hoverEnlarge animate__fadeIn animate__animated fade c">
-                <div className="banner"><img src={"/images/user.png"} alt="banner" className="banner" draggable="false"/></div>
+            <div className="profile animate__fadeIn animate__animated fade c">
+                <div className="banner"><img src={profilePictureUrl} alt="banner" className="banner" draggable="false"/></div>
                 <Link to="/messages" className="message-button"><img src={"/images/message.svg"} alt="message" className="message-icon" draggable="false"/></Link>
                 <div className="body">
                     <div className="name">{userData.userData.User.Personal_info.Fname} {userData.userData.User.Personal_info.Lname}</div>
