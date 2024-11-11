@@ -1,7 +1,8 @@
 import {useSkillContext} from "../../hooks/useSkillContext"
+import { useState } from "react"
 
 const TeachingCard = ({ teaching_skill, userID, self }) => {
-
+    const [isDeleted, setIsDeleted] = useState(false)
     
     const { dispatch } = useSkillContext()
 
@@ -24,10 +25,13 @@ const TeachingCard = ({ teaching_skill, userID, self }) => {
     
         if (response.ok) {
           dispatch({type: 'DELETE_SKILL', payload: json})
+          setIsDeleted(true)
         }
       }
 
     return (
+    <>
+        {!isDeleted ? (
         <div className='teachingCard border teachingCardText c'>
             <div className='top c'>
                 <div className='topleft c'><p className="profileTextHeader c">{teaching_skill.Name}</p></div>
@@ -37,12 +41,14 @@ const TeachingCard = ({ teaching_skill, userID, self }) => {
                 <p className="pc">{teaching_skill.Description}</p>
             </div>
             <div className='bottom c'>
-            <div>
-                <p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught !== undefined ? teaching_skill.Hours_taught : 0}</p>
-            </div>
-            {self==='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
-        </div>  
-    </div>
+                <div>
+                    <p className="pc bottomleft c">Hours Taught: {teaching_skill.Hours_taught !== undefined ? teaching_skill.Hours_taught : 0}</p>
+                </div>
+                {self==='true' && <div className="bottomright c"><span className="material-symbols-outlined" onClick={handleClick}>delete</span></div>}
+            </div>  
+        </div>
+        ): null}
+    </>
     )
 
 }
