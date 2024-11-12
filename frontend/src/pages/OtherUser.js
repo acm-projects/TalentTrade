@@ -5,7 +5,6 @@ import TeachingCard from "../components/userDetails/teachingCard"
 import LearningCard from '../components/userDetails/learningCard';
 import './cheryl.css'
 
-
 const OtherUser = () => {
     let { username } = useParams();
     //username = username.substring(5)

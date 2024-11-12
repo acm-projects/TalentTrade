@@ -95,6 +95,7 @@ h3 {
     margin-bottom: 20px;
     float: left;
     display: block;
+    border-radius: 50%;
 }
 
 .search-bar {

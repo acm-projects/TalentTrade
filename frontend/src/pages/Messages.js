@@ -7,7 +7,7 @@ import Chat from "../components/MessageBoxes/Chat";
 // import MeetingDropdown from '../components/MessagePopups/MeetingDropdown';
 import { FaSearch } from 'react-icons/fa';
 import { ChatState } from "../context/ChatProvider";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import io from "socket.io-client";
 
 const ENDPOINT = "http://localhost:4000";
@@ -258,12 +258,65 @@ const Messages = () => {
         return currentUserInfo?.username || "No username set";
     }, [currentUserInfo, initialLoading]);
 
+    //user pfps
+    const [profile, setProfile] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [profilePicture, setProfilePicture] = useState(null)
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                setEmail(currentUser.email)
+            } else {
+                console.log("No user is signed in");
+            }
+        });
+        return () => unsubscribe();
+    }, [auth]);
+
+    //console.log(profile)
+
+    useEffect(() => {
+        console.log(email)
+        if (email) {
+            const fetchUser = async () => {
+                try {
+                    console.log('/api/users/' + email)
+                    const response = await fetch('http://localhost:4000/api/users/' + encodeURIComponent(email));
+
+                    console.log('Response status:', response.status);
+                    console.log('Response content-type:', response.headers.get('content-type'));
+
+                    if (response.ok) {
+                        console.log(response)
+                        const json = await response.json();
+                        setProfile(json);
+                        console.log(profile)
+                        setProfilePicture(json.User.Personal_info.profilePicture  
+                                 ? `http://localhost:4000${json.User.Personal_info.profilePicture  }` 
+                                 : '/images/user.svg')
+                    } else {
+                        console.error("Failed to fetch user data");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            };
+            fetchUser()
+        }
+    }, [email])  
+    //console.log(profile)
+
+    // setProfilePicture(profile.User.Personal_info.profilePicture  
+    //     ? `http://localhost:4000${profile.User.Personal_info.profilePicture  }` 
+    //     : '/images/user.svg')
+
+    //sdfkjsdkhf
     return (
         <div className='animate__fadeIn animate__animated fade c'> 
             <NavBarPost />
             <div className="contacts-container d">
                 <div className="self-contact d">
-                    <img src="/images/user.png" className="profile-picture d" alt="Profile" />
+                    <img src={profilePicture} className="profile-picture d" alt="Profile" />
                     <h3>{getCurrentUserName()}</h3>
                 </div>
                 <div className="other-contact-containers d">

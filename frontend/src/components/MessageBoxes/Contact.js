@@ -1,8 +1,9 @@
-import React from 'react';
-import { format, differenceInDays } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { format, differenceInDays, set } from 'date-fns';
 import './Contact.css';
 
 const Contact = ({ chat, otherUser, displayName, isSelected, onClick, currentUserId }) => {
+    //console.log(otherUser)
     const formatMessageTime = (timestamp) => {
         if (!timestamp) return '';
         try {
@@ -42,11 +43,23 @@ const Contact = ({ chat, otherUser, displayName, isSelected, onClick, currentUse
         ? formatMessageTime(chat.latestMessage.createdAt)
         : '';
 
+    const [profilePictureUrl, setProfilePictureUrl] = useState(null)
+
+    useEffect(() => {
+        if (otherUser && otherUser.User?.Personal_info?.profilePicture) {
+            setProfilePictureUrl(`http://localhost:4000${otherUser.User.Personal_info.profilePicture}`);
+        } else {
+            setProfilePictureUrl('/images/user.svg'); 
+        }
+    }, [otherUser]);
+
+    console.log(otherUser.User?.Personal_info?.profilePicture)
+
     return (
         <div className={isSelected ? "selected-contact" : "contact"} onClick={onClick}>
             <div className="contact-left">
                 <img 
-                    src="/images/user.png" 
+                    src={profilePictureUrl} 
                     className="small-profile-picture" 
                     alt={name} 
                 />
