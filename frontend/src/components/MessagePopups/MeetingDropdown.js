@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './MeetingForm.css';
 import './MeetingDropdown.css';
 
 const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
@@ -46,27 +47,29 @@ const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
     };
 
     return (
-        <div ref={dropdownRef} className="dropdown-container">
-            <div className="dropdown-header">
-                Meetings
-                <button onClick={onCreateMeeting} className="messages-header-button"><img src={"/images/add.svg"} alt="add" className="messages-header-button" draggable="false"/></button>
+        <div className="dropdown-full">
+            <div ref={dropdownRef} className="dropdown-container">
+                <div className="dropdown-header">
+                    Meetings
+                    <button onClick={onCreateMeeting} className="messages-header-button"><img src={"/images/add.svg"} alt="add" className="messages-header-button" draggable="false"/></button>
+                    </div>
+                <div className="dropdown-scroll-container"> {/* New scroll container */}
+                    {meetings.length > 0 ? (
+                        <ul className="meeting-list">
+                            {meetings.map((meeting, index) => (
+                                <li key={index} className="meeting-item">
+                                    <div className="meeting-title">{meeting.meetingTopic}</div>
+                                    <div className="align-right">
+                                        <Link to={meeting.meetingUrl} className="join-button">Join</Link>
+                                    </div>
+                                    <div className="meeting-time">{formatStartDate(meeting.meetingStartTime)} - {formatEndDate(meeting.meetingEndTime)}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div className="empty-dropdown">No meetings scheduled.</div>
+                    )}
                 </div>
-            <div className="dropdown-scroll-container"> {/* New scroll container */}
-                {meetings.length > 0 ? (
-                    <ul className="meeting-list">
-                        {meetings.map((meeting, index) => (
-                            <li key={index} className="meeting-item">
-                                <div className="meeting-title">{meeting.meetingTopic}</div>
-                                <div className="align-right">
-                                    <Link to={meeting.meetingUrl} className="join-button">Join</Link>
-                                </div>
-                                <div className="meeting-time">{formatStartDate(meeting.meetingStartTime)} - {formatEndDate(meeting.meetingEndTime)}</div>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <div className="empty-dropdown">No meetings scheduled.</div>
-                )}
             </div>
         </div>
     );
