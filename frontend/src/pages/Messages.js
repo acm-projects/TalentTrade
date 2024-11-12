@@ -273,7 +273,8 @@ const Messages = () => {
         return () => unsubscribe();
     }, [auth]);
 
-    //console.log(profile)
+    console.log("selected chat")
+    console.log(selectedChat)
 
     useEffect(() => {
         console.log(email)

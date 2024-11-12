@@ -5,7 +5,7 @@ import MeetingDropdown from '../MessagePopups/MeetingDropdown';
 import { ChatState } from '../../context/ChatProvider';
 import { getAuth } from 'firebase/auth';
 
-function Chat({ socket, socketConnected }) {
+function Chat({ socket, socketConnected, otherUser }) {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [newMessage, setNewMessage] = useState('');
@@ -199,11 +199,20 @@ function Chat({ socket, socketConnected }) {
     //     { title: 'Guitar Lesson', startTime: '7:00 PM', endTime: '8:00 PM'},
     // ];
 
+    const [profilePictureUrl, setProfilePictureUrl] = useState(null)
+    useEffect(() => {
+        if (chatPartner && chatPartner.User?.Personal_info?.profilePicture) {
+            setProfilePictureUrl(`http://localhost:4000${chatPartner.User.Personal_info.profilePicture}`);
+        } else {
+            setProfilePictureUrl('/images/user.svg'); 
+        }
+    }, [chatPartner]);
+
     return (
         <div className="chat-container">
             <div className="messages-header d">
                     <div className="messages-header-section">
-                        <img src="/images/user.svg" className="profile-picture d" alt="User" />
+                        <img src={profilePictureUrl} className="profile-picture d" alt="User" />
                         {getChatPartnerName()}
                     </div>
                     <button onClick={openDropdown} className="messages-header-button">
