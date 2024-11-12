@@ -106,3 +106,8 @@
     border-color: #150080;
     cursor: pointer;
 }
+
+.empty-dropdown {
+    padding: 5%;
+    font-weight: 550;
+}

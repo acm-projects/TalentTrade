@@ -65,7 +65,7 @@ const MeetingDropdown = ({ onClose, onCreateMeeting, chatID }) => {
                         ))}
                     </ul>
                 ) : (
-                    <p>No meetings scheduled.</p>
+                    <p classname="empty-dropdown">No meetings scheduled.</p>
                 )}
             </div>
         </div>
