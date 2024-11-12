@@ -186,11 +186,13 @@ const LearningSkillsForm = ({ email, skillType }) => {
                         </div>
                         <div className="container c">
                             <button className="addSkillButton hoverEnlarge2 c" 
-                            onClick={handleSubmit} 
                             type="submit"
                             >
                                 Add Skill
                             </button>  
+                        </div>
+                        <div className="container c submittedForm">
+                            {formSubmitted && <span className="form-submitted c" draggable="false">Sucessfully Updated!</span>}
                         </div>
                     </div>
                     </form>
