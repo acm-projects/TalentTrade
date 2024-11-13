@@ -149,7 +149,7 @@ Tired of paying huge amounts of money for private lessons or online courses on t
 ## Team TalentTrade 🙌
 
 **Developers**
-- Cheryl Wang - the best
+- Cheryl Wang - cherry
 - Adrian Tran - reynolds
 - Daniel Nguyen - danny
 - Sunay Shehaan - Blizzy
